@@ -74,5 +74,8 @@ body, html {
 
 .container{
     padding-top: 40px;
+    h4 {
+        line-height: 32px;
+    }
 }
 
