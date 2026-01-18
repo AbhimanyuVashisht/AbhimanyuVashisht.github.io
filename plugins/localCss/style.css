@@ -1,81 +1,365 @@
-
-.profile-image{
-    margin-right: 30px;
-    /*clip: rect(50px,50px,50px,50px);*/
+/* Classic About heading style */
+.about-heading {
+    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: var(--text-main);
+    margin-bottom: 1.2em;
+    background: transparent;
+    display: inline-block;
+    letter-spacing: 0.5px;
 }
 
-.header{
-    padding: 30px;
-    background: #f5f5f5;
-    border-top: 10px solid #778492;
+.about-subheading {
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5em;
+    display: block;
+    letter-spacing: 0.1px;
+}
+/* Hero subtitle spacing and style */
+.hero-subtitle {
+    margin-top: 2.2rem;
+    font-size: 1.15rem;
+    color: #b0b3b8;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.10);
+    transition: margin 0.3s, font-size 0.3s;
+}
+
+@media (max-width: 991.98px) {
+    .hero-subtitle {
+        margin-top: 1.2rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-subtitle {
+        margin-top: 0.7rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* === Animations === */
+.fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+.reveal {
+    opacity: 0;
+    animation: revealFade 1.2s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+@keyframes revealFade {
+    to {
+        opacity: 1;
+    }
+}
+
+/* === Subtle Dark Theme Variables === */
+:root {
+    --bg-main: #181a1b;
+    --bg-secondary: #23272a;
+    --bg-accent: #232d3b;
+    --text-main: #e0e0e0;
+    --text-secondary: #b0b3b8;
+    --accent: #7da6ff;
+    --accent-bg: #232d3b;
+    --card-bg: #23272a;
+    --border-color: #333a40;
+    --shadow: 0 2px 8px rgba(0,0,0,0.25);
+    --focus-outline: 2px solid #7da6ff;
+}
+
+/* Typography Consistency */
+body, html {
+    font-family: 'Inter', Arial, sans-serif;
+}
+h1, h2, h3, h4, h5, h6,
+.navbar-brand,
+.caption .bg-text,
+.caption-static .bg-text,
+.profile-content .name,
+.caption span.bg-text {
+    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.profile-content .desc,
+.profile-content,
+.hero-subtitle,
+.socialize,
+.card,
+footer,
+section,
+nav,
+ul,
+li,
+p,
+span,
+div {
+    font-family: 'Inter', Arial, sans-serif;
 }
 
 body, html {
-    font-family: 'Lato', Arial, sans-serif;
+    font-family: 'Inter', Arial, sans-serif;
     font-size: 16px;
     height: 100%;
     margin: 0;
-    font: 400 15px/1.8 "Lato", sans-serif;
-    color: #434343;
-
+    background: var(--bg-main);
+    color: var(--text-main);
+    transition: background 0.3s, color 0.3s;
+    scroll-behavior: smooth;
 }
 
+.profile-image {
+    margin-right: 30px;
+    border-radius: 50%;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
+}
+.profile-image:focus, .profile-image:hover {
+    outline: var(--focus-outline);
+    transform: scale(1.04);
+}
 
-.bg-img-1{
+.bg-img-1 {
     background-image: url("bg-img-1.jpg");
-    min-height: 100%;
-}
-
-.bg-img-2{
-    color: white;
-    background-color: black;
-    min-height: 50%;
-}
-
-.bg-img-3{
-    background-image: url("bg-img-3.jpg");
-    min-height: 400px;
-    opacity: 0.65;
-}
-
-.bg-img-4{
-    color: white;
-    background-color: black;
-    min-height: 50%;
-}
-
-.bg-img-1, .bg-img-2, .bg-img-3{
-    position: relative;
-    opacity: 0.85;
+    min-height: 100vh;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
+    opacity: 0.85;
 }
 
-.caption{
-    position: absolute;
-    left: 0;
-    top: 50%;
+.bg-img-2, .bg-img-4 {
+    background: var(--bg-secondary);
+    color: var(--text-main);
+    min-height: 50vh;
+    position: relative;
+}
+
+.bg-img-3 {
+    background-image: url("bg-img-3.jpg");
+    min-height: 400px;
+    opacity: 0.65;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+
+/* Fix hero section stacking and spacing */
+.caption-static {
+    position: relative;
     width: 100%;
     text-align: center;
-    color: #000;
+    color: var(--text-main);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    z-index: 2;
 }
 
-.caption span.bg-text{
-    background-color: #111;
+.caption span.bg-text {
+    background-color: var(--accent-bg);
+    color: #e0e0e0;
+    padding: 18px 32px;
+    font-size: 2rem;
+    letter-spacing: 8px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    display: inline-block;
+    margin: 8px 0;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.caption span.bg-text:focus, .caption span.bg-text:hover {
+    background-color: var(--accent);
+    color: #181a1b;
+    box-shadow: 0 4px 16px rgba(125,166,255,0.2);
+    outline: var(--focus-outline);
+}
+
+/* Hero motivational lines - large, bold, bright */
+.caption-static .bg-text {
+    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
     color: #fff;
-    padding: 18px;
-    font-size: 25px;
-    letter-spacing: 10px;
+    background: none;
+    border: none;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    letter-spacing: 0.12em;
+    margin: 0.2em 0;
+    display: block;
+    padding: 0;
+    box-shadow: none;
 }
-
-
-
-.container{
-    padding-top: 40px;
-    h4 {
-        line-height: 32px;
+@media (max-width: 991.98px) {
+    .caption-static .bg-text {
+        font-size: 1.7rem;
+    }
+}
+@media (max-width: 767.98px) {
+    .caption-static .bg-text {
+        font-size: 1.1rem;
     }
 }
 
+.container {
+    padding-top: 40px;
+}
+
+/* Responsive adjustments */
+/* Profile section professional font styles */
+.profile-content {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-main);
+}
+.profile-content .name {
+    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 2.4rem;
+    letter-spacing: 1px;
+    color: var(--text-main);
+    margin-bottom: 0.3em;
+}
+.profile-content .desc {
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.7em;
+}
+@media (max-width: 991.98px) {
+    .profile-image {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    .profile-content {
+        text-align: center;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .container {
+        padding-top: 20px;
+    }
+    h4 {
+        font-size: 1rem;
+    }
+    .caption span.bg-text {
+        font-size: 1.2rem;
+        padding: 10px 12px;
+    }
+}
+
+/* Card and button transitions */
+.card {
+    background: var(--card-bg) !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.card .badge {
+    font-size: 0.95rem;
+    padding: 0.5em 0.9em;
+    margin-bottom: 0.2em;
+    border-radius: 0.7em;
+    letter-spacing: 0.5px;
+}
+.card .btn {
+    font-size: 1rem;
+    padding: 0.5em 1.2em;
+    border-radius: 0.7em;
+}
+.card:hover, .card:focus {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 6px 24px rgba(79,140,255,0.15);
+    outline: var(--focus-outline);
+}
+
+/* Navbar and footer */
+/* Navbar sticky only for .navbar */
+.navbar {
+    background: var(--bg-secondary) !important;
+    color: var(--text-main) !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    min-height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.footer, footer {
+    background: var(--bg-secondary) !important;
+    color: var(--text-main) !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    min-height: 56px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.navbar .nav-link, .navbar-brand {
+ .navbar .nav-link, .navbar-brand {
+    color: var(--text-main) !important;
+    transition: color 0.2s, background 0.2s;
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+    border-radius: 4px;
+}
+.navbar .nav-link:hover, .navbar .nav-link:focus {
+    background: rgba(125,166,255,0.08);
+    color: var(--accent) !important;
+    text-decoration: none;
+}
+.navbar .nav-link:focus, .navbar .nav-link:hover, .navbar-brand:focus, .navbar-brand:hover {
+ .navbar .nav-link:focus, .navbar .nav-link:hover, .navbar-brand:focus, .navbar-brand:hover {
+    color: var(--accent) !important;
+    outline: var(--focus-outline);
+}
+
+footer a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+footer a:focus, footer a:hover {
+    color: #fff;
+    outline: var(--focus-outline);
+}
+
+/* Accessibility: focus states for all interactive elements */
+a:focus, button:focus, input:focus, .card:focus, .navbar .nav-link:focus {
+    outline: var(--focus-outline) !important;
+    outline-offset: 2px;
+}
+
+h4 {
+    line-height: 2;
+}

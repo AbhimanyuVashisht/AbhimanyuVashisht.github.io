@@ -1,0 +1,81 @@
+
+.profile-image{
+    margin-right: 30px;
+    /*clip: rect(50px,50px,50px,50px);*/
+}
+
+.header{
+    padding: 30px;
+    background: #f5f5f5;
+    border-top: 10px solid #778492;
+}
+
+body, html {
+    font-family: 'Lato', Arial, sans-serif;
+    font-size: 16px;
+    height: 100%;
+    margin: 0;
+    font: 400 15px/1.8 "Lato", sans-serif;
+    color: #434343;
+
+}
+
+
+.bg-img-1{
+    background-image: url("bg-img-1.jpg");
+    min-height: 100%;
+}
+
+.bg-img-2{
+    color: white;
+    background-color: black;
+    min-height: 50%;
+}
+
+.bg-img-3{
+    background-image: url("bg-img-3.jpg");
+    min-height: 400px;
+    opacity: 0.65;
+}
+
+.bg-img-4{
+    color: white;
+    background-color: black;
+    min-height: 50%;
+}
+
+.bg-img-1, .bg-img-2, .bg-img-3{
+    position: relative;
+    opacity: 0.85;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.caption{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: #000;
+}
+
+.caption span.bg-text{
+    background-color: #111;
+    color: #fff;
+    padding: 18px;
+    font-size: 25px;
+    letter-spacing: 10px;
+}
+
+
+
+.container{
+    padding-top: 40px;
+    h4 {
+        line-height: 32px;
+    }
+}
+
