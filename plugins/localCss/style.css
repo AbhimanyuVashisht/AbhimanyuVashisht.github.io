@@ -182,7 +182,18 @@ body, html {
     font-size: 9px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    fill: var(--text-secondary);
+    fill: none;
+    stroke: var(--text-secondary);
+    stroke-width: 1.5;
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: drawLogo 2s ease forwards;
+}
+
+@keyframes drawLogo {
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
 .bg-img-1 {
