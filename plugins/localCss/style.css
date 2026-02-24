@@ -62,6 +62,25 @@
     --focus-outline: 2px solid #7da6ff;
 }
 
+/* Light theme overrides */
+[data-theme="light"] {
+    --bg-main: #f8f9fa;
+    --bg-secondary: #fff;
+    --bg-accent: #e9ecef;
+    --text-main: #23272a;
+    --text-secondary: #495057;
+    --accent: #0056b3;
+    --accent-bg: #e9ecef;
+    --card-bg: #fff;
+    --border-color: #dee2e6;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    --focus-outline: 2px solid #0056b3;
+}
+
+[data-theme="light"] .fa-sun {
+    color: #f7c948 !important; /* warm yellow */
+}
+
 /* Typography Consistency */
 body, html {
     font-family: 'Inter', Arial, sans-serif;
