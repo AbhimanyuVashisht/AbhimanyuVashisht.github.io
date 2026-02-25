@@ -1,3 +1,70 @@
+/* === Hero CTA Buttons === */
+.hero-cta {
+    margin-top: 2.2rem;
+}
+
+.btn-hero-primary {
+    background: var(--accent);
+    color: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 2rem;
+    padding: 0.6rem 2rem;
+    font-weight: 600;
+    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    text-decoration: none;
+}
+.btn-hero-primary:hover, .btn-hero-primary:focus {
+    background: transparent;
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    outline: var(--focus-outline);
+}
+
+.btn-hero-outline {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.7);
+    border-radius: 2rem;
+    padding: 0.6rem 2rem;
+    font-weight: 600;
+    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+    text-decoration: none;
+}
+.btn-hero-outline:hover, .btn-hero-outline:focus {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    border-color: #fff;
+    transform: translateY(-2px);
+    outline: var(--focus-outline);
+}
+
+/* Resume Download Button */
+.btn-resume {
+    background: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    border-radius: 2rem;
+    padding: 0.5rem 1.6rem;
+    font-weight: 600;
+    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-resume:hover, .btn-resume:focus {
+    background: var(--accent);
+    color: #fff;
+    transform: translateY(-2px);
+    outline: var(--focus-outline);
+}
+
 /* Classic About heading style */
 .about-heading {
     font-family: 'Montserrat', 'Inter', Arial, sans-serif;
@@ -14,7 +81,7 @@
 .hero-subtitle {
     margin-top: 2.2rem;
     font-size: 1.15rem;
-    color: #b0b3b8;
+    color: var(--text-secondary);
     font-weight: 400;
     letter-spacing: 0.5px;
     text-shadow: 0 1px 2px rgba(0,0,0,0.10);
@@ -382,7 +449,7 @@ footer a {
     transition: color 0.2s;
 }
 footer a:focus, footer a:hover {
-    color: #fff;
+    color: var(--text-main);
     outline: var(--focus-outline);
 }
 
