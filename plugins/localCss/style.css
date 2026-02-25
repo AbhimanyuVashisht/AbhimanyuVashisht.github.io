@@ -462,3 +462,120 @@ a:focus, button:focus, input:focus, .navbar .nav-link:focus {
 h4 {
     line-height: 2;
 }
+
+/* === Projects Section === */
+.section-heading {
+    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+.section-subheading {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    cursor: default;
+    outline: none;
+}
+.project-card:hover,
+.project-card:focus {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+    border-color: var(--accent);
+    outline: none;
+}
+.project-card:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: 3px;
+}
+
+.project-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.project-company {
+    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+}
+
+.project-year {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+}
+
+.project-title {
+    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.project-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    flex-grow: 1;
+    margin: 0;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+}
+
+.tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    font-family: 'Inter', Arial, sans-serif;
+    letter-spacing: 0.5px;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--border-color);
+}
+
+.project-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    margin-top: 0.5rem;
+    display: inline-block;
+    transition: color 0.2s;
+}
+.project-link:hover, .project-link:focus {
+    color: var(--text-main);
+    outline: none;
+    text-decoration: underline;
+}
+
+@media (max-width: 767.98px) {
+    .project-card {
+        padding: 1.2rem;
+    }
+}
