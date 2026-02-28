@@ -446,7 +446,10 @@ body::before {
     background: var(--bg-main);
     display: flex;
     align-items: center;
-    padding: 0;
+    /* Push content below the fixed navbar (≈60px) + accent stripe (3px).
+       padding-bottom mirrors it so flex-centering stays in the visible zone. */
+    padding: 63px 0 2rem;
+    box-sizing: border-box;
 }
 
 /* Desktop: lock to exact viewport (content fits) */
