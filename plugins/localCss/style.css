@@ -578,6 +578,22 @@ body::before {
     color: var(--accent) !important;
     text-decoration: none;
 }
+.navbar .nav-link.active {
+    color: var(--accent) !important;
+    font-weight: 600;
+    position: relative;
+}
+.navbar .nav-link.active::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0.5rem;
+    right: 0.5rem;
+}
 .navbar .nav-link:focus, .navbar .nav-link:hover, .navbar-brand:focus, .navbar-brand:hover {
     color: var(--accent) !important;
     outline: var(--focus-outline);

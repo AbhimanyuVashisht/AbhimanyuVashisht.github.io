@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description" content="Get in touch with Abhimanyu Vashisht — Lead Software Engineer.">
+    <meta property="og:title" content="Contact — Abhimanyu Vashisht">
+    <meta property="og:description" content="Get in touch with Abhimanyu Vashisht.">
+    <meta property="og:image" content="https://abhimanyuvashisht.github.io/plugins/localCss/prof-img2.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abhimanyuvashisht.com/contact.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta charset="UTF-8">
+    <title>Contact — Abhimanyu Vashisht</title>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./plugins/localCss/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./plugins/localCss/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./plugins/localCss/icons/favicon-16x16.png">
+    <link rel="manifest" href="./plugins/localCss/icons/manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="plugins/localCss/style.css">
+    <style>
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .contact-card:hover, .contact-card:focus {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+            border-color: var(--accent);
+            color: var(--text-main);
+            outline: none;
+        }
+        .contact-card:focus-visible {
+            outline: var(--focus-outline);
+            outline-offset: 3px;
+        }
+        .contact-card-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            display: block;
+            line-height: 1;
+        }
+        .contact-card-label {
+            font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+        .contact-card-value {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+        .contact-section-intro {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin: 0 auto 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Navigation -->
+    <a href="#main-content" class="skip-nav">Skip to main content</a>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-themed fade-in fixed-top navbar-transparent" aria-label="Primary navigation" style="animation-delay:0.1s;">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html" aria-label="Abhimanyu Vashisht - Home">A V</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="work.html">Work</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item d-flex align-items-center ms-2">
+                        <button id="theme-toggle" class="btn btn-theme-toggle btn-sm" aria-label="Toggle light/dark mode" style="border-radius:50%;width:2.2em;height:2.2em;display:flex;align-items:center;justify-content:center;">
+                            <span id="theme-icon" class="fa fa-moon" aria-hidden="true"></span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <section class="py-5 fade-in" id="contact" aria-labelledby="contact-heading" style="padding-top: 7rem !important;">
+            <div class="container">
+                <h2 class="section-heading text-center mb-3" id="contact-heading">Get In Touch</h2>
+                <p class="contact-section-intro text-center">
+                    I'm always open to interesting conversations, collaborations, or opportunities. Feel free to reach out through any of these channels.
+                </p>
+
+                <!-- Contact cards -->
+                <div class="row g-4 justify-content-center mb-5">
+                    <div class="col-6 col-md-3">
+                        <a href="mailto:iamabhimanyuvashisht@gmail.com" class="contact-card h-100" aria-label="Send an email">
+                            <span class="contact-card-icon"><i class="fas fa-envelope" aria-hidden="true"></i></span>
+                            <span class="contact-card-label">Email</span>
+                            <span class="contact-card-value">Drop me a line</span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a href="https://www.linkedin.com/in/iamabhimanyuvashisht/" target="_blank" rel="noopener noreferrer" class="contact-card h-100" aria-label="LinkedIn profile (opens in new tab)">
+                            <span class="contact-card-icon"><i class="fab fa-linkedin" aria-hidden="true"></i></span>
+                            <span class="contact-card-label">LinkedIn</span>
+                            <span class="contact-card-value">Let's connect</span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a href="https://github.com/AbhimanyuVashisht" target="_blank" rel="noopener noreferrer" class="contact-card h-100" aria-label="GitHub profile (opens in new tab)">
+                            <span class="contact-card-icon"><i class="fab fa-github" aria-hidden="true"></i></span>
+                            <span class="contact-card-label">GitHub</span>
+                            <span class="contact-card-value">See my code</span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a href="https://twitter.com/abhimanyu_av" target="_blank" rel="noopener noreferrer" class="contact-card h-100" aria-label="Twitter profile (opens in new tab)">
+                            <span class="contact-card-icon"><i class="fab fa-twitter" aria-hidden="true"></i></span>
+                            <span class="contact-card-label">Twitter</span>
+                            <span class="contact-card-value">@abhimanyu_av</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 mt-5 fade-in" aria-label="Site footer">
+        <div class="container text-center">
+            <div class="mb-2">
+                <a href="https://github.com/AbhimanyuVashisht" class="me-2" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/in/iamabhimanyuvashisht/" class="me-2" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/iamabhimanyuvashisht/" class="me-2" aria-label="Instagram profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <a href="https://twitter.com/abhimanyu_av" aria-label="Twitter profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+            </div>
+            <div>&copy; 2026 Abhimanyu Vashisht. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="plugins/localJs/theme-toggle.js"></script>
+    <script src="plugins/localJs/navbar-scroll.js"></script>
+    <script src="plugins/localJs/nav-active.js"></script>
+</body>
+</html>
