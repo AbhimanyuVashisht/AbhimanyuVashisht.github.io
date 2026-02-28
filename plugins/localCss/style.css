@@ -441,19 +441,24 @@ body::before {
 }
 
 /* === Hero Section === */
-/* Lock index.html to a single viewport — no body scroll */
-body.page-hero {
-    height: 100dvh;
-    overflow: hidden;
-}
-
 .hero-section {
-    height: 100dvh;
+    min-height: 100dvh;
     background: var(--bg-main);
     display: flex;
     align-items: center;
     padding: 0;
-    overflow: hidden;
+}
+
+/* Desktop: lock to exact viewport (content fits) */
+@media (min-width: 992px) and (min-height: 700px) {
+    body.page-hero {
+        height: 100dvh;
+        overflow: hidden;
+    }
+    .hero-section {
+        height: 100dvh;
+        overflow: hidden;
+    }
 }
 
 .hero-row {
@@ -759,24 +764,37 @@ h4 {
     }
 }
 
-/* === Full-viewport inner page layout (about / work / contact) ===
-   Strategy: body is locked to 100dvh (no body scroll).
-   main scrolls internally only if content genuinely overflows.
-   padding-top on main accounts for the fixed navbar (~60px) + accent stripe (3px).
-*/
+/* =============================================================
+   PAGE LAYOUT SYSTEM
+   ---------------------------------------------------------------
+   .page-hero  — index.html (full-bleed hero)
+   .page-fill  — about / work / contact (centered content)
+
+   Mobile-first: natural scroll everywhere by default.
+   Viewport-lock is opt-in via media query only on large screens
+   where content is guaranteed to fit.
+
+   NEVER use align-items:center on a scroll container — overflow
+   goes upward and is unreachable. Use flex-direction:column +
+   justify-content:center instead so overflow goes downward.
+   ============================================================= */
+
+/* --- .page-hero: cancel global container padding --- */
+body.page-hero .container {
+    padding-top: 0;
+}
+
+/* --- .page-fill: mobile-first natural scroll (all sizes) --- */
 body.page-fill {
-    height: 100dvh;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
+    min-height: 100dvh;
 }
 
 body.page-fill main {
     flex: 1;
-    overflow-y: auto;
-    padding-top: 63px; /* fixed navbar (~60px) + accent stripe (3px) */
-    display: flex;
-    align-items: center;
+    /* push content below fixed navbar (≈60px) + accent stripe (3px) */
+    padding-top: 63px;
 }
 
 body.page-fill footer {
@@ -784,17 +802,17 @@ body.page-fill footer {
     margin-top: 0 !important;
 }
 
-/* Cancel the global .container padding-top inside page-fill */
 body.page-fill .container {
     padding-top: 0;
 }
 
-/* Cancel the global .container padding-top inside page-hero */
-body.page-hero .container {
-    padding-top: 0;
+body.page-fill section {
+    width: 100%;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 }
 
-/* Navbar always has background on inner pages (body scroll is locked to 0 always) */
+/* Navbar always opaque — page doesn't rely on window.scrollY */
 body.page-fill .navbar-themed {
     background-color: var(--bg-secondary) !important;
     background: var(--bg-secondary) !important;
@@ -802,10 +820,20 @@ body.page-fill .navbar-themed {
     border-bottom: 1px solid var(--border-color) !important;
 }
 
-body.page-fill section {
-    width: 100%;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+/* --- .page-fill: desktop enhancement — lock viewport, center content --- */
+@media (min-width: 992px) and (min-height: 700px) {
+    body.page-fill {
+        height: 100dvh;
+        overflow: hidden;
+    }
+
+    body.page-fill main {
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        /* justify-content:center in column direction — any overflow goes DOWN ↓ */
+        justify-content: center;
+    }
 }
 
 
