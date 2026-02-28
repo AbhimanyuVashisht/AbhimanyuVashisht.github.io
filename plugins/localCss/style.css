@@ -1,3 +1,57 @@
+/* === Skip Navigation (WCAG 2.4.1) === */
+.skip-nav {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-weight: 700;
+    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+    z-index: 10000;
+    border-radius: 0 0 6px 0;
+    text-decoration: none;
+    transition: top 0.2s ease;
+    white-space: nowrap;
+}
+.skip-nav:focus {
+    top: 0;
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+
+/* === Scroll offset for fixed navbar on anchor links === */
+section[id],
+footer[id] {
+    scroll-margin-top: 100px;
+}
+
+/* === Navbar Transparency === */
+.navbar-themed {
+    background-color: transparent;
+    background: transparent;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+}
+
+.navbar-transparent,
+.navbar-transparent.navbar-themed {
+    background-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+    --bs-navbar-bg: transparent;
+}
+
+.navbar-scrolled,
+.navbar-scrolled.navbar-themed {
+    background-color: var(--bg-secondary) !important;
+    background: var(--bg-secondary) !important;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
 /* === Hero CTA Buttons === */
 .hero-cta {
     margin-top: 2.2rem;
@@ -126,7 +180,7 @@
     --card-bg: #111b30;
     --border-color: #1e2d47;
     --shadow: 0 2px 12px rgba(0,0,0,0.45);
-    --focus-outline: 2px solid #7da6ff;
+    --focus-outline: 3px solid #7da6ff;
     --about-accent-bg: #0d2d6e;
 }
 
@@ -142,7 +196,7 @@
     --card-bg: #ffffff;
     --border-color: #e2e8f0;
     --shadow: 0 2px 8px rgba(0,0,0,0.07);
-    --focus-outline: 2px solid #2563eb;
+    --focus-outline: 3px solid #2563eb;
     --about-accent-bg: #1d4ed8;
 }
 
@@ -304,6 +358,33 @@ body::before {
     100% { background-position: 200% 0%; }
 }
 
+/* === Reduced Motion (WCAG 2.2.2) === */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .fade-in {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+    .logo-text {
+        stroke-dashoffset: 0;
+        animation: none;
+    }
+    body::before {
+        animation: none;
+        background: #7da6ff;
+        background-size: unset;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 .bg-img-1 {
     min-height: 100vh;
     position: relative;
@@ -330,10 +411,6 @@ body::before {
 }
 
 /* === Themed Navbar === */
-.navbar-themed {
-    background: var(--bg-secondary) !important;
-    border-bottom: 1px solid var(--border-color);
-}
 .navbar-themed .navbar-brand,
 .navbar-themed .nav-link {
     color: var(--text-main) !important;
@@ -365,11 +442,11 @@ body::before {
 
 /* === Hero Section === */
 .hero-section {
-    min-height: calc(100vh - 58px);
+    min-height: 100vh;
     background: var(--bg-main);
     display: flex;
     align-items: center;
-    padding: 3rem 0 3rem;
+    padding: 0;
 }
 
 .hero-row {
@@ -413,7 +490,6 @@ body::before {
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--text-secondary);
-    opacity: 0.6;
     margin-bottom: 1rem;
 }
 
@@ -444,6 +520,9 @@ body::before {
 .hero-social-link:hover, .hero-social-link:focus {
     color: var(--accent);
     transform: translateY(-2px);
+    outline: var(--focus-outline);
+    outline-offset: 4px;
+    border-radius: 4px;
 }
 
 /* Remove wave divider styles */
@@ -474,15 +553,10 @@ body::before {
 /* Navbar and footer */
 /* Navbar sticky only for .navbar */
 .navbar {
-    background: var(--bg-secondary) !important;
     color: var(--text-main) !important;
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
-    min-height: 56px;
-    position: sticky;
+    position: fixed !important;
     top: 0;
     z-index: 1030;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 .footer, footer {
     background: var(--bg-secondary) !important;
@@ -520,9 +594,19 @@ footer a:focus, footer a:hover {
 }
 
 /* Accessibility: focus states for all interactive elements */
-a:focus, button:focus, input:focus, .navbar .nav-link:focus {
+a:focus-visible, button:focus-visible, input:focus-visible,
+.navbar .nav-link:focus-visible, .navbar-brand:focus-visible {
     outline: var(--focus-outline) !important;
-    outline-offset: 2px;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+/* Ensure keyboard-only users always see focus (no :focus-visible support fallback) */
+a:focus, button:focus {
+    outline: var(--focus-outline);
+    outline-offset: 3px;
+}
+a:focus:not(:focus-visible), button:focus:not(:focus-visible) {
+    outline: none;
 }
 
 h4 {
@@ -636,8 +720,10 @@ h4 {
 }
 .project-link:hover, .project-link:focus {
     color: var(--text-main);
-    outline: none;
+    outline: var(--focus-outline);
+    outline-offset: 3px;
     text-decoration: underline;
+    border-radius: 3px;
 }
 
 .text-accent {

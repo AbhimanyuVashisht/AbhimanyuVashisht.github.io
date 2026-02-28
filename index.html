@@ -42,10 +42,13 @@
     <link rel="stylesheet" href="plugins/localCss/style.css">
 </head>
 <body>
+    <!-- Skip Navigation (WCAG 2.4.1) -->
+    <a href="#main-content" class="skip-nav">Skip to main content</a>
+
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-themed shadow-sm fade-in" style="animation-delay:0.1s;">
+        <nav class="navbar navbar-expand-lg navbar-themed fade-in fixed-top navbar-transparent" aria-label="Primary navigation" style="animation-delay:0.1s;">
             <div class="container">
-                <a class="navbar-brand fw-bold" href="#">A V</a>
+                <a class="navbar-brand fw-bold" href="#" aria-label="Abhimanyu Vashisht - Home">A V</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -56,7 +59,7 @@
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                         <li class="nav-item d-flex align-items-center ms-2">
                             <button id="theme-toggle" class="btn btn-theme-toggle btn-sm" aria-label="Toggle light/dark mode" style="border-radius:50%;width:2.2em;height:2.2em;display:flex;align-items:center;justify-content:center;">
-                                <span id="theme-icon" class="fa fa-moon"></span>
+                                <span id="theme-icon" class="fa fa-moon" aria-hidden="true"></span>
                             </button>
                         </li>
                     </ul>
@@ -64,8 +67,9 @@
             </div>
         </nav>
 
+        <main id="main-content">
         <!-- Hero Section: split layout — photo left, intro right -->
-        <section class="hero-section fade-in" style="animation-delay:0.2s;">
+        <section class="hero-section fade-in" aria-labelledby="hero-heading" style="animation-delay:0.2s;">
             <div class="container">
                 <div class="row align-items-center hero-row">
 
@@ -94,14 +98,14 @@
                     <!-- Intro -->
                     <div class="col-lg-7 col-md-7 text-center text-md-start">
                         <p class="hero-eyebrow">Lead Software Engineer</p>
-                        <h1 class="hero-name">Abhimanyu<br>Vashisht</h1>
+                        <h1 class="hero-name" id="hero-heading">Abhimanyu<br>Vashisht</h1>
                         <p class="hero-motto">Working on myself &middot; for myself &middot; by myself</p>
-                        <p class="hero-subtitle mb-4"><span id="typewriter"></span></p>
+                        <p class="hero-subtitle mb-4"><span id="typewriter" role="status" aria-live="polite" aria-atomic="false"></span></p>
                         <div class="hero-socials mb-4">
-                            <a href="https://github.com/AbhimanyuVashisht" aria-label="GitHub" class="hero-social-link"><i class="fab fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/iamabhimanyuvashisht/" aria-label="LinkedIn" class="hero-social-link"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://www.instagram.com/iamabhimanyuvashisht/" aria-label="Instagram" class="hero-social-link"><i class="fab fa-instagram"></i></a>
-                            <a href="https://twitter.com/abhimanyu_av" aria-label="Twitter" class="hero-social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="https://github.com/AbhimanyuVashisht" aria-label="GitHub profile" class="hero-social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i></a>
+                            <a href="https://www.linkedin.com/in/iamabhimanyuvashisht/" aria-label="LinkedIn profile" class="hero-social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/iamabhimanyuvashisht/" aria-label="Instagram profile" class="hero-social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                            <a href="https://twitter.com/abhimanyu_av" aria-label="Twitter profile" class="hero-social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                         </div>
                         <div class="hero-cta">
                             <a href="#about" class="btn btn-hero-primary me-3">About Me</a>
@@ -113,12 +117,12 @@
             </div>
         </section>
         <!-- About Section -->
-        <section class="py-5 fade-in" id="about" style="animation-delay:0.4s; border-top: 1px solid var(--border-color);">
+        <section class="py-5 fade-in" id="about" aria-labelledby="about-heading" style="animation-delay:0.4s;">
             <div class="container">
-                <h2 class="section-heading text-center mb-5">About Me</h2>
+                <h2 class="section-heading text-center mb-5" id="about-heading">About Me</h2>
                 <div class="row justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h2 class="fw-bold mb-4">Hey, I'm Abhimanyu.</h2>
+                        <h3 class="fw-bold mb-4">Hey, I'm Abhimanyu.</h3>
                         <p class="lead mb-3">
                             I'm a Lead Software Engineer who genuinely loves building things on the web. JavaScript and Python are my happy place — I've been writing them for over 7 years and I'm still finding new ways they surprise me.
                         </p>
@@ -130,33 +134,33 @@
                         </p>
                         <div class="row g-3 justify-content-center text-start">
                             <div class="col-auto">
-                                <span class="d-flex align-items-center gap-2 small"><i class="fas fa-graduation-cap text-accent"></i> B.Tech (CSE), Jaypee Institute of Information Technology</span>
+                                <span class="d-flex align-items-center gap-2 small"><i class="fas fa-graduation-cap text-accent" aria-hidden="true"></i> B.Tech (CSE), Jaypee Institute of Information Technology</span>
                             </div>
                             <div class="col-auto">
-                                <span class="d-flex align-items-center gap-2 small"><i class="fas fa-brain text-accent"></i> Deep Learning Specialization — deeplearning.ai</span>
+                                <span class="d-flex align-items-center gap-2 small"><i class="fas fa-brain text-accent" aria-hidden="true"></i> Deep Learning Specialization — deeplearning.ai</span>
                             </div>
                             <div class="col-auto">
-                                <span class="d-flex align-items-center gap-2 small"><i class="fas fa-users text-accent"></i> President, Rotaract Club of Delhi South (2021–22)</span>
+                                <span class="d-flex align-items-center gap-2 small"><i class="fas fa-users text-accent" aria-hidden="true"></i> President, Rotaract Club of Delhi South (2021–22)</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="py-5 fade-in" id="projects" style="animation-delay:0.6s;">
+        <section class="py-5 fade-in" id="projects" aria-labelledby="projects-heading" style="animation-delay:0.6s;">
             <div class="container">
-                <h2 class="section-heading text-center mb-2">Work &amp; Projects</h2>
+                <h2 class="section-heading text-center mb-2" id="projects-heading">Work &amp; Projects</h2>
                 <p class="section-subheading text-center mb-5">A selection of things I've built and shipped.</p>
                 <div class="row g-4">
 
                     <!-- Card 1: BrowserStack -->
                     <div class="col-md-6 col-lg-3">
-                        <article class="project-card h-100" tabindex="0">
+                        <article class="project-card h-100" tabindex="0" aria-labelledby="proj-1-title">
                             <div class="project-card-header">
                                 <span class="project-company">BrowserStack</span>
                                 <span class="project-year">2022 – present</span>
                             </div>
-                            <h3 class="project-title">Pricing &amp; Growth Platform</h3>
+                            <h3 class="project-title" id="proj-1-title">Pricing &amp; Growth Platform</h3>
                             <p class="project-desc">Improved PSI metrics for the pricing page, boosting purchase conversion. Engineered revenue growth initiatives through scalable pricing components. Streamlined the product release pipeline and enhanced Pro feature workflows.</p>
                             <div class="project-tags">
                                 <span class="tag">React</span>
@@ -170,12 +174,12 @@
 
                     <!-- Card 2: VWO -->
                     <div class="col-md-6 col-lg-3">
-                        <article class="project-card h-100" tabindex="0">
+                        <article class="project-card h-100" tabindex="0" aria-labelledby="proj-2-title">
                             <div class="project-card-header">
                                 <span class="project-company">Wingify · VWO</span>
                                 <span class="project-year">2019 – 2022</span>
                             </div>
-                            <h3 class="project-title">VWO Core Platform</h3>
+                            <h3 class="project-title" id="proj-2-title">VWO Core Platform</h3>
                             <p class="project-desc">Built the industry's <b>1st A/B testing capability inside Shadow DOM</b>. Reduced customer issues by <b>80%</b>. Redesigned the event-driven JS library architecture, cutting main-thread blocking by <b>96%</b>. Improved Core JS library performance by <b>50%</b>.</p>
                             <div class="project-tags">
                                 <span class="tag">JavaScript</span>
@@ -188,12 +192,12 @@
 
                     <!-- Card 3: Xane AI -->
                     <div class="col-md-6 col-lg-3">
-                        <article class="project-card h-100" tabindex="0">
+                        <article class="project-card h-100" tabindex="0" aria-labelledby="proj-3-title">
                             <div class="project-card-header">
                                 <span class="project-company">Xane AI</span>
                                 <span class="project-year">2018 – 2019</span>
                             </div>
-                            <h3 class="project-title">Xane HR &amp; CX Platform</h3>
+                            <h3 class="project-title" id="proj-3-title">Xane HR &amp; CX Platform</h3>
                             <p class="project-desc">Developed AI-centric HR &amp; CX products including Analytics Dashboards and Conversational Bot UIs. Built microservices for <b>deep learning chatbot models</b> and designed the full-stack product architecture.</p>
                             <div class="project-tags">
                                 <span class="tag">Python</span>
@@ -207,12 +211,12 @@
 
                     <!-- Card 4: Open Source / Personal -->
                     <div class="col-md-6 col-lg-3">
-                        <article class="project-card h-100" tabindex="0">
+                        <article class="project-card h-100" tabindex="0" aria-labelledby="proj-4-title">
                             <div class="project-card-header">
                                 <span class="project-company">Personal</span>
                                 <span class="project-year">2015 – present</span>
                             </div>
-                            <h3 class="project-title">Open Source &amp; Side Projects</h3>
+                            <h3 class="project-title" id="proj-4-title">Open Source &amp; Side Projects</h3>
                             <p class="project-desc">Exploring Rust systems programming, distributed systems, and cloud-native tooling. Passionate about algorithms, data structures, and developer experience — actively contributing to open source since 2015.</p>
                             <div class="project-tags">
                                 <span class="tag">Rust</span>
@@ -221,8 +225,8 @@
                                 <span class="tag">Docker</span>
                                 <span class="tag">AWS</span>
                             </div>
-                            <a href="https://github.com/AbhimanyuVashisht" class="project-link" target="_blank" rel="noopener" aria-label="View GitHub profile">
-                                <i class="fab fa-github me-1"></i>GitHub
+                            <a href="https://github.com/AbhimanyuVashisht" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View GitHub profile (opens in new tab)">
+                                <i class="fab fa-github me-1" aria-hidden="true"></i>GitHub
                             </a>
                         </article>
                     </div>
@@ -231,14 +235,16 @@
             </div>
         </section>
 
+        </main><!-- end #main-content -->
+
         <!-- Contact Section (Footer) -->
-        <footer class="py-4 mt-5 fade-in" id="contact" style="animation-delay:1s;">
+        <footer class="py-4 mt-5 fade-in" id="contact" aria-label="Contact and social links" style="animation-delay:1s;">
             <div class="container text-center">
                 <div class="mb-2">
-                    <a href="https://github.com/AbhimanyuVashisht" class="me-2" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/iamabhimanyuvashisht/" class="me-2" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.instagram.com/iamabhimanyuvashisht/" class="me-2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://twitter.com/abhimanyu_av" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com/AbhimanyuVashisht" class="me-2" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/iamabhimanyuvashisht/" class="me-2" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/iamabhimanyuvashisht/" class="me-2" aria-label="Instagram profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/abhimanyu_av" aria-label="Twitter profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                 </div>
                 <div>
                     &copy; 2026 Abhimanyu Vashisht. All rights reserved.
@@ -264,4 +270,7 @@
                         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="plugins/localJs/theme-toggle.js"></script>
+<script src="plugins/localJs/typewriter-init.js"></script>
+<script src="plugins/localJs/navbar-scroll.js"></script>
+</body>
 </html>
