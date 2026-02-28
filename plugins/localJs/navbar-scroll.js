@@ -1,8 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.querySelector('.navbar-themed');
+    // On page-fill pages the body is locked; scroll lives inside <main>
+    const scrollSource = document.body.classList.contains('page-fill')
+        ? document.querySelector('main')
+        : window;
 
     function toggleNavbarTransparency() {
-        if (window.scrollY > 50) {
+        const scrollY = document.body.classList.contains('page-fill')
+            ? document.querySelector('main').scrollTop
+            : window.scrollY;
+        if (scrollY > 50) {
             navbar.classList.remove('navbar-transparent');
             navbar.classList.add('navbar-scrolled');
         } else {
@@ -11,9 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Initially set the navbar transparency
     toggleNavbarTransparency();
-
-    // Add scroll listener
-    window.addEventListener('scroll', toggleNavbarTransparency);
+    scrollSource.addEventListener('scroll', toggleNavbarTransparency);
 });

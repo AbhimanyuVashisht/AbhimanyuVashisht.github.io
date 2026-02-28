@@ -261,7 +261,7 @@ body, html {
     position: relative;
     max-width: 260px;
     height: 260px;
-    margin: 0 auto 3rem auto;
+    margin: 0 auto 1rem auto;
     padding-top: 12px;
 }
 
@@ -441,16 +441,23 @@ body::before {
 }
 
 /* === Hero Section === */
+/* Lock index.html to a single viewport — no body scroll */
+body.page-hero {
+    height: 100dvh;
+    overflow: hidden;
+}
+
 .hero-section {
-    min-height: 100vh;
+    height: 100dvh;
     background: var(--bg-main);
     display: flex;
     align-items: center;
     padding: 0;
+    overflow: hidden;
 }
 
 .hero-row {
-    min-height: 70vh;
+    min-height: 60vh;
     align-items: center;
 }
 
@@ -751,3 +758,54 @@ h4 {
         padding: 1.2rem;
     }
 }
+
+/* === Full-viewport inner page layout (about / work / contact) ===
+   Strategy: body is locked to 100dvh (no body scroll).
+   main scrolls internally only if content genuinely overflows.
+   padding-top on main accounts for the fixed navbar (~60px) + accent stripe (3px).
+*/
+body.page-fill {
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+body.page-fill main {
+    flex: 1;
+    overflow-y: auto;
+    padding-top: 63px; /* fixed navbar (~60px) + accent stripe (3px) */
+    display: flex;
+    align-items: center;
+}
+
+body.page-fill footer {
+    flex-shrink: 0;
+    margin-top: 0 !important;
+}
+
+/* Cancel the global .container padding-top inside page-fill */
+body.page-fill .container {
+    padding-top: 0;
+}
+
+/* Cancel the global .container padding-top inside page-hero */
+body.page-hero .container {
+    padding-top: 0;
+}
+
+/* Navbar always has background on inner pages (body scroll is locked to 0 always) */
+body.page-fill .navbar-themed {
+    background-color: var(--bg-secondary) !important;
+    background: var(--bg-secondary) !important;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+body.page-fill section {
+    width: 100%;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+
