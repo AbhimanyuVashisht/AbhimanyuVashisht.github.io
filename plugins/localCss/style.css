@@ -25,8 +25,8 @@
 
 .btn-hero-outline {
     background: transparent;
-    color: #fff;
-    border: 2px solid rgba(255,255,255,0.7);
+    color: var(--text-main);
+    border: 2px solid var(--border-color);
     border-radius: 2rem;
     padding: 0.6rem 2rem;
     font-weight: 600;
@@ -36,9 +36,9 @@
     text-decoration: none;
 }
 .btn-hero-outline:hover, .btn-hero-outline:focus {
-    background: rgba(255,255,255,0.12);
+    background: var(--accent);
     color: #fff;
-    border-color: #fff;
+    border-color: var(--accent);
     transform: translateY(-2px);
     outline: var(--focus-outline);
 }
@@ -114,34 +114,36 @@
         transform: none;
     }
 }
-/* === Subtle Dark Theme Variables === */
+/* === Dark Theme Variables === */
 :root {
-    --bg-main: #181a1b;
-    --bg-secondary: #23272a;
-    --bg-accent: #232d3b;
-    --text-main: #e0e0e0;
-    --text-secondary: #b0b3b8;
+    --bg-main: #0a0f1e;
+    --bg-secondary: #0f1629;
+    --bg-accent: #162040;
+    --text-main: #e2e8f0;
+    --text-secondary: #94a3b8;
     --accent: #7da6ff;
-    --accent-bg: #232d3b;
-    --card-bg: #23272a;
-    --border-color: #333a40;
-    --shadow: 0 2px 8px rgba(0,0,0,0.25);
+    --accent-bg: #162040;
+    --card-bg: #111b30;
+    --border-color: #1e2d47;
+    --shadow: 0 2px 12px rgba(0,0,0,0.45);
     --focus-outline: 2px solid #7da6ff;
+    --about-accent-bg: #0d2d6e;
 }
 
 /* Light theme overrides */
 [data-theme="light"] {
-    --bg-main: #f8f9fa;
-    --bg-secondary: #fff;
-    --bg-accent: #e9ecef;
-    --text-main: #23272a;
-    --text-secondary: #495057;
-    --accent: #0056b3;
-    --accent-bg: #e9ecef;
-    --card-bg: #fff;
-    --border-color: #dee2e6;
-    --shadow: 0 2px 8px rgba(0,0,0,0.08);
-    --focus-outline: 2px solid #0056b3;
+    --bg-main: #ffffff;
+    --bg-secondary: #f8faff;
+    --bg-accent: #dbeafe;
+    --text-main: #0f172a;
+    --text-secondary: #475569;
+    --accent: #2563eb;
+    --accent-bg: #dbeafe;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.07);
+    --focus-outline: 2px solid #2563eb;
+    --about-accent-bg: #1d4ed8;
 }
 
 [data-theme="light"] .fa-sun {
@@ -282,109 +284,173 @@ body, html {
     }
 }
 
-.bg-img-1 {
-    background-image: url("bg-img-1.jpg");
-    min-height: 100vh;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    opacity: 0.95;
+/* Accent stripe at very top of page */
+body::before {
+    content: "";
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg, #7da6ff, #a78bfa, #f472b6, #fb923c, #7da6ff);
+    background-size: 200% 100%;
+    animation: stripe-shift 6s linear infinite;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
 }
 
-.bg-img-2, .bg-img-4 {
-    background: var(--bg-secondary);
+@keyframes stripe-shift {
+    0%   { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+}
+
+.bg-img-1 {
+    min-height: 100vh;
+    position: relative;
+    background: var(--bg-main);
+}
+
+.bg-img-2 {
+    background: var(--bg-main);
     color: var(--text-main);
     min-height: 50vh;
     position: relative;
     padding-top: 3rem;
     padding-bottom: 3rem;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
-.bg-img-3 {
-    background-image: url("bg-img-3.jpg");
-    min-height: 400px;
-    opacity: 0.85;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-
-.bg-img-1::before,
-.bg-img-3::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.7));
-    z-index: 1;
-}
-
-
-/* Fix hero section stacking and spacing */
-.caption-static {
-    position: relative;
-    width: 100%;
-    text-align: center;
+.bg-img-4 {
+    background: var(--bg-secondary);
     color: var(--text-main);
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    z-index: 2;
+    position: relative;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
-/* Hero motivational lines - large, bold, bright */
-.caption-static .bg-text {
+/* === Themed Navbar === */
+.navbar-themed {
+    background: var(--bg-secondary) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+.navbar-themed .navbar-brand,
+.navbar-themed .nav-link {
+    color: var(--text-main) !important;
+}
+.navbar-themed .nav-link:hover,
+.navbar-themed .nav-link:focus {
+    color: var(--accent) !important;
+}
+.navbar-themed .navbar-toggler {
+    border-color: var(--border-color);
+}
+.navbar-themed .navbar-toggler-icon {
+    filter: var(--toggler-filter, none);
+}
+[data-theme="light"] .navbar-themed .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+.btn-theme-toggle {
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    background: transparent;
+}
+.btn-theme-toggle:hover, .btn-theme-toggle:focus {
+    background: var(--border-color);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* === Hero Section === */
+.hero-section {
+    min-height: calc(100vh - 58px);
+    background: var(--bg-main);
+    display: flex;
+    align-items: center;
+    padding: 3rem 0 3rem;
+}
+
+.hero-row {
+    min-height: 70vh;
+    align-items: center;
+}
+
+.hero-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+}
+
+.hero-name {
     font-family: 'Montserrat', 'Inter', Arial, sans-serif;
-    font-size: 2.5rem;
+    font-size: 3.8rem;
     font-weight: 800;
-    color: #fff;
-    background: none;
-    border: none;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.18);
-    letter-spacing: 0.12em;
-    margin: 0.2em 0;
-    display: block;
-    padding: 0;
-    box-shadow: none;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+    margin-bottom: 0.6rem;
 }
-@media (max-width: 991.98px) {
-    .caption-static .bg-text {
-        font-size: 1.7rem;
-    }
+
+@media (max-width: 991.98px) { .hero-name { font-size: 2.8rem; } }
+@media (max-width: 767.98px) { .hero-name { font-size: 2.1rem; } }
+
+.hero-tagline {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.02em;
 }
-@media (max-width: 767.98px) {
-    .caption-static .bg-text {
-        font-size: 1.1rem;
-    }
+
+.hero-motto {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    opacity: 0.6;
+    margin-bottom: 1rem;
 }
+
+.hero-subtitle {
+    font-size: 1rem;
+    color: var(--accent);
+    font-weight: 500;
+    min-height: 1.6em;
+    margin-bottom: 0;
+}
+
+.hero-socials {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) { .hero-socials { justify-content: flex-start; } }
+
+.hero-social-link {
+    color: var(--text-secondary);
+    font-size: 1.3rem;
+    transition: color 0.2s, transform 0.2s;
+    text-decoration: none;
+}
+
+.hero-social-link:hover, .hero-social-link:focus {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Remove wave divider styles */
+.wave-divider { display: none; }
 
 .container {
     padding-top: 32px;
-}
-
-/* Responsive adjustments */
-/* Profile section professional font styles */
-.profile-content {
-    font-family: 'Inter', Arial, sans-serif;
-    font-size: 1.1rem;
-    color: var(--text-main);
-}
-.profile-content .name {
-    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
-    font-weight: 700;
-    font-size: 2.3rem;
-    letter-spacing: 1px;
-    color: var(--text-main);
-    margin-bottom: 0.3em;
-}
-.profile-content .desc {
-    font-family: 'Inter', Arial, sans-serif;
-    font-weight: 400;
-    font-size: 1.25rem;
-    color: var(--text-secondary);
-    margin-bottom: 0.7em;
 }
 @media (max-width: 991.98px) {
     .profile-image {

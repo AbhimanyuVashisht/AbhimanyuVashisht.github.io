@@ -43,7 +43,7 @@
 </head>
 <body>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fade-in" style="animation-delay:0.1s;">
+        <nav class="navbar navbar-expand-lg navbar-themed shadow-sm fade-in" style="animation-delay:0.1s;">
             <div class="container">
                 <a class="navbar-brand fw-bold" href="#">A V</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +55,7 @@
                         <li class="nav-item"><a class="nav-link" href="#projects">Work</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                         <li class="nav-item d-flex align-items-center ms-2">
-                            <button id="theme-toggle" class="btn btn-outline-light btn-sm" aria-label="Toggle light/dark mode" style="border-radius:50%;width:2.2em;height:2.2em;display:flex;align-items:center;justify-content:center;">
+                            <button id="theme-toggle" class="btn btn-theme-toggle btn-sm" aria-label="Toggle light/dark mode" style="border-radius:50%;width:2.2em;height:2.2em;display:flex;align-items:center;justify-content:center;">
                                 <span id="theme-icon" class="fa fa-moon"></span>
                             </button>
                         </li>
@@ -64,29 +64,14 @@
             </div>
         </nav>
 
-        <!-- Hero Section -->
-        <section class="bg-img-1 d-flex align-items-center justify-content-center fade-in" style="min-height: 60vh; animation-delay:0.2s;">
-            <div class="container text-center position-relative" style="z-index:2;">
-                <div class="caption-static">
-                    <span class="bg-text">I'M WORKING ON MYSELF</span>
-                    <span class="bg-text">FOR MYSELF BY MYSELF</span>
-                </div>
-                <div class="hero-subtitle fade-in" style="animation-delay:0.4s;">
-                    <span id="typewriter"></span>
-                </div>
-                <div class="hero-cta fade-in" style="animation-delay:0.7s;">
-                    <a href="#about" class="btn btn-hero-primary me-3">About Me</a>
-                    <a href="#contact" class="btn btn-hero-outline">Get In Touch</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Profile Section -->
-        <section class="bg-img-2 py-5 fade-in" style="animation-delay:0.3s;">
+        <!-- Hero Section: split layout — photo left, intro right -->
+        <section class="hero-section fade-in" style="animation-delay:0.2s;">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-4 text-center mb-4 mb-md-0">
-                        <div class="img profile-visual">
+                <div class="row align-items-center hero-row">
+
+                    <!-- Photo -->
+                    <div class="col-lg-5 col-md-5 text-center mb-5 mb-md-0">
+                        <div class="profile-visual mx-auto">
                             <img class="profile-card profile-card-shadow img-thumbnail" src="./plugins/localCss/prof-img2.jpg" alt="" role="presentation" width="220">
                             <img class="profile-card img-thumbnail" src="./plugins/localCss/prof-img2.jpg" alt="Abhimanyu Vashisht" width="220">
                             <img class="profile-card profile-card-secondary profile-card-shadow img-thumbnail d-none d-md-block" src="./plugins/localCss/prof-secondary.png" alt="" role="presentation" width="220">
@@ -105,43 +90,34 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="profile-content">
-                            <h1 class="name text-center text-md-start">Abhimanyu Vashisht</h1>
-                            <h3 class="desc text-center text-md-start">Tech geek | Constant Learner | Developer | Traveller | Guitar/Music for Life</h3>
-                            <div class="socialize text-center text-md-start mt-3">
-                                <h3>i <b>Socialize</b> on</h3>
-                                <ul class="social list-inline mb-0">
-                                    <li class="list-inline-item"><a href="https://github.com/AbhimanyuVashisht" aria-label="GitHub"><i class="fab fa-github fa-2x"></i></a></li>
-                                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/iamabhimanyuvashisht/" aria-label="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a></li>
-                                    <li class="list-inline-item"><a href="https://www.instagram.com/iamabhimanyuvashisht/" aria-label="Instagram"><i class="fab fa-instagram fa-2x"></i></a></li>
-                                    <li class="list-inline-item"><a href="https://twitter.com/abhimanyu_av" aria-label="Twitter"><i class="fab fa-twitter fa-2x"></i></a></li>
-                                </ul>
-                            </div>
-                            <!-- Download CV: hidden until resume is updated
-                            <div class="mt-4 text-center text-md-start">
-                                <a href="./plugins/resume/AbhimanyuVashisht-Resume.pdf" class="btn btn-resume" download aria-label="Download Abhimanyu Vashisht's Resume">
-                                    <i class="fas fa-download me-2"></i>Download CV
-                                </a>
-                            </div>
-                            -->
+
+                    <!-- Intro -->
+                    <div class="col-lg-7 col-md-7 text-center text-md-start">
+                        <p class="hero-eyebrow">Lead Software Engineer</p>
+                        <h1 class="hero-name">Abhimanyu<br>Vashisht</h1>
+                        <p class="hero-motto">Working on myself &middot; for myself &middot; by myself</p>
+                        <p class="hero-subtitle mb-4"><span id="typewriter"></span></p>
+                        <div class="hero-socials mb-4">
+                            <a href="https://github.com/AbhimanyuVashisht" aria-label="GitHub" class="hero-social-link"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/iamabhimanyuvashisht/" aria-label="LinkedIn" class="hero-social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/iamabhimanyuvashisht/" aria-label="Instagram" class="hero-social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="https://twitter.com/abhimanyu_av" aria-label="Twitter" class="hero-social-link"><i class="fab fa-twitter"></i></a>
+                        </div>
+                        <div class="hero-cta">
+                            <a href="#about" class="btn btn-hero-primary me-3">About Me</a>
+                            <a href="#contact" class="btn btn-hero-outline">Get In Touch</a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
-
         <!-- About Section -->
-        <section class="bg-img-3 d-flex align-items-center justify-content-center fade-in" id="about" style="animation-delay:0.4s;">
-            <div class="container text-center">
-                <h2 class="about-heading">About Me</h2>
-            </div>
-        </section>
-
-        <section class="bg-img-4 py-5 fade-in" style="animation-delay:0.5s;">
-            <div class="container text-center">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-lg-8">
+        <section class="py-5 fade-in" id="about" style="animation-delay:0.4s; border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <h2 class="section-heading text-center mb-5">About Me</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
                         <h2 class="fw-bold mb-4">Hey, I'm Abhimanyu.</h2>
                         <p class="lead mb-3">
                             I'm a Lead Software Engineer who genuinely loves building things on the web. JavaScript and Python are my happy place — I've been writing them for over 7 years and I'm still finding new ways they surprise me.
@@ -167,9 +143,6 @@
                 </div>
             </div>
         </section>
-
-
-        <!-- Projects Section -->
         <section class="py-5 fade-in" id="projects" style="animation-delay:0.6s;">
             <div class="container">
                 <h2 class="section-heading text-center mb-2">Work &amp; Projects</h2>
