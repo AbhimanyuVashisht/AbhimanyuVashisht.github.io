@@ -78,14 +78,21 @@ var ROUTES = {
         templateId: 'view-contact',
         desc:       'Get in touch with Abhimanyu Vashisht — Lead Software Engineer.',
         onEnter:    null
+    },
+    '/404': {
+        title:      '404 — Abhimanyu Vashisht',
+        bodyClass:  'page-fill',
+        templateId: 'view-404',
+        desc:       'The requested page could not be found.',
+        onEnter:    null
     }
 };
 
 // --- Step 3: Core navigate function ---
 function navigate(path, push) {
     var normalised = normalisePath(path);
-    var route = ROUTES[normalised] || ROUTES['/'];
-    var canonical = ROUTES[normalised] ? normalised : '/';
+    var route = ROUTES[normalised] || ROUTES['/404'];
+    var canonical = ROUTES[normalised] ? normalised : '/404';
 
     updateUrl(canonical, route.title, push);
 
