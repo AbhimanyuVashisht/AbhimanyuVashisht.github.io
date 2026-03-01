@@ -97,6 +97,55 @@ footer[id] {
     outline: var(--focus-outline);
 }
 
+/* === Contact Cards === */
+.contact-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    text-decoration: none;
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+.contact-card:hover, .contact-card:focus {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+    border-color: var(--accent);
+    color: var(--text-main);
+    outline: none;
+}
+.contact-card:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: 3px;
+}
+.contact-card-icon {
+    font-size: 2rem;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+}
+.contact-card-label {
+    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-main);
+}
+.contact-card-value {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+}
+.contact-section-intro {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0 auto 3rem;
+}
+
 /* Resume Download Button */
 .btn-resume {
     background: transparent;
@@ -279,6 +328,8 @@ body, html {
     transition: background 0.5s ease, filter 0.5s ease;
     flex-shrink: 0;
     cursor: pointer;
+    will-change: transform;
+    transform-style: preserve-3d;
 }
 
 .profile-ring-outer:hover {
@@ -315,7 +366,6 @@ body, html {
 /* Primary (grayscale) photo sits on top, fades out on hover */
 .profile-img-primary {
     z-index: 2;
-    filter: grayscale(100%) contrast(1.08) brightness(0.95);
     transform: scale(1);
     opacity: 1;
     transition: opacity 0.55s ease, filter 0.55s ease, transform 0.55s ease;
@@ -325,6 +375,25 @@ body, html {
 .profile-ring-outer:hover .profile-img-primary {
     opacity: 0;
     transform: scale(1.04);
+}
+
+/* Light sheen overlay — moves opposite to tilt, simulates a gloss */
+.profile-sheen {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    border-radius: 32%;
+    --sx: 50%;
+    --sy: 30%;
+    background: radial-gradient(
+        circle at var(--sx) var(--sy),
+        rgba(255, 255, 255, 0.13) 0%,
+        rgba(255, 255, 255, 0.04) 40%,
+        transparent 65%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .logo-wrap {
