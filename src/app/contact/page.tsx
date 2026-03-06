@@ -38,34 +38,38 @@ export default function ContactPage() {
   ]
 
   return (
-    <section className="pt-24 pb-12 px-4 fade-in">
-      <div className="container mx-auto">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Get In Touch</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-12">
+    <section className="page-fill">
+      <style>{`body { --bs-body-bg: var(--bg-main); }`}</style>
+      <div className="container" style={{ paddingTop: '2rem', paddingBottom: '3rem', maxWidth: '900px' }}>
+        <div style={{ textAlign: 'center' }}>
+          <h1 className="section-heading" style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>
+            Get In Touch
+          </h1>
+          <p className="contact-section-intro" style={{ marginBottom: '3rem' }}>
             I'm always open to interesting conversations, collaborations, or opportunities. 
             Feel free to reach out through any of these channels.
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="row">
             {contactCards.map((card) => (
-              <a
-                key={card.href}
-                href={card.href}
-                className="p-6 bg-white dark:bg-gray-800 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition hover:shadow-lg text-center group"
-                aria-label={card.external ? `${card.label} profile (opens in new tab)` : card.label}
-                {...(card.external && { target: '_blank', rel: 'noopener noreferrer' })}
-              >
-                <div className="text-4xl text-blue-500 mb-3 group-hover:scale-110 transition">
-                  <i className={card.icon} aria-hidden="true" />
-                </div>
-                <div className="font-semibold text-gray-900 dark:text-white mb-1">
-                  {card.label}
-                </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
-                  {card.value}
-                </div>
-              </a>
+              <div key={card.href} className="col-md-6 col-lg-3 mb-4">
+                <a
+                  href={card.href}
+                  className="contact-card"
+                  aria-label={card.external ? `${card.label} profile (opens in new tab)` : card.label}
+                  {...(card.external && { target: '_blank', rel: 'noopener noreferrer' })}
+                >
+                  <span className="contact-card-icon">
+                    <i className={card.icon} aria-hidden="true" />
+                  </span>
+                  <div className="contact-card-label">
+                    {card.label}
+                  </div>
+                  <div className="contact-card-value">
+                    {card.value}
+                  </div>
+                </a>
+              </div>
             ))}
           </div>
         </div>

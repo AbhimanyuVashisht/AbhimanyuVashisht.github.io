@@ -1,26 +1,20 @@
 'use client'
 
-import Image from 'next/image'
-
 export default function ProfileVisual() {
   return (
-    <div className="profile-visual mx-auto">
+    <div className="profile-visual">
       <div className="profile-ring-outer">
         <div className="profile-ring-inner">
-          <Image
+          <img
             className="profile-img profile-img-secondary"
             src="/plugins/localCss/prof-secondary.png"
             alt=""
-            width={280}
-            height={280}
             aria-hidden="true"
           />
-          <Image
+          <img
             className="profile-img profile-img-primary"
             src="/plugins/localCss/prof-img2.jpg"
             alt="Abhimanyu Vashisht"
-            width={280}
-            height={280}
           />
           <div className="profile-sheen" aria-hidden="true" />
         </div>

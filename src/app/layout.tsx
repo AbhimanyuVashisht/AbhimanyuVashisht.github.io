@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
-import { Inter, Montserrat } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import '@/styles/globals.css'
 import { ReduxProvider } from '@/store/ReduxProvider'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import ThemeInitializer from '@/components/ThemeInitializer'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat', weight: ['600', '700'] })
 
 export const metadata: Metadata = {
   title: 'Abhimanyu Vashisht',
@@ -49,20 +49,28 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className={inter.className}>
+        <ThemeInitializer />
         <ReduxProvider>
-          <a href="#main-content" className="skip-nav sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-blue-500 text-white px-4 py-2 z-50">
+          <a href="#main-content" className="skip-nav">
             Skip to main content
           </a>
           <Navbar />
-          <main id="main-content" className="min-h-screen">
+          <main id="main-content">
             {children}
           </main>
           <Footer />

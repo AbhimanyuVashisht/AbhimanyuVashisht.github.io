@@ -43,63 +43,54 @@ export default function WorkPage() {
   ]
 
   return (
-    <section className="pt-24 pb-12 px-4 fade-in">
-      <div className="container mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-3">
-            Things I Didn't Break <span className="text-blue-500">(Mostly)</span>
+    <section className="page-fill">
+      <style>{`body { --bs-body-bg: var(--bg-main); }`}</style>
+      <div className="container" style={{ paddingTop: '2rem', paddingBottom: '3rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <h1 className="section-heading" style={{ fontSize: '2.5rem' }}>
+            Things I Didn't Break <span style={{ color: 'var(--accent)' }}>(Mostly)</span>
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
+          <p className="contact-section-intro">
             A selection of things I've built and shipped.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="row" style={{ marginBottom: '2rem' }}>
           {projects.map((project, index) => (
-            <article
-              key={index}
-              className="p-6 bg-white dark:bg-gray-800 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition hover:shadow-lg"
-              tabIndex={0}
-            >
-              <div className="flex justify-between items-start mb-4">
-                <span className="text-xs font-semibold text-blue-500 uppercase">
-                  {project.company}
-                </span>
-                <span className="text-xs text-gray-500 dark:text-gray-400">
-                  {project.year}
-                </span>
-              </div>
+            <div key={index} className="col-lg-6 col-md-6 mb-4">
+              <article className="project-card" tabIndex={0}>
+                <div className="project-card-header">
+                  <span className="project-company">{project.company}</span>
+                  <span className="project-year">{project.year}</span>
+                </div>
 
-              <h3 className="text-xl font-bold mb-3">{project.title}</h3>
+                <h3 className="project-title">{project.title}</h3>
 
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                {project.description}
-              </p>
+                <p className="project-desc">
+                  {project.description}
+                </p>
 
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded"
+                <div className="project-tags">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="project-link"
+                    aria-label="View GitHub profile (opens in new tab)"
                   >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-blue-500 hover:text-blue-600 font-semibold"
-                  aria-label="View GitHub profile (opens in new tab)"
-                >
-                  <i className="fab fa-github" />
-                  GitHub
-                </a>
-              )}
-            </article>
+                    <i className="fab fa-github" /> GitHub
+                  </a>
+                )}
+              </article>
+            </div>
           ))}
         </div>
       </div>

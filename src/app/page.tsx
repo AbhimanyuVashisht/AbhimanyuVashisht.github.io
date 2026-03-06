@@ -29,66 +29,63 @@ export default function HomePage() {
   ]
 
   return (
-    <section
-      className="min-h-screen flex items-center justify-center pt-20 pb-12 px-4 fade-in"
-      style={{ animationDelay: '0.2s' }}
-    >
-      <div className="container mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Profile Visual */}
-          <div className="flex justify-center md:justify-end order-1 md:order-none">
-            <ProfileVisual />
-          </div>
+    <>
+      <style>{`body { --bs-body-bg: var(--bg-main); }`}</style>
+      <section className="hero-section">
+        <div className="container">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '2rem',
+            alignItems: 'center',
+            minHeight: '100%'
+          }}
+          className="hero-row">
+            {/* Content */}
+            <div style={{ textAlign: 'left' }}>
+              <p className="hero-eyebrow">Lead Software Engineer</p>
+              <h1 className="hero-name">
+                Abhimanyu<br />Vashisht
+              </h1>
+              <p className="hero-motto">Working on myself · for myself · by myself</p>
+              <p className="hero-subtitle" role="status" aria-live="polite" aria-atomic="true">
+                {typewriterText}
+              </p>
 
-          {/* Content */}
-          <div className="text-center md:text-left order-2">
-            <p className="text-sm font-semibold text-blue-500 uppercase tracking-wider mb-2">
-              Lead Software Engineer
-            </p>
-            <h1 className="text-5xl md:text-6xl font-bold mb-3 font-montserrat">
-              Abhimanyu<br />Vashisht
-            </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
-              Working on myself · for myself · by myself
-            </p>
-            <p className="text-xl text-gray-700 dark:text-gray-300 mb-6 min-h-[60px]" role="status">
-              {typewriterText}
-            </p>
+              {/* Social Links */}
+              <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', marginBottom: '2rem' }}>
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    aria-label={`${link.label} profile`}
+                    className="hero-social-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i className={link.icon} aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
 
-            {/* Social Links */}
-            <div className="flex justify-center md:justify-start space-x-4 mb-8">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  aria-label={`${link.label} profile`}
-                  className="w-12 h-12 flex items-center justify-center rounded-full border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 hover:scale-110 transition"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i className={link.icon} aria-hidden="true" />
-                </a>
-              ))}
+              {/* CTA Buttons */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+                <Link href="/about" className="btn-hero-primary">
+                  About Me
+                </Link>
+                <Link href="/contact" className="btn-hero-outline">
+                  Get In Touch
+                </Link>
+              </div>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-              <Link
-                href="/about"
-                className="px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition"
-              >
-                About Me
-              </Link>
-              <Link
-                href="/contact"
-                className="px-8 py-3 border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white font-semibold rounded-lg transition"
-              >
-                Get In Touch
-              </Link>
+            {/* Profile Visual */}
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <ProfileVisual />
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }

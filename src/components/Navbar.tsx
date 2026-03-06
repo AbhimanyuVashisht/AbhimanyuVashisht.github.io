@@ -3,34 +3,42 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '@/store/hooks'
-import { toggleTheme } from '@/store/themeSlice'
 
 export default function Navbar() {
   const pathname = usePathname()
-  const dispatch = useAppDispatch()
-  const isDark = useAppSelector((state) => state.theme.isDark)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isDark, setIsDark] = useState(true)
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
+      const navbar = document.querySelector('.navbar-themed')
+      if (navbar) {
+        if (isScrolled || pathname !== '/') {
+          navbar.classList.add('navbar-scrolled')
+          navbar.classList.remove('navbar-transparent')
+        } else {
+          navbar.classList.add('navbar-transparent')
+          navbar.classList.remove('navbar-scrolled')
+        }
+      }
     }
     window.addEventListener('scroll', handleScroll)
+    handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isScrolled, pathname])
 
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.setAttribute('data-theme', 'dark')
-    } else {
-      document.documentElement.removeAttribute('data-theme')
-    }
-  }, [isDark])
+    const theme = localStorage.getItem('theme') || 'dark'
+    setIsDark(theme === 'dark')
+  }, [])
 
   const handleThemeToggle = () => {
-    dispatch(toggleTheme())
+    const newTheme = isDark ? 'light' : 'dark'
+    setIsDark(!isDark)
+    localStorage.setItem('theme', newTheme)
+    document.documentElement.setAttribute('data-theme', newTheme)
   }
 
   const navLinks = [
@@ -39,32 +47,21 @@ export default function Navbar() {
     { href: '/contact', label: 'Contact' },
   ]
 
-  const isHome = pathname === '/'
-
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 fade-in ${
-        isScrolled || !isHome
-          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-md'
-          : 'bg-transparent'
-      }`}
-      style={{ animationDelay: '0.1s' }}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="font-bold text-xl hover:opacity-80 transition">
+    <nav className={`navbar navbar-themed ${pathname === '/' && !isScrolled ? 'navbar-transparent' : 'navbar-scrolled'}`}>
+      <div className="container-fluid">
+        <div className="d-flex align-items-center justify-content-between" style={{ height: '64px' }}>
+          <Link href="/" className="navbar-brand" style={{ fontWeight: 700, fontSize: '1.2rem' }}>
             A V
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="d-none d-md-flex align-items-center" style={{ gap: '2rem' }}>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`transition hover:text-blue-500 ${
-                  pathname === link.href ? 'text-blue-500 font-semibold' : ''
-                }`}
+                className={`nav-link ${pathname === link.href ? 'active' : ''}`}
                 aria-current={pathname === link.href ? 'page' : undefined}
               >
                 {link.label}
@@ -72,53 +69,49 @@ export default function Navbar() {
             ))}
             <button
               onClick={handleThemeToggle}
-              className="w-9 h-9 flex items-center justify-center rounded-full border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition"
+              className="btn btn-link p-0"
+              style={{
+                width: '36px',
+                height: '36px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '2px solid var(--border-color)',
+                borderRadius: '50%',
+              }}
               aria-label="Toggle theme"
             >
               {isDark ? (
-                <i className="fas fa-sun text-yellow-400" />
+                <i className="fas fa-sun" style={{ color: '#f7c948' }} />
               ) : (
-                <i className="fas fa-moon text-gray-700" />
+                <i className="fas fa-moon" />
               )}
             </button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="d-md-none btn btn-link p-0"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            <i className={`fas ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'} text-xl`} />
+            <i className={`fas ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'} fa-lg`} />
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 space-y-4">
+          <div className="d-md-none py-3" style={{ borderTop: '1px solid var(--border-color)' }}>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block py-2 transition hover:text-blue-500 ${
-                  pathname === link.href ? 'text-blue-500 font-semibold' : ''
-                }`}
+                className={`nav-link d-block ${pathname === link.href ? 'active' : ''}`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <button
-              onClick={handleThemeToggle}
-              className="w-9 h-9 flex items-center justify-center rounded-full border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 transition"
-              aria-label="Toggle theme"
-            >
-              {isDark ? (
-                <i className="fas fa-sun text-yellow-400" />
-              ) : (
-                <i className="fas fa-moon text-gray-700" />
-              )}
-            </button>
           </div>
         )}
       </div>
