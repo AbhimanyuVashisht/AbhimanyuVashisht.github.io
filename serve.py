@@ -9,10 +9,24 @@ import sys
 import os
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
+from urllib.parse import unquote
 
 
 class Custom404Handler(SimpleHTTPRequestHandler):
     """HTTP request handler that serves custom 404.html for unknown routes."""
+
+    def do_GET(self):
+        """Serve clean URLs by mapping /route to /route.html when present."""
+        request_path = unquote(self.path.split('?', 1)[0].split('#', 1)[0])
+        has_extension = '.' in Path(request_path).name
+
+        if not has_extension and request_path != '/':
+            candidate = request_path.rstrip('/') + '.html'
+            fs_path = Path(candidate.lstrip('/'))
+            if fs_path.exists():
+                self.path = candidate
+
+        super().do_GET()
     
     def send_error(self, code, message=None, explain=None):
         """Override to serve custom 404.html instead of default error page."""
