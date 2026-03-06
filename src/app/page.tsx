@@ -31,29 +31,29 @@ export default function HomePage() {
   return (
     <>
       <style>{`body { --bs-body-bg: var(--bg-main); }`}</style>
-      <section className="hero-section">
+      <section className="hero-section fade-in" aria-labelledby="hero-heading" style={{ animationDelay: '0.2s' }}>
         <div className="container">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '2rem',
-            alignItems: 'center',
-            minHeight: '100%'
-          }}
-          className="hero-row">
-            {/* Content */}
-            <div style={{ textAlign: 'left' }}>
+          <div className="row align-items-center hero-row">
+            {/* Profile Visual - LEFT SIDE */}
+            <div className="col-lg-5 col-md-5 text-center mb-5 mb-md-0">
+              <ProfileVisual />
+            </div>
+
+            {/* Content - RIGHT SIDE */}
+            <div className="col-lg-7 col-md-7 text-center text-md-start">
               <p className="hero-eyebrow">Lead Software Engineer</p>
-              <h1 className="hero-name">
+              <h1 className="hero-name" id="hero-heading">
                 Abhimanyu<br />Vashisht
               </h1>
-              <p className="hero-motto">Working on myself · for myself · by myself</p>
-              <p className="hero-subtitle" role="status" aria-live="polite" aria-atomic="true">
-                {typewriterText}
+              <p className="hero-motto">Working on myself &middot; for myself &middot; by myself</p>
+              <p className="hero-subtitle mb-4">
+                <span role="status" aria-live="polite" aria-atomic="false">
+                  {typewriterText}
+                </span>
               </p>
 
               {/* Social Links */}
-              <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', marginBottom: '2rem' }}>
+              <div className="hero-socials mb-4">
                 {socialLinks.map((link) => (
                   <a
                     key={link.href}
@@ -69,19 +69,14 @@ export default function HomePage() {
               </div>
 
               {/* CTA Buttons */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-                <Link href="/about" className="btn-hero-primary">
+              <div className="hero-cta">
+                <Link href="/about" className="btn btn-hero-primary me-3">
                   About Me
                 </Link>
-                <Link href="/contact" className="btn-hero-outline">
+                <Link href="/contact" className="btn btn-hero-outline">
                   Get In Touch
                 </Link>
               </div>
-            </div>
-
-            {/* Profile Visual */}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <ProfileVisual />
             </div>
           </div>
         </div>
