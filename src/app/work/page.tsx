@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import BodyClass from '@/components/BodyClass'
+import { GitHubIcon } from '@/components/Icons'
 
 export const metadata: Metadata = {
   title: 'Work — Abhimanyu Vashisht',
@@ -47,20 +48,19 @@ export default function WorkPage() {
     <>
       <BodyClass className="page-fill" />
       <section className="fade-in" id="projects" aria-labelledby="projects-heading">
-        <style>{`body { --bs-body-bg: var(--bg-main); }`}</style>
-        <div className="container">
+        <div className="container mx-auto">
           <h2 className="font-montserrat font-bold text-[2rem] text-text-main text-center mb-1" id="projects-heading" style={{letterSpacing: '0.5px'}}>
             Things I Didn't Break <span style={{ color: 'var(--accent)' }}>(Mostly)</span>
           </h2>
           <p className="text-text-secondary text-[1.05rem] text-center mb-4">
             A selection of things I've built and shipped.
           </p>
-          <div className="row g-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {projects.map((project, index) => {
               const titleId = `proj-${index + 1}-title`
               return (
-                <div key={project.title} className="col-md-6 col-lg-3">
-                  <article className="bg-card-bg border border-border-color rounded-2xl p-6 flex flex-col gap-3 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-card hover:border-accent h-100" tabIndex={0} aria-labelledby={titleId}>
+                <div key={project.title}>
+                  <article className="bg-card-bg border border-border-color rounded-2xl p-6 flex flex-col gap-3 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-card hover:border-accent h-full" tabIndex={0} aria-labelledby={titleId}>
                     <div className="flex justify-between items-center flex-wrap gap-1">
                       <span className="font-montserrat text-[0.78rem] font-bold uppercase tracking-wider text-accent">{project.company}</span>
                       <span className="text-[0.78rem] text-text-secondary">{project.year}</span>
@@ -84,7 +84,7 @@ export default function WorkPage() {
                         rel="noopener noreferrer"
                         aria-label="View GitHub profile (opens in new tab)"
                       >
-                        <i className="fab fa-github me-1" aria-hidden="true" />GitHub
+                        <GitHubIcon className="w-4 h-4 mr-1 inline-block" />GitHub
                       </a>
                     )}
                   </article>

@@ -15,6 +15,7 @@ module.exports = {
         'text-main': 'var(--text-main)',
         'text-secondary': 'var(--text-secondary)',
         accent: 'var(--accent)',
+        'accent-strong': 'var(--accent-strong)',
         'accent-bg': 'var(--accent-bg)',
         'card-bg': 'var(--card-bg)',
         'border-color': 'var(--border-color)',

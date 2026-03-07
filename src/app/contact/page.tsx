@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import BodyClass from '@/components/BodyClass'
+import { EnvelopeIcon, GitHubIcon, LinkedInIcon, TwitterIcon } from '@/components/Icons'
 
 export const metadata: Metadata = {
   title: 'Contact — Abhimanyu Vashisht',
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   const contactCards = [
     {
-      icon: 'fas fa-envelope',
+      Icon: EnvelopeIcon,
       label: 'Email',
       value: 'Drop me a line',
       href: 'mailto:iamabhimanyuvashisht@gmail.com',
@@ -17,7 +18,7 @@ export default function ContactPage() {
       ariaLabel: 'Send an email',
     },
     {
-      icon: 'fab fa-linkedin',
+      Icon: LinkedInIcon,
       label: 'LinkedIn',
       value: "Let's connect",
       href: 'https://www.linkedin.com/in/iamabhimanyuvashisht/',
@@ -25,7 +26,7 @@ export default function ContactPage() {
       ariaLabel: 'LinkedIn profile (opens in new tab)',
     },
     {
-      icon: 'fab fa-github',
+      Icon: GitHubIcon,
       label: 'GitHub',
       value: 'See my code',
       href: 'https://github.com/AbhimanyuVashisht',
@@ -33,7 +34,7 @@ export default function ContactPage() {
       ariaLabel: 'GitHub profile (opens in new tab)',
     },
     {
-      icon: 'fab fa-twitter',
+      Icon: TwitterIcon,
       label: 'Twitter',
       value: '@abhimanyu_av',
       href: 'https://twitter.com/abhimanyu_av',
@@ -46,8 +47,7 @@ export default function ContactPage() {
     <>
       <BodyClass className="page-fill" />
       <section className="fade-in" id="contact" aria-labelledby="contact-heading">
-        <style>{`body { --bs-body-bg: var(--bg-main); }`}</style>
-        <div className="container">
+        <div className="container mx-auto">
           <h2 className="font-montserrat font-bold text-[2rem] text-text-main text-center mb-3" id="contact-heading" style={{letterSpacing: '0.5px'}}>
             Get In Touch
           </h2>
@@ -55,17 +55,17 @@ export default function ContactPage() {
             I'm always open to interesting conversations, collaborations, or opportunities. Feel free to reach out
             through any of these channels.
           </p>
-          <div className="row g-4 justify-content-center mb-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">
             {contactCards.map((card) => (
-              <div key={card.href} className="col-6 col-md-3">
+              <div key={card.href}>
                 <a
                   href={card.href}
-                  className="bg-card-bg border border-border-color rounded-[20px] p-8 text-center transition-all duration-200 no-underline text-text-main flex flex-col items-center gap-3 h-100 hover:-translate-y-1.5 hover:shadow-card hover:border-accent focus:outline-none focus-visible:outline-[var(--focus-outline)] focus-visible:outline-offset-[3px]"
+                  className="bg-card-bg border border-border-color rounded-[20px] p-8 text-center transition-all duration-200 no-underline text-text-main flex flex-col items-center gap-3 h-full hover:-translate-y-1.5 hover:shadow-card hover:border-accent focus:outline-none focus-visible:outline-[var(--focus-outline)] focus-visible:outline-offset-[3px]"
                   aria-label={card.ariaLabel}
                   {...(card.external && { target: '_blank', rel: 'noopener noreferrer' })}
                 >
-                  <span className="text-[2rem] text-accent block leading-none">
-                    <i className={card.icon} aria-hidden="true" />
+                  <span className="text-accent block leading-none">
+                    <card.Icon className="w-8 h-8" />
                   </span>
                   <span className="font-montserrat font-bold text-base text-text-main">{card.label}</span>
                   <span className="text-[0.88rem] text-text-secondary">{card.value}</span>

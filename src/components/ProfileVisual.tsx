@@ -2,6 +2,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 
 export default function ProfileVisual() {
   const [isHovered, setIsHovered] = useState(false)
@@ -94,16 +95,21 @@ export default function ProfileVisual() {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="profile-ring-inner relative w-full h-full rounded-32 overflow-hidden bg-bg-main">
-          <img
+          <Image
             className="profile-img-secondary absolute inset-0 w-full h-full object-cover object-[center_top] block rounded-none z-[1] scale-[1.04]"
-            src="/plugins/localCss/prof-img.jpg"
+            src="/plugins/localCss/prof-secondary.png"
             alt=""
             aria-hidden="true"
+            fill
+            sizes="(max-width: 768px) 262px, 256px"
           />
-          <img
+          <Image
             className="profile-img-primary absolute inset-0 w-full h-full object-cover object-[center_top] block rounded-none z-[2] scale-100 opacity-100 transition-all duration-[550ms] ease-in-out will-change-[opacity,filter,transform]"
             src="/plugins/localCss/prof-img2.jpg"
             alt="Abhimanyu Vashisht"
+            fill
+            priority
+            sizes="(max-width: 768px) 262px, 256px"
           />
           <div
             ref={sheenRef}
@@ -124,7 +130,7 @@ export default function ProfileVisual() {
           viewBox="0 0 200 200"
           width="200"
           height="200"
-          className="w-full h-full pointer-events-none"
+          className="w-full h-full pointer-events-none animate-[spin_14s_linear_infinite] origin-center motion-reduce:animate-none [transform-box:fill-box] [transform-origin:center]"
           aria-hidden="true"
           focusable="false"
         >

@@ -11,6 +11,7 @@
     --text-main: #e2e8f0;
     --text-secondary: #94a3b8;
     --accent: #7da6ff;
+    --accent-strong: #3b5eea;
     --accent-bg: #162040;
     --card-bg: #111b30;
     --border-color: #1e2d47;
@@ -26,6 +27,7 @@
     --text-main: #0f172a;
     --text-secondary: #475569;
     --accent: #2563eb;
+    --accent-strong: #1d4ed8;
     --accent-bg: #dbeafe;
     --card-bg: #ffffff;
     --border-color: #e2e8f0;
@@ -34,8 +36,8 @@
     --about-accent-bg: #1d4ed8;
   }
 
-  [data-theme="light"] .fa-sun {
-    color: #f7c948 !important;
+  [data-theme="light"] .theme-icon--sun {
+    color: #f7c948;
   }
 
   body, html {
@@ -44,6 +46,9 @@
     line-height: 1.7;
     transition: background 0.3s, color 0.3s;
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    overflow-y: scroll;
+    overflow-x: clip;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -129,12 +134,8 @@
   }
 
   @media (min-width: 992px) and (min-height: 700px) {
-    .page-fill {
-      @apply h-screen overflow-hidden;
-    }
-
     .page-fill main {
-      @apply overflow-y-auto flex flex-col justify-center;
+      @apply flex flex-col justify-center;
     }
   }
 

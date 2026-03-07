@@ -4,6 +4,7 @@ import Link from 'next/link'
 import BodyClass from '@/components/BodyClass'
 import { useEffect, useState } from 'react'
 import ProfileVisual from '@/components/ProfileVisual'
+import { GitHubIcon, InstagramIcon, LinkedInIcon, TwitterIcon } from '@/components/Icons'
 
 export default function HomePage() {
   const [typewriterText, setTypewriterText] = useState('')
@@ -23,26 +24,25 @@ export default function HomePage() {
   }, [])
 
   const socialLinks = [
-    { href: 'https://github.com/AbhimanyuVashisht', icon: 'fab fa-github', label: 'GitHub' },
-    { href: 'https://www.linkedin.com/in/iamabhimanyuvashisht/', icon: 'fab fa-linkedin', label: 'LinkedIn' },
-    { href: 'https://www.instagram.com/iamabhimanyuvashisht/', icon: 'fab fa-instagram', label: 'Instagram' },
-    { href: 'https://twitter.com/abhimanyu_av', icon: 'fab fa-twitter', label: 'Twitter' },
+    { href: 'https://github.com/AbhimanyuVashisht', Icon: GitHubIcon, label: 'GitHub' },
+    { href: 'https://www.linkedin.com/in/iamabhimanyuvashisht/', Icon: LinkedInIcon, label: 'LinkedIn' },
+    { href: 'https://www.instagram.com/iamabhimanyuvashisht/', Icon: InstagramIcon, label: 'Instagram' },
+    { href: 'https://twitter.com/abhimanyu_av', Icon: TwitterIcon, label: 'Twitter' },
   ]
 
   return (
     <>
       <BodyClass className="page-hero" />
-      <style>{`body { --bs-body-bg: var(--bg-main); }`}</style>
       <section className="min-h-screen bg-bg-main flex items-center px-0 pt-[63px] pb-8 box-border md:h-screen md:overflow-hidden fade-in" aria-labelledby="hero-heading" style={{ animationDelay: '0.2s' }}>
-        <div className="container">
-          <div className="row align-items-center min-h-[60vh] max-md:!grid max-md:!grid-cols-1 max-md:!gap-6">
+        <div className="container mx-auto">
+          <div className="grid gap-6 lg:grid-cols-12 lg:items-center min-h-[60vh]">
             {/* Profile Visual - LEFT SIDE */}
-            <div className="col-lg-5 col-md-5 text-center mb-5 mb-md-0">
+            <div className="lg:col-span-5 text-center mb-5 lg:mb-0">
               <ProfileVisual />
             </div>
 
             {/* Content - RIGHT SIDE */}
-            <div className="col-lg-7 col-md-7 text-center text-md-start">
+            <div className="lg:col-span-7 text-center lg:text-left">
               <p className="font-montserrat text-[0.8rem] font-semibold tracking-[0.2em] uppercase text-accent mb-3">Lead Software Engineer</p>
               <h1 className="font-montserrat text-[3.8rem] md:text-[2.8rem] max-md:text-[2.1rem] font-extrabold leading-tight tracking-tight text-text-main mb-2" id="hero-heading">
                 Abhimanyu<br />Vashisht
@@ -65,14 +65,14 @@ export default function HomePage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className={link.icon} aria-hidden="true" />
+                    <link.Icon className="w-[1.3rem] h-[1.3rem]" />
                   </a>
                 ))}
               </div>
 
               {/* CTA Buttons */}
-              <div className="mt-9">
-                <Link href="/about" className="bg-accent !text-white border-2 border-accent rounded-full px-8 py-2.5 font-semibold font-montserrat tracking-wide transition-all duration-200 hover:bg-transparent hover:!text-accent hover:-translate-y-0.5 no-underline inline-block me-3">
+              <div className="mt-9 flex flex-wrap justify-center lg:justify-start gap-3">
+                <Link href="/about" className="bg-accent-strong !text-white border-2 border-accent-strong rounded-full px-8 py-2.5 font-semibold font-montserrat tracking-wide transition-all duration-200 hover:bg-transparent hover:!text-accent hover:border-accent-strong hover:-translate-y-0.5 no-underline inline-block">
                   About Me
                 </Link>
                 <Link href="/contact" className="bg-transparent !text-text-main border-2 border-border-color rounded-full px-8 py-2.5 font-semibold font-montserrat tracking-wide transition-all duration-200 hover:bg-accent hover:!text-white hover:border-accent hover:-translate-y-0.5 no-underline inline-block">
