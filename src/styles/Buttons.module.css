@@ -1,0 +1,47 @@
+/* Button Styles */
+
+.btnHeroPrimary {
+  background: var(--accent);
+  color: #fff;
+  border: 2px solid var(--accent);
+  border-radius: 2rem;
+  padding: 0.6rem 2rem;
+  font-weight: 600;
+  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btnHeroPrimary:hover,
+.btnHeroPrimary:focus {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  outline: var(--focus-outline);
+}
+
+.btnHeroOutline {
+  background: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--border-color);
+  border-radius: 2rem;
+  padding: 0.6rem 2rem;
+  font-weight: 600;
+  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btnHeroOutline:hover,
+.btnHeroOutline:focus {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  outline: var(--focus-outline);
+}

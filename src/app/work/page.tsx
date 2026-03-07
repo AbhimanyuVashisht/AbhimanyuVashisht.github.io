@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import BodyClass from '@/components/BodyClass'
 
 export const metadata: Metadata = {
   title: 'Work — Abhimanyu Vashisht',
@@ -43,57 +44,56 @@ export default function WorkPage() {
   ]
 
   return (
-    <section className="page-fill">
-      <style>{`body { --bs-body-bg: var(--bg-main); }`}</style>
-      <div className="container" style={{ paddingTop: '2rem', paddingBottom: '3rem' }}>
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h1 className="section-heading" style={{ fontSize: '2.5rem' }}>
+    <>
+      <BodyClass className="page-fill" />
+      <section className="fade-in" id="projects" aria-labelledby="projects-heading">
+        <style>{`body { --bs-body-bg: var(--bg-main); }`}</style>
+        <div className="container">
+          <h2 className="font-montserrat font-bold text-[2rem] text-text-main text-center mb-1" id="projects-heading" style={{letterSpacing: '0.5px'}}>
             Things I Didn't Break <span style={{ color: 'var(--accent)' }}>(Mostly)</span>
-          </h1>
-          <p className="contact-section-intro">
+          </h2>
+          <p className="text-text-secondary text-[1.05rem] text-center mb-4">
             A selection of things I've built and shipped.
           </p>
-        </div>
-
-        <div className="row" style={{ marginBottom: '2rem' }}>
-          {projects.map((project, index) => (
-            <div key={index} className="col-lg-6 col-md-6 mb-4">
-              <article className="project-card" tabIndex={0}>
-                <div className="project-card-header">
-                  <span className="project-company">{project.company}</span>
-                  <span className="project-year">{project.year}</span>
+          <div className="row g-4">
+            {projects.map((project, index) => {
+              const titleId = `proj-${index + 1}-title`
+              return (
+                <div key={project.title} className="col-md-6 col-lg-3">
+                  <article className="bg-card-bg border border-border-color rounded-2xl p-6 flex flex-col gap-3 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-card hover:border-accent h-100" tabIndex={0} aria-labelledby={titleId}>
+                    <div className="flex justify-between items-center flex-wrap gap-1">
+                      <span className="font-montserrat text-[0.78rem] font-bold uppercase tracking-wider text-accent">{project.company}</span>
+                      <span className="text-[0.78rem] text-text-secondary">{project.year}</span>
+                    </div>
+                    <h3 className="font-montserrat text-[1.05rem] font-bold text-text-main m-0 leading-snug" id={titleId}>
+                      {project.title}
+                    </h3>
+                    <p className="text-[0.9rem] text-text-secondary leading-relaxed flex-grow m-0">{project.description}</p>
+                    <div className="flex flex-wrap gap-1.5 mt-auto">
+                      {project.tags.map((tag) => (
+                        <span key={tag} className="text-[0.72rem] font-semibold tracking-wide px-2.5 py-1 rounded-full bg-accent-bg text-accent border border-border-color">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        className="text-[0.85rem] font-semibold text-accent no-underline mt-2 inline-block hover:text-text-main hover:underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="View GitHub profile (opens in new tab)"
+                      >
+                        <i className="fab fa-github me-1" aria-hidden="true" />GitHub
+                      </a>
+                    )}
+                  </article>
                 </div>
-
-                <h3 className="project-title">{project.title}</h3>
-
-                <p className="project-desc">
-                  {project.description}
-                </p>
-
-                <div className="project-tags">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-link"
-                    aria-label="View GitHub profile (opens in new tab)"
-                  >
-                    <i className="fab fa-github" /> GitHub
-                  </a>
-                )}
-              </article>
-            </div>
-          ))}
+              )
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }

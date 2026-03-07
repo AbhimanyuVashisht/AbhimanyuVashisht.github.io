@@ -1,0 +1,23 @@
+/* Footer Component Styles */
+
+.footer {
+  background: var(--bg-secondary) !important;
+  color: var(--text-main) !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  min-height: 56px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.socialLink {
+  color: var(--text-secondary);
+  font-size: 1.3rem;
+  transition: color 0.2s, transform 0.2s;
+  text-decoration: none;
+}
+
+.socialLink:hover,
+.socialLink:focus {
+  color: var(--accent);
+  transform: translateY(-2px);
+}

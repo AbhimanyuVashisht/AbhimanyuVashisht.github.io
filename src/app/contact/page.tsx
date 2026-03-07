@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import BodyClass from '@/components/BodyClass'
 
 export const metadata: Metadata = {
   title: 'Contact — Abhimanyu Vashisht',
@@ -13,6 +14,7 @@ export default function ContactPage() {
       value: 'Drop me a line',
       href: 'mailto:iamabhimanyuvashisht@gmail.com',
       external: false,
+      ariaLabel: 'Send an email',
     },
     {
       icon: 'fab fa-linkedin',
@@ -20,6 +22,7 @@ export default function ContactPage() {
       value: "Let's connect",
       href: 'https://www.linkedin.com/in/iamabhimanyuvashisht/',
       external: true,
+      ariaLabel: 'LinkedIn profile (opens in new tab)',
     },
     {
       icon: 'fab fa-github',
@@ -27,6 +30,7 @@ export default function ContactPage() {
       value: 'See my code',
       href: 'https://github.com/AbhimanyuVashisht',
       external: true,
+      ariaLabel: 'GitHub profile (opens in new tab)',
     },
     {
       icon: 'fab fa-twitter',
@@ -34,46 +38,43 @@ export default function ContactPage() {
       value: '@abhimanyu_av',
       href: 'https://twitter.com/abhimanyu_av',
       external: true,
+      ariaLabel: 'Twitter profile (opens in new tab)',
     },
   ]
 
   return (
-    <section className="page-fill">
-      <style>{`body { --bs-body-bg: var(--bg-main); }`}</style>
-      <div className="container" style={{ paddingTop: '2rem', paddingBottom: '3rem', maxWidth: '900px' }}>
-        <div style={{ textAlign: 'center' }}>
-          <h1 className="section-heading" style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>
+    <>
+      <BodyClass className="page-fill" />
+      <section className="fade-in" id="contact" aria-labelledby="contact-heading">
+        <style>{`body { --bs-body-bg: var(--bg-main); }`}</style>
+        <div className="container">
+          <h2 className="font-montserrat font-bold text-[2rem] text-text-main text-center mb-3" id="contact-heading" style={{letterSpacing: '0.5px'}}>
             Get In Touch
-          </h1>
-          <p className="contact-section-intro" style={{ marginBottom: '3rem' }}>
-            I'm always open to interesting conversations, collaborations, or opportunities. 
-            Feel free to reach out through any of these channels.
+          </h2>
+          <p className="text-[1.1rem] text-text-secondary max-w-[520px] mx-auto mb-12 text-center">
+            I'm always open to interesting conversations, collaborations, or opportunities. Feel free to reach out
+            through any of these channels.
           </p>
-
-          <div className="row">
+          <div className="row g-4 justify-content-center mb-5">
             {contactCards.map((card) => (
-              <div key={card.href} className="col-md-6 col-lg-3 mb-4">
+              <div key={card.href} className="col-6 col-md-3">
                 <a
                   href={card.href}
-                  className="contact-card"
-                  aria-label={card.external ? `${card.label} profile (opens in new tab)` : card.label}
+                  className="bg-card-bg border border-border-color rounded-[20px] p-8 text-center transition-all duration-200 no-underline text-text-main flex flex-col items-center gap-3 h-100 hover:-translate-y-1.5 hover:shadow-card hover:border-accent focus:outline-none focus-visible:outline-[var(--focus-outline)] focus-visible:outline-offset-[3px]"
+                  aria-label={card.ariaLabel}
                   {...(card.external && { target: '_blank', rel: 'noopener noreferrer' })}
                 >
-                  <span className="contact-card-icon">
+                  <span className="text-[2rem] text-accent block leading-none">
                     <i className={card.icon} aria-hidden="true" />
                   </span>
-                  <div className="contact-card-label">
-                    {card.label}
-                  </div>
-                  <div className="contact-card-value">
-                    {card.value}
-                  </div>
+                  <span className="font-montserrat font-bold text-base text-text-main">{card.label}</span>
+                  <span className="text-[0.88rem] text-text-secondary">{card.value}</span>
                 </a>
               </div>
             ))}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
