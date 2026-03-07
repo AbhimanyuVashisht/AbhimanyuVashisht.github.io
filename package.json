@@ -1,0 +1,8 @@
+{
+  "name": "abhimanyuvashisht-github-io",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build:pages": "node scripts/build-pages.js"
+  }
+}
