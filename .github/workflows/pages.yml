@@ -2,7 +2,7 @@ name: Deploy Next.js to GitHub Pages
 
 on:
   push:
-    branches: ["master"]
+    branches: ["master", "nextjs-migration"]
   workflow_dispatch:
 
 permissions:
