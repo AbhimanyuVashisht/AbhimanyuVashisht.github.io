@@ -11,19 +11,13 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      const forceOpaque = document.body.classList.contains('page-fill')
+      setIsScrolled(forceOpaque || window.scrollY > 50)
     }
     window.addEventListener('scroll', handleScroll)
     handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  useEffect(() => {
-    const rebind = (window as typeof window & { rebindNavbarScroll?: () => void }).rebindNavbarScroll
-    if (typeof rebind === 'function') {
-      rebind()
-    }
-  }, [pathname])
 
   useEffect(() => {
     const theme = localStorage.getItem('theme') || 'dark'

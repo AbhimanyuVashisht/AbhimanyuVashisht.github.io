@@ -1,29 +1,98 @@
 
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function ProfileVisual() {
-  useEffect(() => {
-    let attempts = 0
-    const maxAttempts = 60
-    const interval = window.setInterval(() => {
-      const init = (window as typeof window & { initProfileTilt?: () => void }).initProfileTilt
-      if (typeof init === 'function') {
-        init()
-        window.clearInterval(interval)
-      } else if (attempts >= maxAttempts) {
-        window.clearInterval(interval)
-      }
-      attempts += 1
-    }, 200)
+  const [isHovered, setIsHovered] = useState(false)
+  const visualRef = useRef<HTMLDivElement | null>(null)
+  const outerRef = useRef<HTMLDivElement | null>(null)
+  const sheenRef = useRef<HTMLDivElement | null>(null)
 
-    return () => window.clearInterval(interval)
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const visual = visualRef.current
+    const outer = outerRef.current
+    const sheen = sheenRef.current
+    if (!visual || !outer || !sheen) return
+
+    const MAX_TILT_X = 10
+    const MAX_TILT_Y = 14
+    const LERP_SPEED = 0.1
+
+    let targetX = 0
+    let targetY = 0
+    let currentX = 0
+    let currentY = 0
+    let rafId: number | null = null
+    let hovering = false
+
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+
+    const tick = () => {
+      currentX = lerp(currentX, targetX, LERP_SPEED)
+      currentY = lerp(currentY, targetY, LERP_SPEED)
+
+      outer.style.transform = `perspective(700px) rotateX(${currentX.toFixed(3)}deg) rotateY(${currentY.toFixed(3)}deg)`
+
+      const settled = Math.abs(currentX - targetX) < 0.02 && Math.abs(currentY - targetY) < 0.02
+      if (!settled) {
+        rafId = window.requestAnimationFrame(tick)
+      } else {
+        if (!hovering) outer.style.transform = ''
+        rafId = null
+      }
+    }
+
+    const startTick = () => {
+      if (!rafId) rafId = window.requestAnimationFrame(tick)
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = outer.getBoundingClientRect()
+      const cx = rect.left + rect.width / 2
+      const cy = rect.top + rect.height / 2
+      const nx = (e.clientX - cx) / (rect.width / 2)
+      const ny = (e.clientY - cy) / (rect.height / 2)
+
+      targetY = nx * MAX_TILT_Y
+      targetX = -ny * MAX_TILT_X
+
+      sheen.style.setProperty('--sx', `${(((-nx + 1) / 2) * 100).toFixed(1)}%`)
+      sheen.style.setProperty('--sy', `${(((-ny + 1) / 2) * 100).toFixed(1)}%`)
+      sheen.style.opacity = '1'
+
+      hovering = true
+      startTick()
+    }
+
+    const handleMouseLeave = () => {
+      targetX = 0
+      targetY = 0
+      hovering = false
+      sheen.style.opacity = '0'
+      startTick()
+    }
+
+    visual.addEventListener('mousemove', handleMouseMove)
+    visual.addEventListener('mouseleave', handleMouseLeave)
+
+    return () => {
+      visual.removeEventListener('mousemove', handleMouseMove)
+      visual.removeEventListener('mouseleave', handleMouseLeave)
+      if (rafId) window.cancelAnimationFrame(rafId)
+    }
   }, [])
 
   return (
-    <div className="profile-visual relative w-[290px] h-[290px] mx-auto mb-4 flex items-center justify-center">
-      <div className="profile-ring-outer relative w-64 h-64 rounded-34 p-0.5 bg-border-color transition-all duration-500 ease-in-out flex-shrink-0 cursor-pointer will-change-transform [transform-style:preserve-3d] hover:bg-gradient-to-br hover:from-[#7da6ff] hover:via-[#a78bfa] hover:to-[#f472b6] hover:drop-shadow-[0_8px_32px_rgba(125,166,255,0.28)]">
+    <div ref={visualRef} className="profile-visual relative w-[290px] h-[290px] mx-auto mb-4 flex items-center justify-center">
+      <div
+        ref={outerRef}
+        className={`profile-ring-outer relative w-64 h-64 rounded-34 p-0.5 bg-border-color transition-all duration-500 ease-in-out flex-shrink-0 cursor-pointer will-change-transform [transform-style:preserve-3d] hover:bg-gradient-to-br hover:from-[#7da6ff] hover:via-[#a78bfa] hover:to-[#f472b6] hover:drop-shadow-[0_8px_32px_rgba(125,166,255,0.28)] ${isHovered ? 'is-hovered' : ''}`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <div className="profile-ring-inner relative w-full h-full rounded-32 overflow-hidden bg-bg-main">
           <img
             className="profile-img-secondary absolute inset-0 w-full h-full object-cover object-[center_top] block rounded-none z-[1] scale-[1.04]"
@@ -37,6 +106,7 @@ export default function ProfileVisual() {
             alt="Abhimanyu Vashisht"
           />
           <div
+            ref={sheenRef}
             className="profile-sheen absolute inset-0 z-10 pointer-events-none rounded-32 opacity-0 transition-opacity duration-300"
             style={
               {

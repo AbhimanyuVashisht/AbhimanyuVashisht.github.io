@@ -79,8 +79,6 @@ export default function RootLayout({
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
           strategy="afterInteractive"
         />
-        <Script src="/plugins/localJs/profile-tilt.js" strategy="afterInteractive" />
-        <Script src="/plugins/localJs/navbar-scroll.js" strategy="afterInteractive" />
       </body>
     </html>
   )
