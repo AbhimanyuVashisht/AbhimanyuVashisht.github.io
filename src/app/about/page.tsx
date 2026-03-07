@@ -36,29 +36,29 @@ export default function AboutPage() {
               </p>
               <div className="row g-2 justify-content-center text-start mb-4">
                 <div className="col-auto">
-                  <span className="d-flex align-items-center gap-2 small">
+                  <span className="d-flex align-items-center gap-2 small text-text-main">
                     <i className="fas fa-graduation-cap text-accent" aria-hidden="true" />
                     B.Tech (CSE), Jaypee Institute of Information Technology
                   </span>
                 </div>
                 <div className="col-auto">
-                  <span className="d-flex align-items-center gap-2 small">
+                  <span className="d-flex align-items-center gap-2 small text-text-main">
                     <i className="fas fa-brain text-accent" aria-hidden="true" />
                     Deep Learning Specialization — deeplearning.ai
                   </span>
                 </div>
                 <div className="col-auto">
-                  <span className="d-flex align-items-center gap-2 small">
+                  <span className="d-flex align-items-center gap-2 small text-text-main">
                     <i className="fas fa-users text-accent" aria-hidden="true" />
                     President, Rotaract Club of Delhi South (2021–22)
                   </span>
                 </div>
               </div>
               <div className="d-flex gap-3 justify-content-center flex-wrap">
-                <Link href="/work" className="bg-accent text-white border-2 border-accent rounded-full px-8 py-2.5 font-semibold font-montserrat tracking-wide transition-all duration-200 hover:bg-transparent hover:text-accent hover:-translate-y-0.5 no-underline inline-block">
+                <Link href="/work" className="bg-accent !text-white border-2 border-accent rounded-full px-8 py-2.5 font-semibold font-montserrat tracking-wide transition-all duration-200 hover:bg-transparent hover:!text-accent hover:-translate-y-0.5 no-underline inline-block">
                   See My Work
                 </Link>
-                <Link href="/contact" className="bg-transparent text-text-main border-2 border-border-color rounded-full px-8 py-2.5 font-semibold font-montserrat tracking-wide transition-all duration-200 hover:bg-accent hover:text-white hover:border-accent hover:-translate-y-0.5 no-underline inline-block">
+                <Link href="/contact" className="bg-transparent !text-text-main border-2 border-border-color rounded-full px-8 py-2.5 font-semibold font-montserrat tracking-wide transition-all duration-200 hover:bg-accent hover:!text-white hover:border-accent hover:-translate-y-0.5 no-underline inline-block">
                   Get In Touch
                 </Link>
               </div>

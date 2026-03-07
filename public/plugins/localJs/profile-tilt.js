@@ -72,4 +72,8 @@ function initProfileTilt() {
 }
 
 // Also run on first page load (when router hasn't started yet)
-document.addEventListener('DOMContentLoaded', initProfileTilt);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProfileTilt);
+} else {
+    initProfileTilt();
+}

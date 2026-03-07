@@ -72,10 +72,10 @@ export default function HomePage() {
 
               {/* CTA Buttons */}
               <div className="mt-9">
-                <Link href="/about" className="bg-accent text-white border-2 border-accent rounded-full px-8 py-2.5 font-semibold font-montserrat tracking-wide transition-all duration-200 hover:bg-transparent hover:text-accent hover:-translate-y-0.5 no-underline inline-block me-3">
+                <Link href="/about" className="bg-accent !text-white border-2 border-accent rounded-full px-8 py-2.5 font-semibold font-montserrat tracking-wide transition-all duration-200 hover:bg-transparent hover:!text-accent hover:-translate-y-0.5 no-underline inline-block me-3">
                   About Me
                 </Link>
-                <Link href="/contact" className="bg-transparent text-text-main border-2 border-border-color rounded-full px-8 py-2.5 font-semibold font-montserrat tracking-wide transition-all duration-200 hover:bg-accent hover:text-white hover:border-accent hover:-translate-y-0.5 no-underline inline-block">
+                <Link href="/contact" className="bg-transparent !text-text-main border-2 border-border-color rounded-full px-8 py-2.5 font-semibold font-montserrat tracking-wide transition-all duration-200 hover:bg-accent hover:!text-white hover:border-accent hover:-translate-y-0.5 no-underline inline-block">
                   Get In Touch
                 </Link>
               </div>

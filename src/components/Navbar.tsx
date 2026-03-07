@@ -48,7 +48,7 @@ export default function Navbar() {
   return (
     <nav className={navbarClass} aria-label="Primary navigation" style={{ animationDelay: '0.1s', paddingTop: '0.35rem', paddingBottom: '0.35rem' }}>
       <div className="container">
-        <Link className="navbar-brand font-montserrat font-bold text-text-main hover:text-accent transition-colors" href="/" aria-label="Abhimanyu Vashisht - Home">
+        <Link className="navbar-brand font-montserrat font-bold !text-text-main hover:!text-accent transition-colors" href="/" aria-label="Abhimanyu Vashisht - Home">
           A V
         </Link>
         <button
