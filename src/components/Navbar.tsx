@@ -62,13 +62,13 @@ export default function Navbar() {
         >
           <span className="navbar-toggler-icon" />
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
+        <div className="!visible collapse navbar-collapse" id="navbarNav">
+          <ul className="!visible navbar-nav ms-auto">
             {navLinks.map((link) => (
               <li key={link.href} className="nav-item">
                 <Link
                   href={link.href}
-                  className={`nav-link ${pathname === link.href ? '!text-accent font-semibold' : '!text-text-main hover:!text-accent'} transition-colors`}
+                  className={`!visible !block nav-link ${pathname === link.href ? '!text-accent font-semibold' : '!text-text-main hover:!text-accent'} transition-colors`}
                   aria-current={pathname === link.href ? 'page' : undefined}
                 >
                   {link.label}
@@ -78,7 +78,7 @@ export default function Navbar() {
             <li className="nav-item d-flex align-items-center ms-2">
               <button
                 id="theme-toggle"
-                className="btn btn-sm rounded-full w-9 h-9 flex items-center justify-center !text-text-secondary hover:!text-accent transition-colors border-0"
+                className="!visible !block btn btn-sm rounded-full w-9 h-9 flex items-center justify-center !text-text-secondary hover:!text-accent transition-colors border-0 !bg-transparent !p-0"
                 onClick={handleThemeToggle}
                 aria-label="Toggle light/dark mode"
               >
