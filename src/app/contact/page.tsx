@@ -52,7 +52,7 @@ export default function ContactPage() {
             Get In Touch
           </h2>
           <p className="text-[1.1rem] text-text-secondary max-w-[520px] mx-auto mb-12 text-center">
-            I'm always open to interesting conversations, collaborations, or opportunities. Feel free to reach out
+            I&apos;m always open to interesting conversations, collaborations, or opportunities. Feel free to reach out
             through any of these channels.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">

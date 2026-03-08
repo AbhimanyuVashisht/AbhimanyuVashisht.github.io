@@ -16,20 +16,20 @@ export default function AboutPage() {
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto text-center">
               <h1 className="font-montserrat font-bold text-[2rem] text-text-main mb-3" id="about-heading" style={{letterSpacing: '0.5px'}}>
-                Hey, I'm Abhimanyu.
+                Hey, I&apos;m Abhimanyu.
               </h1>
               <p className="mb-2" style={{ fontSize: '1.05rem', color: 'var(--text-secondary)' }}>
-                I'm a Lead Software Engineer who genuinely loves building things on the web. JavaScript and Python are my
-                happy place — I've been writing them for over 7 years and I'm still finding new ways they surprise me.
+                I&apos;m a Lead Software Engineer who genuinely loves building things on the web. JavaScript and Python are my
+                happy place — I&apos;ve been writing them for over 7 years and I&apos;m still finding new ways they surprise me.
               </p>
               <p className="mb-2" style={{ fontSize: '1.05rem', color: 'var(--text-secondary)' }}>
                 By day, I work at <b style={{ color: 'var(--text-main)' }}>BrowserStack</b> on growth and pricing
                 infrastructure — thinking about performance, scalability, and reliability, and how software can quietly
-                make a business run better. By night, you'll probably find me tinkering with a side project, digging into
+                make a business run better. By night, you&apos;ll probably find me tinkering with a side project, digging into
                 an algorithm problem, or exploring whatever corner of AI/ML has caught my attention that week.
               </p>
               <p className="mb-3" style={{ fontSize: '1.05rem', color: 'var(--text-secondary)' }}>
-                I believe the best engineers are curious first. I've built art-sharing platforms, real-time chat apps,
+                I believe the best engineers are curious first. I&apos;ve built art-sharing platforms, real-time chat apps,
                 IoT train systems, and sentiment classifiers — not because I had to, but because I wanted to know if I
                 could.
               </p>

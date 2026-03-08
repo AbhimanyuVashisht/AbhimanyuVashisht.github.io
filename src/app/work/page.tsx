@@ -50,10 +50,10 @@ export default function WorkPage() {
       <section className="fade-in" id="projects" aria-labelledby="projects-heading">
         <div className="container mx-auto">
           <h2 className="font-montserrat font-bold text-[2rem] text-text-main text-center mb-1" id="projects-heading" style={{letterSpacing: '0.5px'}}>
-            Things I Didn't Break <span style={{ color: 'var(--accent)' }}>(Mostly)</span>
+            Things I Didn&apos;t Break <span style={{ color: 'var(--accent)' }}>(Mostly)</span>
           </h2>
           <p className="text-text-secondary text-[1.05rem] text-center mb-4">
-            A selection of things I've built and shipped.
+            A selection of things I&apos;ve built and shipped.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {projects.map((project, index) => {

@@ -13,7 +13,7 @@ export default function NotFound() {
                 Page Not Found
               </h1>
               <p className="text-text-secondary text-[1.05rem] mb-4">
-                The page you're looking for doesn't exist or may have been moved.
+                The page you&apos;re looking for doesn&apos;t exist or may have been moved.
               </p>
               <div className="flex flex-wrap justify-center gap-3">
                 <Link href="/" className="bg-accent !text-white border-2 border-accent rounded-full px-8 py-2.5 font-semibold font-montserrat tracking-wide transition-all duration-200 hover:bg-transparent hover:!text-accent hover:-translate-y-0.5 no-underline inline-block">
