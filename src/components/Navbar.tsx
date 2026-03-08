@@ -2,14 +2,20 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { MoonIcon, SunIcon } from '@/components/Icons'
+import { useEffect, useRef, useState } from 'react'
+import { ComputerDesktopIcon, MoonIcon, SunIcon } from '@/components/Icons'
+
+type ThemeMode = 'system' | 'dark' | 'light'
 
 export default function Navbar() {
+  const LONG_PRESS_MS = 550
   const pathname = usePathname()
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isDark, setIsDark] = useState(true)
+  const [themeMode, setThemeMode] = useState<ThemeMode>('system')
+  const [isDarkEffective, setIsDarkEffective] = useState(true)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const longPressTimerRef = useRef<number | null>(null)
+  const longPressTriggeredRef = useRef(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,20 +28,93 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    const theme = localStorage.getItem('theme') || 'dark'
-    setIsDark(theme === 'dark')
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+
+    const syncThemeState = () => {
+      const storedTheme = localStorage.getItem('theme') as ThemeMode | null
+      const mode: ThemeMode = !storedTheme || storedTheme === 'system' ? 'system' : storedTheme
+      const effectiveTheme = mode === 'system' ? (mediaQuery.matches ? 'dark' : 'light') : mode
+
+      setThemeMode(mode)
+      setIsDarkEffective(effectiveTheme === 'dark')
+    }
+
+    const handleSystemThemeChange = () => {
+      const storedTheme = localStorage.getItem('theme')
+      if (!storedTheme || storedTheme === 'system') {
+        syncThemeState()
+      }
+    }
+
+    syncThemeState()
+    mediaQuery.addEventListener('change', handleSystemThemeChange)
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleSystemThemeChange)
+    }
   }, [])
 
   useEffect(() => {
     setIsMenuOpen(false)
   }, [pathname])
 
+  useEffect(() => {
+    return () => {
+      if (longPressTimerRef.current !== null) {
+        window.clearTimeout(longPressTimerRef.current)
+      }
+    }
+  }, [])
+
   const handleThemeToggle = () => {
-    const newTheme = isDark ? 'light' : 'dark'
-    setIsDark(!isDark)
-    localStorage.setItem('theme', newTheme)
-    document.documentElement.setAttribute('data-theme', newTheme)
+    const nextMode: ThemeMode = isDarkEffective ? 'light' : 'dark'
+    const nextTheme = nextMode
+
+    setThemeMode(nextMode)
+    setIsDarkEffective(nextTheme === 'dark')
+    localStorage.setItem('theme', nextMode)
+    document.documentElement.setAttribute('data-theme', nextTheme)
   }
+
+  const setSystemThemeMode = () => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const nextTheme = mediaQuery.matches ? 'dark' : 'light'
+
+    setThemeMode('system')
+    setIsDarkEffective(nextTheme === 'dark')
+    localStorage.setItem('theme', 'system')
+    document.documentElement.setAttribute('data-theme', nextTheme)
+  }
+
+  const handleThemePressStart = () => {
+    longPressTriggeredRef.current = false
+    longPressTimerRef.current = window.setTimeout(() => {
+      longPressTriggeredRef.current = true
+      setSystemThemeMode()
+    }, LONG_PRESS_MS)
+  }
+
+  const clearThemePressTimer = () => {
+    if (longPressTimerRef.current !== null) {
+      window.clearTimeout(longPressTimerRef.current)
+      longPressTimerRef.current = null
+    }
+  }
+
+  const handleThemePressEnd = () => {
+    clearThemePressTimer()
+  }
+
+  const handleThemeClick = () => {
+    if (longPressTriggeredRef.current) {
+      longPressTriggeredRef.current = false
+      return
+    }
+
+    handleThemeToggle()
+  }
+
+  const themeToggleLabel = `Theme mode: ${themeMode}. Click to toggle dark/light. Long press to use system theme.`
 
   const navLinks = [
     { href: '/about', label: 'About' },
@@ -87,18 +166,36 @@ export default function Navbar() {
                 </li>
               ))}
               <li className="flex items-center">
-                <button
-                  id="theme-toggle"
-                  className="rounded-full w-9 h-9 flex items-center justify-center text-text-secondary hover:text-accent transition-colors border border-border-color bg-transparent"
-                  onClick={handleThemeToggle}
-                  aria-label="Toggle light/dark mode"
-                >
-                  {isDark ? (
-                    <MoonIcon className="w-4 h-4" />
-                  ) : (
-                    <SunIcon className="w-4 h-4 theme-icon--sun" />
-                  )}
-                </button>
+                <div className="relative group">
+                  <button
+                    id="theme-toggle"
+                    className="rounded-full w-9 h-9 flex items-center justify-center text-text-secondary hover:text-accent transition-colors border border-border-color bg-transparent"
+                    onClick={handleThemeClick}
+                    onMouseDown={handleThemePressStart}
+                    onMouseUp={handleThemePressEnd}
+                    onMouseLeave={handleThemePressEnd}
+                    onTouchStart={handleThemePressStart}
+                    onTouchEnd={handleThemePressEnd}
+                    onTouchCancel={handleThemePressEnd}
+                    aria-label={themeToggleLabel}
+                    title={themeToggleLabel}
+                    aria-describedby="theme-toggle-hint"
+                  >
+                    {themeMode === 'system' ? (
+                      <ComputerDesktopIcon className="w-4 h-4" />
+                    ) : isDarkEffective ? (
+                      <MoonIcon className="w-4 h-4" />
+                    ) : (
+                      <SunIcon className="w-4 h-4 theme-icon--sun" />
+                    )}
+                  </button>
+                  <span
+                    id="theme-toggle-hint"
+                    className="pointer-events-none hidden md:block absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded border border-border-color bg-bg-secondary px-2 py-1 text-[11px] text-text-secondary opacity-0 shadow-navbar transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100"
+                  >
+                    Long press for system
+                  </span>
+                </div>
               </li>
             </ul>
           </div>

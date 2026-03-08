@@ -4,9 +4,29 @@ import { useEffect } from 'react'
 
 export default function ThemeInitializer() {
   useEffect(() => {
-    // Apply stored theme or default to dark
-    const theme = localStorage.getItem('theme') || 'dark'
-    document.documentElement.setAttribute('data-theme', theme)
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+
+    const applyTheme = () => {
+      const storedTheme = localStorage.getItem('theme')
+      const effectiveTheme = !storedTheme || storedTheme === 'system'
+        ? (mediaQuery.matches ? 'dark' : 'light')
+        : storedTheme
+      document.documentElement.setAttribute('data-theme', effectiveTheme)
+    }
+
+    const handleSystemThemeChange = () => {
+      const storedTheme = localStorage.getItem('theme')
+      if (!storedTheme || storedTheme === 'system') {
+        applyTheme()
+      }
+    }
+
+    applyTheme()
+    mediaQuery.addEventListener('change', handleSystemThemeChange)
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleSystemThemeChange)
+    }
   }, [])
 
   return null
