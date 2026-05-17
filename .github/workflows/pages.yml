@@ -1,8 +1,8 @@
-name: Deploy GitHub Pages
+name: Deploy Next.js to GitHub Pages
 
 on:
   push:
-    branches: ["master"]
+    branches: ["master", "nextjs-migration"]
   workflow_dispatch:
 
 permissions:
@@ -27,13 +27,16 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Build static pages
-        run: npm run build:pages
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js app
+        run: npm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: out
 
   deploy:
     needs: build

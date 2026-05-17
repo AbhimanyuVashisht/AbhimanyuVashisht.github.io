@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Theme Variables === */
+@layer base {
+  :root {
+    --bg-main: #0a0f1e;
+    --bg-secondary: #0f1629;
+    --bg-accent: #162040;
+    --text-main: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --accent: #7da6ff;
+    --accent-strong: #3b5eea;
+    --accent-bg: #162040;
+    --card-bg: #111b30;
+    --border-color: #1e2d47;
+    --shadow: 0 2px 12px rgba(0,0,0,0.45);
+    --focus-outline: 3px solid #7da6ff;
+    --about-accent-bg: #0d2d6e;
+  }
+
+  [data-theme="light"] {
+    --bg-main: #ffffff;
+    --bg-secondary: #f8faff;
+    --bg-accent: #dbeafe;
+    --text-main: #0f172a;
+    --text-secondary: #475569;
+    --accent: #2563eb;
+    --accent-strong: #1d4ed8;
+    --accent-bg: #dbeafe;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.07);
+    --focus-outline: 3px solid #2563eb;
+    --about-accent-bg: #1d4ed8;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme]) {
+      --bg-main: #ffffff;
+      --bg-secondary: #f8faff;
+      --bg-accent: #dbeafe;
+      --text-main: #0f172a;
+      --text-secondary: #475569;
+      --accent: #2563eb;
+      --accent-strong: #1d4ed8;
+      --accent-bg: #dbeafe;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --shadow: 0 2px 8px rgba(0,0,0,0.07);
+      --focus-outline: 3px solid #2563eb;
+      --about-accent-bg: #1d4ed8;
+    }
+  }
+
+  [data-theme="light"] .theme-icon--sun {
+    color: #f7c948;
+  }
+
+  body, html {
+    @apply font-inter bg-bg-main text-text-main h-full m-0;
+    font-size: 16px;
+    line-height: 1.7;
+    transition: background 0.3s, color 0.3s;
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    overflow-y: scroll;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-montserrat font-bold;
+    letter-spacing: 0.5px;
+  }
+
+  section[id],
+  footer[id] {
+    scroll-margin-top: 100px;
+  }
+}
+
+/* === Custom Components === */
+@layer components {
+  /* Skip Navigation */
+  .skip-nav {
+    @apply absolute -top-full left-0 bg-accent text-white px-6 py-3 font-bold font-montserrat z-[10000];
+    border-radius: 0 0 6px 0;
+    text-decoration: none;
+    transition: top 0.2s ease;
+    white-space: nowrap;
+  }
+  
+  .skip-nav:focus {
+    @apply top-0;
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+  }
+
+  /* Accent Stripe */
+  body::before {
+    content: "";
+    @apply block h-[3px] fixed top-0 left-0 right-0 z-[9999];
+    background: linear-gradient(90deg, #7da6ff, #a78bfa, #f472b6, #fb923c, #7da6ff);
+    background-size: 200% 100%;
+    animation: stripeShift 6s linear infinite;
+  }
+
+  .profile-ring-outer.is-hovered .profile-img-primary,
+  .profile-ring-outer:hover .profile-img-primary {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+/* === Utilities === */
+@layer utilities {
+  /* Fade In Animation */
+  .fade-in {
+    @apply opacity-0 translate-y-6 animate-fade-in-up;
+  }
+
+  /* Page Layouts */
+  .page-hero .container {
+    @apply pt-0;
+  }
+
+  @media (min-width: 992px) and (min-height: 700px) {
+    .page-hero {
+      @apply h-screen overflow-hidden;
+    }
+  }
+
+  .page-fill {
+    @apply flex flex-col min-h-screen;
+  }
+
+  .page-fill main {
+    @apply flex-1 pt-[63px];
+  }
+
+  .page-fill footer {
+    @apply flex-shrink-0 mt-0;
+  }
+
+  .page-fill .container {
+    @apply pt-0;
+  }
+
+  .page-fill section {
+    @apply w-full py-6;
+  }
+
+  @media (min-width: 992px) and (min-height: 700px) {
+    .page-fill main {
+      @apply flex flex-col justify-center;
+    }
+  }
+
+  /* Container Padding */
+  .container {
+    @apply pt-8;
+  }
+
+  @media (max-width: 767.98px) {
+    .container {
+      @apply pt-5;
+    }
+  }
+}
+
+/* === Reduced Motion === */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

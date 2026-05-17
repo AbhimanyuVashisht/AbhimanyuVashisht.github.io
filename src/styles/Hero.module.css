@@ -1,0 +1,113 @@
+/* Hero Section Styles */
+
+.heroSection {
+  min-height: 100dvh;
+  background: var(--bg-main);
+  display: flex;
+  align-items: center;
+  padding: 63px 0 2rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 992px) and (min-height: 700px) {
+  .heroSection {
+    height: 100dvh;
+    overflow: hidden;
+  }
+}
+
+.heroRow {
+  min-height: 60vh;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .heroRow {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+}
+
+.heroEyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.8rem;
+}
+
+.heroName {
+  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+  font-size: 3.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin-bottom: 0.6rem;
+}
+
+@media (max-width: 991.98px) {
+  .heroName {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .heroName {
+    font-size: 2.1rem;
+  }
+}
+
+.heroMotto {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.heroSubtitle {
+  font-size: 1rem;
+  color: var(--accent);
+  font-weight: 500;
+  min-height: 1.6em;
+  margin-bottom: 0;
+  margin-top: 1rem;
+}
+
+.heroSocials {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .heroSocials {
+    justify-content: flex-start;
+  }
+}
+
+.heroSocialLink {
+  color: var(--text-secondary);
+  font-size: 1.3rem;
+  transition: color 0.2s, transform 0.2s;
+  text-decoration: none;
+}
+
+.heroSocialLink:hover,
+.heroSocialLink:focus {
+  color: var(--accent);
+  transform: translateY(-2px);
+  outline: var(--focus-outline);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.heroCta {
+  margin-top: 2.2rem;
+}
