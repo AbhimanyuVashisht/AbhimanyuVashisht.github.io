@@ -13,7 +13,7 @@ export default function ContactPage() {
       Icon: EnvelopeIcon,
       label: 'Email',
       value: 'Drop me a line',
-      href: 'mailto:iamabhimanyuvashisht@gmail.com',
+      href: 'mailto:abhimanyu@vashisht.tech',
       external: false,
       ariaLabel: 'Send an email',
     },
