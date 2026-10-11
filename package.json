@@ -17,12 +17,14 @@
     "next": "^16.2.6",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
-    "react-redux": "^9.1.0"
+    "react-redux": "^9.1.0",
+    "three": "^0.186.1"
   },
   "devDependencies": {
     "@types/node": "^20.12.0",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
+    "@types/three": "^0.186.0",
     "autoprefixer": "^10.4.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^15.5.10",

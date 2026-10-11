@@ -1,10 +1,13 @@
 'use client'
 
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import BodyClass from '@/components/BodyClass'
 import { useEffect, useState } from 'react'
 import ProfileVisual from '@/components/ProfileVisual'
 import { GitHubIcon, InstagramIcon, LinkedInIcon, TwitterIcon } from '@/components/Icons'
+
+const BrickSystemScene = dynamic(() => import('@/components/BrickSystemScene'), { ssr: false })
 
 export default function HomePage() {
   const [typewriterText, setTypewriterText] = useState('')
@@ -33,8 +36,9 @@ export default function HomePage() {
   return (
     <>
       <BodyClass className="page-hero" />
-      <section className="min-h-screen bg-bg-main flex items-center px-0 pt-[63px] pb-8 box-border md:h-screen md:overflow-hidden fade-in" aria-labelledby="hero-heading" style={{ animationDelay: '0.2s' }}>
-        <div className="container mx-auto">
+      <section className="relative min-h-screen bg-bg-main flex items-center px-0 pt-[63px] pb-8 box-border md:h-screen md:overflow-hidden fade-in" aria-labelledby="hero-heading" style={{ animationDelay: '0.2s' }}>
+        <BrickSystemScene />
+        <div className="container mx-auto relative z-[1]">
           <div className="grid gap-6 lg:grid-cols-12 lg:items-center min-h-[60vh]">
             {/* Profile Visual - LEFT SIDE */}
             <div className="lg:col-span-5 text-center mb-5 lg:mb-0">
