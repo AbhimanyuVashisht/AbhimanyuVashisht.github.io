@@ -51,7 +51,7 @@ export function createBrickStage(wrap: HTMLElement, canvas: HTMLCanvasElement, o
   const scene = new THREE.Scene()
   const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 200)
 
-  // Studio-style reflections are what make the plastic read as glossy ABS
+  // A faint studio reflection keeps the plastic from looking like flat paint
   const pmrem = new THREE.PMREMGenerator(renderer)
   const environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture
   pmrem.dispose()
@@ -81,7 +81,7 @@ export function createBrickStage(wrap: HTMLElement, canvas: HTMLCanvasElement, o
     const theme = currentTheme()
     ;(Object.keys(PALETTE) as Tone[]).forEach((tone) => {
       if (!materials[tone]) {
-        materials[tone] = new THREE.MeshPhysicalMaterial({ roughness: 0.24, metalness: 0, clearcoat: 0.25, clearcoatRoughness: 0.35, envMapIntensity: 0.14 })
+        materials[tone] = new THREE.MeshPhysicalMaterial({ roughness: 0.55, metalness: 0, clearcoat: 0.06, clearcoatRoughness: 0.6, envMapIntensity: 0.1 })
         disposables.push(materials[tone])
       }
       materials[tone].color.set(PALETTE[tone])

@@ -28,7 +28,7 @@ export default function BrickBot() {
 
     const extras: { dispose: () => void }[] = []
     const glow = (color: string) => {
-      const material = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.9, roughness: 0.2 })
+      const material = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.9, roughness: 0.5 })
       extras.push(material)
       return material
     }
