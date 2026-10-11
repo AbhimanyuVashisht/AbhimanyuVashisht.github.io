@@ -28,7 +28,7 @@ export default function BrickBot() {
 
     const extras: { dispose: () => void }[] = []
     const glow = (color: string) => {
-      const material = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.8, roughness: 0.35 })
+      const material = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.9, roughness: 0.2 })
       extras.push(material)
       return material
     }
@@ -36,8 +36,8 @@ export default function BrickBot() {
       extras.push(geometry)
       return new THREE.Mesh(geometry, material)
     }
-    const brick = (parent: THREE.Object3D, w: number, d: number, h: number, tone: Tone, x: number, y: number, z: number) => {
-      const group = stage.makeBrick(w, d, h, tone)
+    const brick = (parent: THREE.Object3D, w: number, d: number, h: number, tone: Tone, x: number, y: number, z: number, hollow = false) => {
+      const group = stage.makeBrick(w, d, h, tone, { hollow })
       group.position.set(x, y, z)
       parent.add(group)
       return group
@@ -72,14 +72,16 @@ export default function BrickBot() {
       arm.position.set(side * 2.5, 3.5, 0)
       bot.add(arm)
       brick(arm, 1, 1, PLATE_H, 'packet', 0, -2.2, 0)
-      brick(arm, 1, 1, 1.6, 'neutral', 0, -1.8, 0)
+      brick(arm, 1, 1, BRICK_H, 'neutral', 0, -1.8, 0)
+      brick(arm, 1, 1, PLATE_H, 'neutral', 0, -0.6, 0)
       return arm
     })
 
     const head = new THREE.Group()
     head.position.y = 3.8
     bot.add(head)
-    brick(head, 3, 3, BRICK_H * 2, 'neutral', 0, 0, 0)
+    brick(head, 3, 3, BRICK_H, 'neutral', 0, 0, 0)
+    brick(head, 3, 3, BRICK_H, 'neutral', 0, BRICK_H, 0)
     const eyeGeometry = new THREE.CylinderGeometry(0.42, 0.42, 0.12, 28)
     const pupilGeometry = new THREE.CylinderGeometry(0.17, 0.17, 0.14, 20)
     const pupilMaterial = glow('#7de3ff')
@@ -105,7 +107,7 @@ export default function BrickBot() {
     bulb.position.y = 3.6
     head.add(mouth, mast, bulb)
 
-    const loose = LOOSE.map(([x, y, z, w, d, tone], i) => ({ group: brick(world, w, d, BRICK_H, tone, x, y, z), home: y, seed: i * 1.7 }))
+    const loose = LOOSE.map(([x, y, z, w, d, tone], i) => ({ group: brick(world, w, d, BRICK_H, tone, x, y, z, true), home: y, seed: i * 1.7 }))
 
     // He watches the cursor; drag turns the scene, a click or tap makes him wave
     const pointer = { x: 0, y: 0 }
@@ -169,6 +171,8 @@ export default function BrickBot() {
       },
       resize: () => {
         wide = camera.aspect > 1.15
+        // On narrow screens the floor shadow would fall behind the copy
+        stage.ground.visible = wide
         camera.fov = 32
         camera.position.set(0, 2.6, 22)
         camera.lookAt(0, 1.4, 0)
