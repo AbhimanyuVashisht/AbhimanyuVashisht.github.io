@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import BodyClass from '@/components/BodyClass'
 import { GitHubIcon } from '@/components/Icons'
+import { experience } from '@/data/experience'
 
 export const metadata: Metadata = {
   title: 'Work — Abhimanyu Vashisht',
@@ -8,51 +9,17 @@ export const metadata: Metadata = {
 }
 
 export default function WorkPage() {
-  const projects = [
-    {
-      company: 'BrowserStack',
-      year: '2022 – present',
-      title: 'Pricing & Growth Platform',
-      description:
-        'Improved PSI metrics for the pricing page, boosting purchase conversion. Engineered revenue growth initiatives through scalable pricing components. Streamlined the product release pipeline and enhanced Pro feature workflows.',
-      tags: ['React', 'Ruby on Rails', 'Node.js', 'Karpenter', 'AWS'],
-    },
-    {
-      company: 'Wingify · VWO',
-      year: '2019 – 2022',
-      title: 'VWO Core Platform',
-      description:
-        "Built the industry's 1st A/B testing capability inside Shadow DOM. Reduced customer issues by 80%. Redesigned the event-driven JS library architecture, cutting main-thread blocking by 96%. Improved Core JS library performance by 50%.",
-      tags: ['JavaScript', 'TypeScript', 'Event-driven', 'Web Vitals'],
-    },
-    {
-      company: 'Xane AI',
-      year: '2018 – 2019',
-      title: 'Xane HR & CX Platform',
-      description:
-        'Developed AI-centric HR & CX products including Analytics Dashboards and Conversational Bot UIs. Built microservices for deep learning chatbot models and designed the full-stack product architecture.',
-      tags: ['Python', 'React', 'Keras', 'TensorFlow', 'NLP'],
-    },
-    {
-      company: 'Personal',
-      year: '2015 – present',
-      title: 'Open Source & Side Projects',
-      description:
-        'Exploring Rust systems programming, distributed systems, and cloud-native tooling. Passionate about algorithms, data structures, and developer experience — actively contributing to open source since 2015.',
-      tags: ['Rust', 'Node.js', 'TypeScript', 'Docker', 'AWS'],
-      link: 'https://github.com/AbhimanyuVashisht',
-    },
-  ]
+  const projects = experience
 
   return (
     <>
       <BodyClass className="page-fill" />
       <section className="fade-in" id="projects" aria-labelledby="projects-heading">
         <div className="container mx-auto">
-          <h2 className="font-montserrat font-bold text-[2rem] text-text-main text-center mb-1" id="projects-heading" style={{letterSpacing: '0.5px'}}>
-            Things I Didn&apos;t Break <span style={{ color: 'var(--accent)' }}>(Mostly)</span>
+          <h2 className="brick-title text-[2.2rem] text-center mb-3" id="projects-heading">
+            Things I Didn&apos;t Break <span className="text-text-main">(Mostly)</span>
           </h2>
-          <p className="text-text-secondary text-[1.05rem] text-center mb-4">
+          <p className="text-text-secondary text-[1.05rem] text-center mb-8">
             A selection of things I&apos;ve built and shipped.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -60,11 +27,17 @@ export default function WorkPage() {
               const titleId = `proj-${index + 1}-title`
               return (
                 <div key={project.title}>
-                  <article className="bg-card-bg border border-border-color rounded-2xl p-6 flex flex-col gap-3 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-card hover:border-accent h-full" tabIndex={0} aria-labelledby={titleId}>
+                  <article
+                    className="brick-card bg-card-bg border border-border-color rounded-2xl p-6 flex flex-col gap-3 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-card hover:border-accent h-full animate-brick-drop"
+                    style={{ animationDelay: `${index * 120}ms` }}
+                    tabIndex={0}
+                    aria-labelledby={titleId}
+                  >
                     <div className="flex justify-between items-center flex-wrap gap-1">
                       <span className="font-montserrat text-[0.78rem] font-bold uppercase tracking-wider text-accent">{project.company}</span>
                       <span className="text-[0.78rem] text-text-secondary">{project.year}</span>
                     </div>
+                    <p className="font-display text-[1.35rem] leading-tight text-accent m-0">{project.highlight}</p>
                     <h3 className="font-montserrat text-[1.05rem] font-bold text-text-main m-0 leading-snug" id={titleId}>
                       {project.title}
                     </h3>

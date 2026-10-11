@@ -23,6 +23,7 @@ module.exports = {
       fontFamily: {
         inter: ['Inter', 'Arial', 'sans-serif'],
         montserrat: ['Montserrat', 'Inter', 'Arial', 'sans-serif'],
+        display: ['Bungee', 'Arial Black', 'Montserrat', 'sans-serif'],
       },
       keyframes: {
         fadeInUp: {
@@ -33,6 +34,10 @@ module.exports = {
           '0%': { backgroundPosition: '0% 0%' },
           '100%': { backgroundPosition: '200% 0%' }
         },
+        brickDrop: {
+          '0%': { opacity: '0', transform: 'translateY(-36px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' }
+        },
         drawLogo: {
           '0%': { strokeDashoffset: '400' },
           '100%': { strokeDashoffset: '0' }
@@ -41,7 +46,8 @@ module.exports = {
       animation: {
         'fade-in-up': 'fadeInUp 1s ease-out forwards',
         'stripe-shift': 'stripeShift 6s linear infinite',
-        'draw-logo': 'drawLogo 2s ease forwards'
+        'draw-logo': 'drawLogo 2s ease forwards',
+        'brick-drop': 'brickDrop 0.6s cubic-bezier(0.34, 1.4, 0.64, 1) backwards'
       },
       borderRadius: {
         '34': '34%',
