@@ -30,7 +30,6 @@ export default function WorkPage() {
                   <article
                     className="brick-card bg-card-bg border border-border-color rounded-2xl p-6 flex flex-col gap-3 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-card hover:border-accent h-full animate-brick-drop"
                     style={{ animationDelay: `${index * 120}ms` }}
-                    tabIndex={0}
                     aria-labelledby={titleId}
                   >
                     <div className="flex justify-between items-center flex-wrap gap-1">

@@ -14,6 +14,7 @@ export default function Navbar() {
   const [themeMode, setThemeMode] = useState<ThemeMode>('system')
   const [isDarkEffective, setIsDarkEffective] = useState(true)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [menuPathname, setMenuPathname] = useState(pathname)
   const longPressTimerRef = useRef<number | null>(null)
   const longPressTriggeredRef = useRef(false)
 
@@ -54,9 +55,11 @@ export default function Navbar() {
     }
   }, [])
 
-  useEffect(() => {
+  // Close the mobile menu after navigating; adjusting state during render avoids an extra effect pass
+  if (pathname !== menuPathname) {
+    setMenuPathname(pathname)
     setIsMenuOpen(false)
-  }, [pathname])
+  }
 
   useEffect(() => {
     return () => {
