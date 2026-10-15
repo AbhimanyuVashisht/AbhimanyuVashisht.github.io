@@ -4,53 +4,63 @@
 
 /* === Theme Variables === */
 @layer base {
+  /* Night is the default; day is the bright brick-blue look */
   :root {
-    --bg-main: #0a0f1e;
-    --bg-secondary: #0f1629;
-    --bg-accent: #162040;
-    --text-main: #e2e8f0;
-    --text-secondary: #94a3b8;
-    --accent: #7da6ff;
-    --accent-strong: #3b5eea;
-    --accent-bg: #162040;
-    --card-bg: #111b30;
-    --border-color: #1e2d47;
+    --bg-main: #0b1030;
+    --bg-secondary: #0f1640;
+    --bg-accent: #1a2466;
+    --text-main: #ffffff;
+    --text-secondary: #b9c2f0;
+    --accent: #ffd60a;
+    --accent-strong: #ffd60a;
+    --accent-bg: #1a2466;
+    --card-bg: #141c52;
+    --border-color: #2c3a8f;
     --shadow: 0 2px 12px rgba(0,0,0,0.45);
-    --focus-outline: 3px solid #7da6ff;
-    --about-accent-bg: #0d2d6e;
+    --focus-outline: 3px solid #ffd60a;
+    --about-accent-bg: #1a2466;
+    --on-accent: #1a1400;
+    --dot: #10174a;
+    --title-shadow: #05081f;
   }
 
   [data-theme="light"] {
-    --bg-main: #ffffff;
-    --bg-secondary: #f8faff;
-    --bg-accent: #dbeafe;
-    --text-main: #0f172a;
-    --text-secondary: #475569;
-    --accent: #2563eb;
-    --accent-strong: #1d4ed8;
-    --accent-bg: #dbeafe;
-    --card-bg: #ffffff;
-    --border-color: #e2e8f0;
-    --shadow: 0 2px 8px rgba(0,0,0,0.07);
-    --focus-outline: 3px solid #2563eb;
-    --about-accent-bg: #1d4ed8;
+    --bg-main: #2340ff;
+    --bg-secondary: #1730d6;
+    --bg-accent: #1730d6;
+    --text-main: #ffffff;
+    --text-secondary: #d6dcff;
+    --accent: #ffd60a;
+    --accent-strong: #ffd60a;
+    --accent-bg: #1730d6;
+    --card-bg: #1a34e0;
+    --border-color: #4a63ff;
+    --shadow: 0 2px 8px rgba(0,0,0,0.18);
+    --focus-outline: 3px solid #ffd60a;
+    --about-accent-bg: #1730d6;
+    --on-accent: #1a1400;
+    --dot: #1c36ea;
+    --title-shadow: #1730d6;
   }
 
   @media (prefers-color-scheme: light) {
     :root:not([data-theme]) {
-      --bg-main: #ffffff;
-      --bg-secondary: #f8faff;
-      --bg-accent: #dbeafe;
-      --text-main: #0f172a;
-      --text-secondary: #475569;
-      --accent: #2563eb;
-      --accent-strong: #1d4ed8;
-      --accent-bg: #dbeafe;
-      --card-bg: #ffffff;
-      --border-color: #e2e8f0;
-      --shadow: 0 2px 8px rgba(0,0,0,0.07);
-      --focus-outline: 3px solid #2563eb;
-      --about-accent-bg: #1d4ed8;
+      --bg-main: #2340ff;
+      --bg-secondary: #1730d6;
+      --bg-accent: #1730d6;
+      --text-main: #ffffff;
+      --text-secondary: #d6dcff;
+      --accent: #ffd60a;
+      --accent-strong: #ffd60a;
+      --accent-bg: #1730d6;
+      --card-bg: #1a34e0;
+      --border-color: #4a63ff;
+      --shadow: 0 2px 8px rgba(0,0,0,0.18);
+      --focus-outline: 3px solid #ffd60a;
+      --about-accent-bg: #1730d6;
+      --on-accent: #1a1400;
+      --dot: #1c36ea;
+      --title-shadow: #1730d6;
     }
   }
 
@@ -60,6 +70,8 @@
 
   body, html {
     @apply font-inter bg-bg-main text-text-main h-full m-0;
+    background-image: radial-gradient(var(--dot) 22%, transparent 23%);
+    background-size: 34px 34px;
     font-size: 16px;
     line-height: 1.7;
     transition: background 0.3s, color 0.3s;
@@ -84,8 +96,9 @@
 @layer components {
   /* Skip Navigation */
   .skip-nav {
-    @apply absolute -top-full left-0 bg-accent text-white px-6 py-3 font-bold font-montserrat z-[10000];
+    @apply absolute -top-full left-0 bg-accent px-6 py-3 font-bold font-montserrat z-[10000];
     border-radius: 0 0 6px 0;
+    color: var(--on-accent);
     text-decoration: none;
     transition: top 0.2s ease;
     white-space: nowrap;
@@ -101,9 +114,52 @@
   body::before {
     content: "";
     @apply block h-[3px] fixed top-0 left-0 right-0 z-[9999];
-    background: linear-gradient(90deg, #7da6ff, #a78bfa, #f472b6, #fb923c, #7da6ff);
+    background: linear-gradient(90deg, #ffd60a, #ff4338, #7de3ff, #ffd60a);
     background-size: 200% 100%;
     animation: stripeShift 6s linear infinite;
+  }
+
+  /* Chunky display headings */
+  .brick-title {
+    @apply font-display font-normal text-accent;
+    letter-spacing: 0;
+    line-height: 0.95;
+    text-shadow: 0.06em 0.06em 0 var(--title-shadow);
+  }
+
+  .btn-brick,
+  .btn-outline {
+    @apply inline-block rounded-full border-2 px-7 py-2.5 font-montserrat font-bold tracking-wide no-underline transition-all duration-200 hover:-translate-y-0.5;
+  }
+
+  .btn-brick {
+    @apply border-accent bg-accent;
+    color: var(--on-accent);
+  }
+
+  .btn-brick:hover {
+    @apply bg-transparent text-accent;
+  }
+
+  .btn-outline {
+    @apply border-text-main bg-transparent text-text-main;
+  }
+
+  .btn-outline:hover {
+    @apply bg-text-main;
+    color: var(--bg-main);
+  }
+
+  /* A row of studs along the top edge turns a card into a brick */
+  .brick-card {
+    @apply relative;
+  }
+
+  .brick-card::before {
+    content: "";
+    @apply absolute left-6 right-6 -top-2 h-2;
+    background: repeating-linear-gradient(90deg, var(--border-color) 0 26px, transparent 26px 44px);
+    border-radius: 4px 4px 0 0;
   }
 
   .profile-ring-outer.is-hovered .profile-img-primary,
@@ -125,7 +181,7 @@
     @apply pt-0;
   }
 
-  @media (min-width: 992px) and (min-height: 700px) {
+  @media (min-width: 1024px) and (min-height: 700px) {
     .page-hero {
       @apply h-screen overflow-hidden;
     }

@@ -48,7 +48,7 @@ export default function ContactPage() {
       <BodyClass className="page-fill" />
       <section className="fade-in" id="contact" aria-labelledby="contact-heading">
         <div className="container mx-auto">
-          <h2 className="font-montserrat font-bold text-[2rem] text-text-main text-center mb-3" id="contact-heading" style={{letterSpacing: '0.5px'}}>
+          <h2 className="brick-title text-[2.2rem] text-center mb-3" id="contact-heading">
             Get In Touch
           </h2>
           <p className="text-[1.1rem] text-text-secondary max-w-[520px] mx-auto mb-12 text-center">
@@ -60,7 +60,7 @@ export default function ContactPage() {
               <div key={card.href}>
                 <a
                   href={card.href}
-                  className="bg-card-bg border border-border-color rounded-[20px] p-8 text-center transition-all duration-200 no-underline text-text-main flex flex-col items-center gap-3 h-full hover:-translate-y-1.5 hover:shadow-card hover:border-accent focus:outline-none focus-visible:outline-[var(--focus-outline)] focus-visible:outline-offset-[3px]"
+                  className="brick-card bg-card-bg border border-border-color rounded-[20px] p-8 text-center transition-all duration-200 no-underline text-text-main flex flex-col items-center gap-3 h-full hover:-translate-y-1.5 hover:shadow-card hover:border-accent focus:outline-none focus-visible:outline-[var(--focus-outline)] focus-visible:outline-offset-[3px]"
                   aria-label={card.ariaLabel}
                   {...(card.external && { target: '_blank', rel: 'noopener noreferrer' })}
                 >
