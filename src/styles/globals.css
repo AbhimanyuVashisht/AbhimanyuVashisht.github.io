@@ -76,6 +76,14 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
+  /* Tailwind 4 resets buttons to the default cursor; keep the v3 pointer */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@layer base {
   *,
   ::after,
   ::before,
@@ -180,7 +188,10 @@
 
 @utility fade-in {
   /* Fade In Animation */
-  @apply opacity-0 translate-y-6 animate-fade-in-up;
+  @apply opacity-0 animate-fade-in-up;
+  /* The keyframes animate `transform`; Tailwind 4's translate-y-* sets the separate
+     `translate` property, which the animation would never reset */
+  transform: translateY(1.5rem);
 }
 
 @utility page-hero {
