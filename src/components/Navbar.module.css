@@ -1,0 +1,88 @@
+/* Navbar Component Styles */
+
+.navbar {
+  color: var(--text-main) !important;
+  position: fixed !important;
+  top: 0;
+  z-index: 1030;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding-top: 1rem;
+}
+
+.navbarThemed {
+  background-color: transparent;
+  background: transparent;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
+.navbarTransparent,
+.navbarTransparent.navbarThemed {
+  background-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+
+.navbarScrolled,
+.navbarScrolled.navbarThemed {
+  background-color: var(--bg-secondary) !important;
+  background: var(--bg-secondary) !important;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.navbarBrand {
+  color: var(--text-main) !important;
+  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.navLink {
+  color: var(--text-main) !important;
+  transition: color 0.2s, background 0.2s;
+  padding-top: 0.4rem !important;
+  padding-bottom: 0.4rem !important;
+  border-radius: 4px;
+}
+
+.navLink:hover,
+.navLink:focus {
+  background: rgba(125, 166, 255, 0.08);
+  color: var(--accent) !important;
+  text-decoration: none;
+}
+
+.activeLink {
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+
+.themeToggle {
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  background: transparent;
+}
+
+.themeToggle:hover,
+.themeToggle:focus {
+  background: var(--border-color);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.navbarToggler {
+  border-color: var(--border-color);
+}
+
+.navbarTogglerIcon {
+  filter: var(--toggler-filter, none);
+}
+
+[data-theme='light'] .navbarTogglerIcon {
+  filter: invert(1);
+}

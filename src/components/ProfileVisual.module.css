@@ -1,0 +1,120 @@
+/* ProfileVisual Component Styles */
+
+.profileVisual {
+  position: relative;
+  width: 290px;
+  height: 290px;
+  margin: 0 auto 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profileRingOuter {
+  position: relative;
+  width: 256px;
+  height: 256px;
+  border-radius: 34%;
+  padding: 2px;
+  background: var(--border-color);
+  transition: background 0.5s ease, filter 0.5s ease;
+  flex-shrink: 0;
+  cursor: pointer;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.profileRingOuter:hover {
+  background: linear-gradient(135deg, #7da6ff, #a78bfa, #f472b6);
+  filter: drop-shadow(0 8px 32px rgba(125, 166, 255, 0.28));
+}
+
+.profileRingInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 32%;
+  overflow: hidden;
+  background: var(--bg-main);
+}
+
+.profileImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  border-radius: 0;
+}
+
+.profileImgSecondary {
+  z-index: 1;
+  transform: scale(1.04);
+}
+
+.profileImgPrimary {
+  z-index: 2;
+  transform: scale(1);
+  opacity: 1;
+  transition: opacity 0.55s ease, filter 0.55s ease, transform 0.55s ease;
+  will-change: opacity, filter, transform;
+}
+
+.profileRingOuter:hover .profileImgPrimary {
+  opacity: 0;
+  transform: scale(1.04);
+}
+
+.profileSheen {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  border-radius: 32%;
+  --sx: 50%;
+  --sy: 30%;
+  background: radial-gradient(
+    circle at var(--sx) var(--sy),
+    rgba(255, 255, 255, 0.13) 0%,
+    rgba(255, 255, 255, 0.04) 40%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.logoWrap {
+  position: absolute;
+  top: -36px;
+  right: -8px;
+  width: 140px;
+  height: 140px;
+  z-index: 4;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.logoText {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  fill: none;
+  stroke: var(--text-secondary);
+  stroke-width: 1.5;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: drawLogo 2s ease forwards;
+}
+
+@keyframes drawLogo {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
