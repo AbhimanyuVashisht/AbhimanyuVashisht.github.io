@@ -5,7 +5,7 @@ import { AcademicCapIcon, CpuChipIcon, UsersIcon } from '@/components/Icons'
 
 export const metadata: Metadata = {
   title: 'About — Abhimanyu Vashisht',
-  description: 'About Abhimanyu Vashisht — Lead Software Engineer, Full-Stack Developer, and AI Enthusiast.',
+  description: 'About Abhimanyu Vashisht — AI Product Engineer and Lead Software Engineer at BrowserStack.',
 }
 
 export default function AboutPage() {

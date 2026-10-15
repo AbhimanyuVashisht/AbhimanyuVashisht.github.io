@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
   title: 'Abhimanyu Vashisht',
-  description: 'Lead Software Engineer, Full-Stack Developer, and AI Enthusiast. Portfolio, projects, and contact.',
+  description: 'AI Product Engineer and Lead Software Engineer at BrowserStack. Portfolio, projects, and contact.',
   icons: {
     icon: [
       { url: '/plugins/localCss/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   manifest: '/plugins/localCss/icons/manifest.json',
   openGraph: {
     title: 'Abhimanyu Vashisht Portfolio',
-    description: 'Lead Software Engineer, Full-Stack Developer, and AI Enthusiast.',
+    description: 'AI Product Engineer and Lead Software Engineer at BrowserStack.',
     images: 'https://abhimanyuvashisht.github.io/plugins/localCss/prof-img2.jpg',
     type: 'website',
     url: 'https://abhimanyuvashisht.com/',

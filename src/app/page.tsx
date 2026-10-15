@@ -42,7 +42,7 @@ export default function HomePage() {
               Abhimanyu<br />Vashisht
             </h1>
             <p className="mb-4 font-montserrat text-[clamp(1rem,1.7vw,1.3rem)] font-bold leading-snug text-text-main">
-              AI engineer.<br />Lead Software Engineer at BrowserStack.
+              AI Product Engineer.<br />Lead Software Engineer at BrowserStack.
             </p>
             <p className={`${tagline} mb-4 lg:hidden`}>Engineering Intelligent, Scalable Solutions for Tomorrow</p>
 
