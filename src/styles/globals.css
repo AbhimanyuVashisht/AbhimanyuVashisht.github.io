@@ -1,6 +1,253 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-bg-main: var(--bg-main);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-accent: var(--bg-accent);
+  --color-text-main: var(--text-main);
+  --color-text-secondary: var(--text-secondary);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-bg: var(--accent-bg);
+  --color-card-bg: var(--card-bg);
+  --color-border-color: var(--border-color);
+
+  --font-inter: Inter, Arial, sans-serif;
+  --font-montserrat: Montserrat, Inter, Arial, sans-serif;
+  --font-display: Bungee, Arial Black, Montserrat, sans-serif;
+
+  --animate-fade-in-up: fadeInUp 1s ease-out forwards;
+  --animate-stripe-shift: stripeShift 6s linear infinite;
+  --animate-draw-logo: drawLogo 2s ease forwards;
+  --animate-brick-drop: brickDrop 0.6s cubic-bezier(0.34, 1.4, 0.64, 1)
+    backwards;
+
+  --radius-32: 32%;
+  --radius-34: 34%;
+
+  --shadow-profile: 0 12px 32px rgba(0, 0, 0, 0.18);
+  --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.18);
+  --shadow-navbar: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes stripeShift {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: 200% 0%;
+    }
+  }
+  @keyframes brickDrop {
+    0% {
+      opacity: 0;
+      transform: translateY(-36px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes drawLogo {
+    0% {
+      stroke-dashoffset: 400;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  /* Tailwind 4 resets buttons to the default cursor; keep the v3 pointer */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility skip-nav {
+  /* Skip Navigation */
+  @apply absolute -top-full left-0 bg-accent px-6 py-3 font-bold font-montserrat z-10000;
+  border-radius: 0 0 6px 0;
+  color: var(--on-accent);
+  text-decoration: none;
+  transition: top 0.2s ease;
+  white-space: nowrap;
+
+  &:focus {
+    @apply top-0;
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+  }
+}
+
+@utility brick-title {
+  /* Chunky display headings */
+  @apply font-display font-normal text-accent;
+  letter-spacing: 0;
+  line-height: 0.95;
+  text-shadow: 0.06em 0.06em 0 var(--title-shadow);
+}
+
+@utility btn-brick {
+  @apply inline-block rounded-full border-2 px-7 py-2.5 font-montserrat font-bold tracking-wide no-underline transition-all duration-200 hover:-translate-y-0.5;
+  @apply border-accent bg-accent;
+  color: var(--on-accent);
+
+  &:hover {
+    @apply bg-transparent text-accent;
+  }
+}
+
+@utility btn-outline {
+  @apply inline-block rounded-full border-2 px-7 py-2.5 font-montserrat font-bold tracking-wide no-underline transition-all duration-200 hover:-translate-y-0.5;
+  @apply border-text-main bg-transparent text-text-main;
+
+  &:hover {
+    @apply bg-text-main;
+    color: var(--bg-main);
+  }
+}
+
+@utility brick-card {
+  /* A row of studs along the top edge turns a card into a brick */
+  @apply relative;
+
+  &::before {
+    content: '';
+    @apply absolute left-6 right-6 -top-2 h-2;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--border-color) 0 26px,
+      transparent 26px 44px
+    );
+    border-radius: 4px 4px 0 0;
+  }
+}
+
+@utility profile-ring-outer {
+  &.is-hovered .profile-img-primary {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  &:hover .profile-img-primary {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+@utility is-hovered {
+  &.profile-ring-outer .profile-img-primary {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+@utility profile-img-primary {
+  .profile-ring-outer.is-hovered & {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  .profile-ring-outer:hover & {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+/* === Utilities === */
+
+@utility fade-in {
+  /* Fade In Animation */
+  @apply opacity-0 animate-fade-in-up;
+  /* The keyframes animate `transform`; Tailwind 4's translate-y-* sets the separate
+     `translate` property, which the animation would never reset */
+  transform: translateY(1.5rem);
+}
+
+@utility page-hero {
+  /* Page Layouts */
+  & .container {
+    @apply pt-0;
+  }
+
+  @media (min-width: 1024px) and (min-height: 700px) {
+    @apply h-screen overflow-hidden;
+  }
+}
+
+@utility container {
+  /* Page Layouts */
+  .page-hero & {
+    @apply pt-0;
+  }
+
+  .page-fill & {
+    @apply pt-0;
+  }
+
+  /* Container Padding */
+  @apply pt-8;
+
+  @media (max-width: 767.98px) {
+    @apply pt-5;
+  }
+}
+
+@utility page-fill {
+  @apply flex flex-col min-h-screen;
+
+  & main {
+    @apply flex-1 pt-[63px];
+  }
+
+  & footer {
+    @apply flex-shrink-0 mt-0;
+  }
+
+  & .container {
+    @apply pt-0;
+  }
+
+  & section {
+    @apply w-full py-6;
+  }
+
+  @media (min-width: 992px) and (min-height: 700px) {
+    & main {
+      @apply flex flex-col justify-center;
+    }
+  }
+}
 
 /* === Theme Variables === */
 @layer base {
@@ -94,134 +341,13 @@
 
 /* === Custom Components === */
 @layer components {
-  /* Skip Navigation */
-  .skip-nav {
-    @apply absolute -top-full left-0 bg-accent px-6 py-3 font-bold font-montserrat z-[10000];
-    border-radius: 0 0 6px 0;
-    color: var(--on-accent);
-    text-decoration: none;
-    transition: top 0.2s ease;
-    white-space: nowrap;
-  }
-  
-  .skip-nav:focus {
-    @apply top-0;
-    outline: 3px solid #fff;
-    outline-offset: 2px;
-  }
-
   /* Accent Stripe */
   body::before {
     content: "";
-    @apply block h-[3px] fixed top-0 left-0 right-0 z-[9999];
+    @apply block h-[3px] fixed top-0 left-0 right-0 z-9999;
     background: linear-gradient(90deg, #ffd60a, #ff4338, #7de3ff, #ffd60a);
     background-size: 200% 100%;
     animation: stripeShift 6s linear infinite;
-  }
-
-  /* Chunky display headings */
-  .brick-title {
-    @apply font-display font-normal text-accent;
-    letter-spacing: 0;
-    line-height: 0.95;
-    text-shadow: 0.06em 0.06em 0 var(--title-shadow);
-  }
-
-  .btn-brick,
-  .btn-outline {
-    @apply inline-block rounded-full border-2 px-7 py-2.5 font-montserrat font-bold tracking-wide no-underline transition-all duration-200 hover:-translate-y-0.5;
-  }
-
-  .btn-brick {
-    @apply border-accent bg-accent;
-    color: var(--on-accent);
-  }
-
-  .btn-brick:hover {
-    @apply bg-transparent text-accent;
-  }
-
-  .btn-outline {
-    @apply border-text-main bg-transparent text-text-main;
-  }
-
-  .btn-outline:hover {
-    @apply bg-text-main;
-    color: var(--bg-main);
-  }
-
-  /* A row of studs along the top edge turns a card into a brick */
-  .brick-card {
-    @apply relative;
-  }
-
-  .brick-card::before {
-    content: "";
-    @apply absolute left-6 right-6 -top-2 h-2;
-    background: repeating-linear-gradient(90deg, var(--border-color) 0 26px, transparent 26px 44px);
-    border-radius: 4px 4px 0 0;
-  }
-
-  .profile-ring-outer.is-hovered .profile-img-primary,
-  .profile-ring-outer:hover .profile-img-primary {
-    opacity: 0;
-    transform: scale(1.04);
-  }
-}
-
-/* === Utilities === */
-@layer utilities {
-  /* Fade In Animation */
-  .fade-in {
-    @apply opacity-0 translate-y-6 animate-fade-in-up;
-  }
-
-  /* Page Layouts */
-  .page-hero .container {
-    @apply pt-0;
-  }
-
-  @media (min-width: 1024px) and (min-height: 700px) {
-    .page-hero {
-      @apply h-screen overflow-hidden;
-    }
-  }
-
-  .page-fill {
-    @apply flex flex-col min-h-screen;
-  }
-
-  .page-fill main {
-    @apply flex-1 pt-[63px];
-  }
-
-  .page-fill footer {
-    @apply flex-shrink-0 mt-0;
-  }
-
-  .page-fill .container {
-    @apply pt-0;
-  }
-
-  .page-fill section {
-    @apply w-full py-6;
-  }
-
-  @media (min-width: 992px) and (min-height: 700px) {
-    .page-fill main {
-      @apply flex flex-col justify-center;
-    }
-  }
-
-  /* Container Padding */
-  .container {
-    @apply pt-8;
-  }
-
-  @media (max-width: 767.98px) {
-    .container {
-      @apply pt-5;
-    }
   }
 }
 

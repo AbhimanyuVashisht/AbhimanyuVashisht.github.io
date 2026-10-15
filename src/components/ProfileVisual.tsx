@@ -90,13 +90,13 @@ export default function ProfileVisual() {
     <div ref={visualRef} className="profile-visual relative w-[290px] h-[290px] mx-auto mb-4 flex items-center justify-center">
       <div
         ref={outerRef}
-        className={`profile-ring-outer relative w-64 h-64 rounded-34 p-0.5 bg-border-color transition-all duration-500 ease-in-out flex-shrink-0 cursor-pointer will-change-transform [transform-style:preserve-3d] hover:bg-gradient-to-br hover:from-[#7da6ff] hover:via-[#a78bfa] hover:to-[#f472b6] hover:drop-shadow-[0_8px_32px_rgba(125,166,255,0.28)] ${isHovered ? 'is-hovered' : ''}`}
+        className={`profile-ring-outer relative w-64 h-64 rounded-34 p-0.5 bg-border-color transition-all duration-500 ease-in-out flex-shrink-0 cursor-pointer will-change-transform transform-3d hover:bg-linear-to-br hover:from-[#7da6ff] hover:via-[#a78bfa] hover:to-[#f472b6] hover:drop-shadow-[0_8px_32px_rgba(125,166,255,0.28)] ${isHovered ? 'is-hovered' : ''}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="profile-ring-inner relative w-full h-full rounded-32 overflow-hidden bg-bg-main">
           <Image
-            className="profile-img-secondary absolute inset-0 w-full h-full object-cover object-[center_top] block rounded-none z-[1] scale-[1.04]"
+            className="profile-img-secondary absolute inset-0 w-full h-full object-cover object-[center_top] block rounded-none z-1 scale-[1.04]"
             src="/plugins/localCss/prof-secondary.png"
             alt=""
             aria-hidden="true"
@@ -104,7 +104,7 @@ export default function ProfileVisual() {
             sizes="(max-width: 768px) 262px, 256px"
           />
           <Image
-            className="profile-img-primary absolute inset-0 w-full h-full object-cover object-[center_top] block rounded-none z-[2] scale-100 opacity-100 transition-all duration-[550ms] ease-in-out will-change-[opacity,filter,transform]"
+            className="profile-img-primary absolute inset-0 w-full h-full object-cover object-[center_top] block rounded-none z-2 scale-100 opacity-100 transition-all duration-550 ease-in-out will-change-[opacity,filter,transform]"
             src="/plugins/localCss/prof-img2.jpg"
             alt="Abhimanyu Vashisht"
             fill
@@ -125,12 +125,12 @@ export default function ProfileVisual() {
           />
         </div>
       </div>
-      <div className="absolute -top-9 -right-2 w-[140px] h-[140px] z-[4]">
+      <div className="absolute -top-9 -right-2 w-[140px] h-[140px] z-4">
         <svg
           viewBox="0 0 200 200"
           width="200"
           height="200"
-          className="w-full h-full pointer-events-none animate-[spin_14s_linear_infinite] origin-center motion-reduce:animate-none [transform-box:fill-box] [transform-origin:center]"
+          className="w-full h-full pointer-events-none animate-[spin_14s_linear_infinite] origin-center motion-reduce:animate-none transform-fill origin-center"
           aria-hidden="true"
           focusable="false"
         >
@@ -140,7 +140,7 @@ export default function ProfileVisual() {
           <text width="400">
             <textPath
               href="#name-circle"
-              className="font-inter text-[9px] tracking-[2px] uppercase fill-none stroke-text-secondary [stroke-width:1.5] [stroke-dasharray:400] [stroke-dashoffset:400] animate-draw-logo"
+              className="font-inter text-[9px] tracking-[2px] uppercase fill-none stroke-text-secondary stroke-[1.5] [stroke-dasharray:400] [stroke-dashoffset:400] animate-draw-logo"
               stroke="#fff"
               fill="none"
               strokeWidth="1.5"
