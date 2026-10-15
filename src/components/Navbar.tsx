@@ -122,7 +122,7 @@ export default function Navbar() {
     { href: '/contact', label: 'Contact' },
   ]
 
-  const navbarClass = `fade-in fixed top-0 left-0 right-0 z-[1030] transition-all duration-300 ease-in-out ${pathname === '/' && !isScrolled ? 'bg-transparent shadow-none' : 'bg-bg-secondary shadow-navbar border-b border-border-color'}`
+  const navbarClass = `fade-in fixed top-0 left-0 right-0 z-1030 transition-all duration-300 ease-in-out ${pathname === '/' && !isScrolled ? 'bg-transparent shadow-none' : 'bg-bg-secondary shadow-navbar border-b border-border-color'}`
 
   return (
     <nav className={navbarClass} aria-label="Primary navigation" style={{ animationDelay: '0.1s' }}>
@@ -191,7 +191,7 @@ export default function Navbar() {
                   </button>
                   <span
                     id="theme-toggle-hint"
-                    className="pointer-events-none hidden md:block absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded border border-border-color bg-bg-secondary px-2 py-1 text-[11px] text-text-secondary opacity-0 shadow-navbar transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100"
+                    className="pointer-events-none hidden md:block absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-sm border border-border-color bg-bg-secondary px-2 py-1 text-[11px] text-text-secondary opacity-0 shadow-navbar transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100"
                   >
                     Long press for system
                   </span>

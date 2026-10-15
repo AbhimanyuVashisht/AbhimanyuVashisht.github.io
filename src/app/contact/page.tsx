@@ -60,7 +60,7 @@ export default function ContactPage() {
               <div key={card.href}>
                 <a
                   href={card.href}
-                  className="brick-card bg-card-bg border border-border-color rounded-[20px] p-8 text-center transition-all duration-200 no-underline text-text-main flex flex-col items-center gap-3 h-full hover:-translate-y-1.5 hover:shadow-card hover:border-accent focus:outline-none focus-visible:outline-[var(--focus-outline)] focus-visible:outline-offset-[3px]"
+                  className="brick-card bg-card-bg border border-border-color rounded-[20px] p-8 text-center transition-all duration-200 no-underline text-text-main flex flex-col items-center gap-3 h-full hover:-translate-y-1.5 hover:shadow-card hover:border-accent focus:outline-hidden focus-visible:outline-(--focus-outline) focus-visible:outline-offset-[3px]"
                   aria-label={card.ariaLabel}
                   {...(card.external && { target: '_blank', rel: 'noopener noreferrer' })}
                 >

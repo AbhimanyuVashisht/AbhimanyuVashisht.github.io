@@ -41,7 +41,7 @@ export default function WorkPage() {
                     <h3 className="font-montserrat text-[1.05rem] font-bold text-text-main m-0 leading-snug" id={titleId}>
                       {project.title}
                     </h3>
-                    <p className="text-[0.9rem] text-text-secondary leading-relaxed flex-grow m-0">{project.description}</p>
+                    <p className="text-[0.9rem] text-text-secondary leading-relaxed grow m-0">{project.description}</p>
                     <div className="flex flex-wrap gap-1.5 mt-auto">
                       {project.tags.map((tag) => (
                         <span key={tag} className="text-[0.72rem] font-semibold tracking-wide px-2.5 py-1 rounded-full bg-accent-bg text-accent border border-border-color">

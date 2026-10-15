@@ -22,7 +22,7 @@ export default function HomePage() {
   return (
     <>
       <BodyClass className="page-hero" />
-      <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden pt-[63px] lg:h-screen fade-in" aria-labelledby="hero-heading" style={{ animationDelay: '0.2s' }}>
+      <section className="relative isolate flex min-h-svh items-end overflow-hidden pt-[63px] lg:h-screen fade-in" aria-labelledby="hero-heading" style={{ animationDelay: '0.2s' }}>
         <BrickBot />
         {/* The copy lets clicks through to the robot everywhere except its own links */}
         <div className="container pointer-events-none mx-auto px-5 pb-[7vh] lg:px-0">
