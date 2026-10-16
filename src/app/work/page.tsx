@@ -1,12 +1,15 @@
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import BodyClass from '@/components/BodyClass'
 import { GitHubIcon } from '@/components/Icons'
 import { experience } from '@/data/experience'
 
-export const metadata: Metadata = {
-  title: 'Work — Abhimanyu Vashisht',
-  description: 'Work and projects by Abhimanyu Vashisht — Lead Software Engineer at BrowserStack.',
-}
+export const metadata: Metadata = pageMetadata({
+  title: 'Work',
+  description:
+    'Selected work by Abhimanyu Vashisht: pricing and growth at BrowserStack, the VWO core platform with 96% less main-thread blocking, and AI chatbot services at Xane AI.',
+  path: '/work/',
+})
 
 export default function WorkPage() {
   const projects = experience
@@ -16,9 +19,9 @@ export default function WorkPage() {
       <BodyClass className="page-fill" />
       <section className="fade-in" id="projects" aria-labelledby="projects-heading">
         <div className="container mx-auto">
-          <h2 className="brick-title text-[2.2rem] text-center mb-3" id="projects-heading">
+          <h1 className="brick-title text-[2.2rem] text-center mb-3" id="projects-heading">
             Things I Didn&apos;t Break <span className="text-text-main">(Mostly)</span>
-          </h2>
+          </h1>
           <p className="text-text-secondary text-[1.05rem] text-center mb-8">
             A selection of things I&apos;ve built and shipped.
           </p>

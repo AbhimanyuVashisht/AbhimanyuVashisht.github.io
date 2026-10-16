@@ -5,12 +5,17 @@ import { ReduxProvider } from '@/store/ReduxProvider'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ThemeInitializer from '@/components/ThemeInitializer'
+import { SITE_URL, pageMetadata, personSchema } from '@/lib/seo'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: 'Abhimanyu Vashisht',
-  description: 'AI Product Engineer and Lead Software Engineer at BrowserStack. Portfolio, projects, and contact.',
+  metadataBase: new URL(SITE_URL),
+  ...pageMetadata({
+    description:
+      'Abhimanyu Vashisht is an AI Product Engineer and Lead Software Engineer at BrowserStack, building fast, scalable web products since 2015.',
+    path: '/',
+  }),
   icons: {
     icon: [
       { url: '/plugins/localCss/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
@@ -30,16 +35,6 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/plugins/localCss/icons/manifest.json',
-  openGraph: {
-    title: 'Abhimanyu Vashisht Portfolio',
-    description: 'AI Product Engineer and Lead Software Engineer at BrowserStack.',
-    images: 'https://abhimanyuvashisht.github.io/plugins/localCss/prof-img2.jpg',
-    type: 'website',
-    url: 'https://abhimanyuvashisht.com/',
-  },
-  twitter: {
-    card: 'summary_large_image',
-  },
 }
 
 export default function RootLayout({
@@ -55,6 +50,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className={inter.className}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
         <ThemeInitializer />
         <ReduxProvider>
           <a href="#main-content" className="skip-nav">

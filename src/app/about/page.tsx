@@ -1,12 +1,15 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import BodyClass from '@/components/BodyClass'
 import { AcademicCapIcon, CpuChipIcon, UsersIcon } from '@/components/Icons'
 
-export const metadata: Metadata = {
-  title: 'About — Abhimanyu Vashisht',
-  description: 'About Abhimanyu Vashisht — AI Product Engineer and Lead Software Engineer at BrowserStack.',
-}
+export const metadata: Metadata = pageMetadata({
+  title: 'About',
+  description:
+    'About Abhimanyu Vashisht: AI Product Engineer and Lead Software Engineer at BrowserStack, working on growth, pricing and performance, and exploring AI and ML.',
+  path: '/about/',
+})
 
 export default function AboutPage() {
   return (

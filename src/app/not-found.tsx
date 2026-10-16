@@ -1,5 +1,12 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import BodyClass from '@/components/BodyClass'
+
+// A missing page shouldn't point search engines at the home page as its canonical copy
+export const metadata: Metadata = {
+  title: 'Page Not Found — Abhimanyu Vashisht',
+  alternates: { canonical: null },
+}
 
 export default function NotFound() {
   return (

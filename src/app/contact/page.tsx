@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/seo'
 import BodyClass from '@/components/BodyClass'
 import { EnvelopeIcon, GitHubIcon, LinkedInIcon, TwitterIcon } from '@/components/Icons'
 
-export const metadata: Metadata = {
-  title: 'Contact — Abhimanyu Vashisht',
-  description: 'Get in touch with Abhimanyu Vashisht — Lead Software Engineer.',
-}
+export const metadata: Metadata = pageMetadata({
+  title: 'Contact',
+  description: 'Get in touch with Abhimanyu Vashisht, AI Product Engineer and Lead Software Engineer at BrowserStack, by email, LinkedIn, GitHub or Twitter.',
+  path: '/contact/',
+})
 
 export default function ContactPage() {
   const contactCards = [
@@ -48,9 +50,9 @@ export default function ContactPage() {
       <BodyClass className="page-fill" />
       <section className="fade-in" id="contact" aria-labelledby="contact-heading">
         <div className="container mx-auto">
-          <h2 className="brick-title text-[2.2rem] text-center mb-3" id="contact-heading">
+          <h1 className="brick-title text-[2.2rem] text-center mb-3" id="contact-heading">
             Get In Touch
-          </h2>
+          </h1>
           <p className="text-[1.1rem] text-text-secondary max-w-[520px] mx-auto mb-12 text-center">
             I&apos;m always open to interesting conversations, collaborations, or opportunities. Feel free to reach out
             through any of these channels.
