@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Bungee, Inter, Montserrat } from 'next/font/google'
 import '@/styles/globals.css'
 import { ReduxProvider } from '@/store/ReduxProvider'
 import Navbar from '@/components/Navbar'
@@ -7,7 +7,10 @@ import Footer from '@/components/Footer'
 import ThemeInitializer from '@/components/ThemeInitializer'
 import { SITE_URL, pageMetadata, personSchema } from '@/lib/seo'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+// Fonts are self-hosted by next/font, so no render-blocking request to Google Fonts
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-face-inter' })
+const montserrat = Montserrat({ subsets: ['latin'], weight: ['600', '700', '800'], variable: '--font-face-montserrat' })
+const bungee = Bungee({ subsets: ['latin'], weight: '400', variable: '--font-face-bungee' })
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -24,12 +27,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en" className={`${inter.variable} ${montserrat.variable} ${bungee.variable}`} suppressHydrationWarning>
       <body className={inter.className}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
         <ThemeInitializer />

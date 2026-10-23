@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import BodyClass from '@/components/BodyClass'
@@ -9,6 +10,18 @@ import { GitHubIcon, InstagramIcon, LinkedInIcon, TwitterIcon } from '@/componen
 const BrickBot = dynamic(() => import('@/components/BrickBot'), { ssr: false })
 
 export default function HomePage() {
+  // The 3D scene is heavy on phones; load it once the page has painted and the browser is idle
+  const [showBot, setShowBot] = useState(false)
+  useEffect(() => {
+    const show = () => setShowBot(true)
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(show, { timeout: 2500 })
+      return () => window.cancelIdleCallback(id)
+    }
+    const id = window.setTimeout(show, 1200)
+    return () => window.clearTimeout(id)
+  }, [])
+
   const socialLinks = [
     { href: 'https://github.com/AbhimanyuVashisht', Icon: GitHubIcon, label: 'GitHub' },
     { href: 'https://www.linkedin.com/in/iamabhimanyuvashisht/', Icon: LinkedInIcon, label: 'LinkedIn' },
@@ -23,7 +36,7 @@ export default function HomePage() {
     <>
       <BodyClass className="page-hero" />
       <section className="relative isolate flex min-h-svh items-end overflow-hidden pt-[63px] lg:h-screen fade-in" aria-labelledby="hero-heading" style={{ animationDelay: '0.2s' }}>
-        <BrickBot />
+        {showBot && <BrickBot />}
         {/* The copy lets clicks through to the robot everywhere except its own links */}
         <div className="container pointer-events-none mx-auto px-5 pb-[7vh] lg:px-0">
           <div className="max-w-[640px] [&_a]:pointer-events-auto">

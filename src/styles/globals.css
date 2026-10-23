@@ -12,9 +12,9 @@
   --color-card-bg: var(--card-bg);
   --color-border-color: var(--border-color);
 
-  --font-inter: Inter, Arial, sans-serif;
-  --font-montserrat: Montserrat, Inter, Arial, sans-serif;
-  --font-display: Bungee, Arial Black, Montserrat, sans-serif;
+  --font-inter: var(--font-face-inter), Arial, sans-serif;
+  --font-montserrat: var(--font-face-montserrat), var(--font-face-inter), Arial, sans-serif;
+  --font-display: var(--font-face-bungee), Arial Black, var(--font-face-montserrat), sans-serif;
 
   --animate-fade-in-up: fadeInUp 1s ease-out forwards;
   --animate-stripe-shift: stripeShift 6s linear infinite;
@@ -31,11 +31,9 @@
 
   @keyframes fadeInUp {
     0% {
-      opacity: 0;
       transform: translateY(24px);
     }
     100% {
-      opacity: 1;
       transform: translateY(0);
     }
   }
@@ -187,8 +185,10 @@
 /* === Utilities === */
 
 @utility fade-in {
-  /* Fade In Animation */
-  @apply opacity-0 animate-fade-in-up;
+  /* Entrance: content slides up into place. It stays fully opaque so the first frame
+     already counts as painted; starting from opacity 0 left Lighthouse with no first
+     contentful paint on the home page. */
+  @apply animate-fade-in-up;
   /* The keyframes animate `transform`; Tailwind 4's translate-y-* sets the separate
      `translate` property, which the animation would never reset */
   transform: translateY(1.5rem);
