@@ -40,9 +40,9 @@ export default function WorkPage() {
                       <span className="text-[0.78rem] text-text-secondary">{project.year}</span>
                     </div>
                     <p className="font-display text-[1.35rem] leading-tight text-accent m-0">{project.highlight}</p>
-                    <h3 className="font-montserrat text-[1.05rem] font-bold text-text-main m-0 leading-snug" id={titleId}>
+                    <h2 className="font-montserrat text-[1.05rem] font-bold text-text-main m-0 leading-snug" id={titleId}>
                       {project.title}
-                    </h3>
+                    </h2>
                     <p className="text-[0.9rem] text-text-secondary leading-relaxed grow m-0">{project.description}</p>
                     <div className="flex flex-wrap gap-1.5 mt-auto">
                       {project.tags.map((tag) => (
