@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { ComputerDesktopIcon, MoonIcon, SunIcon } from '@/components/Icons'
-
-type ThemeMode = 'system' | 'dark' | 'light'
+import { THEME_EVENT, type ThemeMode } from '@/lib/theme'
+import CommandMenuButton from '@/components/CommandMenuButton'
 
 export default function Navbar() {
   const LONG_PRESS_MS = 550
@@ -49,9 +49,12 @@ export default function Navbar() {
 
     syncThemeState()
     mediaQuery.addEventListener('change', handleSystemThemeChange)
+    // The command menu can change the theme too
+    window.addEventListener(THEME_EVENT, syncThemeState)
 
     return () => {
       mediaQuery.removeEventListener('change', handleSystemThemeChange)
+      window.removeEventListener(THEME_EVENT, syncThemeState)
     }
   }, [])
 
@@ -172,6 +175,9 @@ export default function Navbar() {
                   </Link>
                 </li>
               ))}
+              <li className="hidden items-center md:flex">
+                <CommandMenuButton />
+              </li>
               <li className="flex items-center">
                 <div className="relative group">
                   <button
