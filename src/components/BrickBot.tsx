@@ -17,6 +17,7 @@ const LOOSE: [number, number, number, number, number, Tone][] = [
 // Narrow-screen framing. The camera sees VIEW_H world units top to bottom at the robot's depth,
 // centred on CENTER_Y. The robot spans BOT_SPAN units at scale 1, with the plate's underside BOT_BASE below its origin.
 const NAV_H = 64
+const MENU_FADE = `linear-gradient(to bottom, transparent ${NAV_H}px, #000 ${NAV_H + 40}px)`
 const VIEW_H = 2 * 22 * Math.tan((16 * Math.PI) / 180)
 const CENTER_Y = 1.4
 const BOT_SPAN = 8.1
@@ -28,7 +29,7 @@ function frameNarrow(wrap: HTMLElement, height: number) {
   const band = section ? parseFloat(getComputedStyle(section).paddingTop) - NAV_H : 0
   if (band < 160 || height <= 0) return { y: 4.3, scale: 0.5 }
   const pxPerUnit = height / VIEW_H
-  const scale = Math.min(0.55, (band * 0.85) / (BOT_SPAN * pxPerUnit))
+  const scale = Math.min(0.55, (band * 0.78) / (BOT_SPAN * pxPerUnit))
   const floorPx = NAV_H + band - 16
   return { y: CENTER_Y + (height / 2 - floorPx) / pxPerUnit + BOT_BASE * scale, scale }
 }
@@ -164,7 +165,7 @@ export default function BrickBot() {
     stage.start({
       frame: (time) => {
         clock = time
-        world.position.set(wide ? 4 : 0, wide ? 0.9 : narrow.y, 0)
+        world.position.set(wide ? 4 : 0, wide ? 0.5 : narrow.y, 0)
         world.scale.setScalar(wide ? 1 : narrow.scale)
         world.rotation.y += (-0.35 + drag.yaw + pointer.x * 0.12 - world.rotation.y) * 0.1
 
@@ -216,7 +217,8 @@ export default function BrickBot() {
   }, [])
 
   return (
-    <div ref={wrapRef} className="absolute inset-0 -z-10" aria-hidden="true">
+    // The scene fades out under the menu bar, so floating bricks never sit behind the links
+    <div ref={wrapRef} className="absolute inset-0 -z-10" aria-hidden="true" style={{ maskImage: MENU_FADE, WebkitMaskImage: MENU_FADE }}>
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full cursor-grab touch-pan-y opacity-0 transition-opacity duration-1000 data-[ready=true]:opacity-100"
