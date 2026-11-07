@@ -133,7 +133,7 @@ export default function Navbar() {
   return (
     <nav className={navbarClass} aria-label="Primary navigation" style={{ animationDelay: '0.1s' }}>
       <div className="container mx-auto">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex h-16 items-center justify-between gap-4">
           {/* Logo */}
           <Link className="font-montserrat font-semibold text-text-main hover:text-text-secondary transition-colors flex-shrink-0" href="/">
             <span aria-hidden="true">A V</span>
@@ -159,7 +159,7 @@ export default function Navbar() {
 
           {/* Desktop Menu & Theme (always visible on desktop, toggled on mobile) */}
           <div className={`${isMenuOpen ? 'absolute top-full left-0 right-0 bg-bg-secondary border-b border-border-color md:static md:border-0 md:bg-transparent' : 'hidden md:block'}`}>
-            <ul id="navbar-menu" className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6 md:ml-auto py-3 md:py-0">
+            <ul id="navbar-menu" className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6 md:ml-auto px-4 py-3 md:px-0 md:py-0">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
