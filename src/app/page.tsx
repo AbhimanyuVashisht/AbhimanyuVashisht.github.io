@@ -58,7 +58,7 @@ export default function HomePage() {
             <p className="mb-4 font-montserrat text-[clamp(1rem,1.7vw,1.3rem)] font-medium leading-snug text-text-main">
               AI Product Engineer<br />Lead Software Engineer at BrowserStack
             </p>
-            <p className={`${tagline} mb-4 lg:hidden`}>Building fast, scalable web products since 2015</p>
+            <p className={`${tagline} mb-4 lg:hidden`}>Engineering Intelligent, Scalable Solutions for Tomorrow</p>
 
             <div className="mb-5 flex gap-4">
               {socialLinks.map((link) => (
@@ -86,7 +86,7 @@ export default function HomePage() {
           </div>
         </div>
         <p className={`${tagline} pointer-events-none absolute bottom-[7vh] right-[5vw] m-0 hidden lg:block`}>
-          Building fast, scalable web products since 2015
+          Engineering Intelligent, Scalable Solutions for Tomorrow
         </p>
       </section>
     </>
