@@ -14,7 +14,7 @@ const OG_IMAGE = {
 export const PROFILES = {
   github: 'https://github.com/AbhimanyuVashisht',
   linkedin: 'https://www.linkedin.com/in/iamabhimanyuvashisht/',
-  twitter: 'https://twitter.com/abhimanyu_av',
+  twitter: 'https://x.com/abhimanyu_av',
   instagram: 'https://www.instagram.com/iamabhimanyuvashisht/',
 }
 

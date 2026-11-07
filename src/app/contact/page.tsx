@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import { pageMetadata } from '@/lib/seo'
 import BodyClass from '@/components/BodyClass'
-import { EnvelopeIcon, GitHubIcon, LinkedInIcon, TwitterIcon } from '@/components/Icons'
+import { EnvelopeIcon, GitHubIcon, LinkedInIcon, XIcon } from '@/components/Icons'
 
 export const metadata: Metadata = pageMetadata({
   title: 'Contact',
-  description: 'Get in touch with Abhimanyu Vashisht, AI Product Engineer and Lead Software Engineer at BrowserStack, by email, LinkedIn, GitHub or Twitter.',
+  description: 'Get in touch with Abhimanyu Vashisht, AI Product Engineer and Lead Software Engineer at BrowserStack, by email, LinkedIn, GitHub or X.',
   path: '/contact/',
 })
 
@@ -36,12 +36,12 @@ export default function ContactPage() {
       ariaLabel: 'GitHub profile (opens in new tab)',
     },
     {
-      Icon: TwitterIcon,
-      label: 'Twitter',
+      Icon: XIcon,
+      label: 'X',
       value: '@abhimanyu_av',
-      href: 'https://twitter.com/abhimanyu_av',
+      href: 'https://x.com/abhimanyu_av',
       external: true,
-      ariaLabel: 'Twitter profile (opens in new tab)',
+      ariaLabel: 'X profile (opens in new tab)',
     },
   ]
 

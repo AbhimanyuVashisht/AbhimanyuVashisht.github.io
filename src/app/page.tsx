@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import BodyClass from '@/components/BodyClass'
-import { GitHubIcon, InstagramIcon, LinkedInIcon, TwitterIcon } from '@/components/Icons'
+import { GitHubIcon, InstagramIcon, LinkedInIcon, XIcon } from '@/components/Icons'
 
 const BrickBot = dynamic(() => import('@/components/BrickBot'), { ssr: false })
 
@@ -26,7 +26,7 @@ export default function HomePage() {
     { href: 'https://github.com/AbhimanyuVashisht', Icon: GitHubIcon, label: 'GitHub' },
     { href: 'https://www.linkedin.com/in/iamabhimanyuvashisht/', Icon: LinkedInIcon, label: 'LinkedIn' },
     { href: 'https://www.instagram.com/iamabhimanyuvashisht/', Icon: InstagramIcon, label: 'Instagram' },
-    { href: 'https://twitter.com/abhimanyu_av', Icon: TwitterIcon, label: 'Twitter' },
+    { href: 'https://x.com/abhimanyu_av', Icon: XIcon, label: 'X' },
   ]
 
   // Sits in the bottom-right corner on wide screens and under the role line on narrow ones
