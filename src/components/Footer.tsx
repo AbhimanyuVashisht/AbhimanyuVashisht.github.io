@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import { GitHubIcon, InstagramIcon, LinkedInIcon, XIcon } from '@/components/Icons'
+import LoadTime from '@/components/LoadTime'
 
 export default function Footer() {
   const pathname = usePathname()
@@ -36,6 +37,7 @@ export default function Footer() {
           ))}
         </div>
         <div className="text-sm text-text-secondary">&copy; 2026 Abhimanyu Vashisht</div>
+        <LoadTime className="mt-1" />
       </div>
     </footer>
   )

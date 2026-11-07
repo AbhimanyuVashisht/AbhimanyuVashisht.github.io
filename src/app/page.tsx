@@ -5,15 +5,22 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import BodyClass from '@/components/BodyClass'
+import LoadTime from '@/components/LoadTime'
+import RobotPoster from '@/components/RobotPoster'
 import { GitHubIcon, InstagramIcon, LinkedInIcon, XIcon } from '@/components/Icons'
 
 const BrickBot = dynamic(() => import('@/components/BrickBot'), { ssr: false })
 
 export default function HomePage() {
-  // The 3D scene is heavy on phones; load it once the page has painted and the browser is idle
-  const [showBot, setShowBot] = useState(false)
+  // The 3D scene is heavy on phones; load it once the page has painted and the browser is idle.
+  // Where it would cost more than it gives, or WebGL is missing, show a still picture instead.
+  const [robot, setRobot] = useState<'waiting' | '3d' | 'still'>('waiting')
   useEffect(() => {
-    const show = () => setShowBot(true)
+    if (prefersLightStart()) {
+      const id = window.setTimeout(() => setRobot('still'), 0)
+      return () => window.clearTimeout(id)
+    }
+    const show = () => setRobot('3d')
     if (typeof window.requestIdleCallback === 'function') {
       const id = window.requestIdleCallback(show, { timeout: 2500 })
       return () => window.cancelIdleCallback(id)
@@ -36,7 +43,8 @@ export default function HomePage() {
     <>
       <BodyClass className="page-hero" />
       <section className="relative isolate flex overflow-hidden pt-[calc(4rem+clamp(220px,40svh,340px))] lg:h-screen lg:min-h-svh lg:items-end lg:pt-16 fade-in" aria-labelledby="hero-heading" style={{ animationDelay: '0.2s' }}>
-        {showBot && <BrickBot />}
+        {robot === '3d' && <BrickBot onUnavailable={() => setRobot('still')} />}
+        {robot === 'still' && <RobotPoster />}
         {/* On phones the robot gets the band above the copy (the section's top padding); on desktop it stands beside it.
             The copy lets clicks through to the robot everywhere except its own links */}
         <div className="container pointer-events-none mx-auto pb-10 lg:pb-[7vh]">
@@ -83,12 +91,23 @@ export default function HomePage() {
                 Get in touch
               </Link>
             </div>
+            <LoadTime className="mt-6 lg:hidden" />
           </div>
         </div>
-        <p className={`${tagline} pointer-events-none absolute bottom-[7vh] right-[5vw] m-0 hidden lg:block`}>
-          Engineering Intelligent, Scalable Solutions for Tomorrow
-        </p>
+        <div className="pointer-events-none absolute bottom-[7vh] right-[5vw] hidden flex-col items-end gap-1 lg:flex">
+          <p className={`${tagline} m-0`}>Engineering Intelligent, Scalable Solutions for Tomorrow</p>
+          <LoadTime />
+        </div>
       </section>
     </>
   )
+}
+
+// Data Saver, a 2G connection, or a device with little memory or few cores: skip the 3D scene
+function prefersLightStart() {
+  const nav = navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string }; deviceMemory?: number }
+  if (nav.connection?.saveData) return true
+  if (nav.connection?.effectiveType?.endsWith('2g')) return true
+  if (nav.deviceMemory !== undefined && nav.deviceMemory <= 2) return true
+  return nav.hardwareConcurrency !== undefined && nav.hardwareConcurrency <= 2
 }
