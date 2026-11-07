@@ -1,12 +1,14 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type FocusEvent } from 'react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import BodyClass from '@/components/BodyClass'
 import LoadTime from '@/components/LoadTime'
 import RobotPoster from '@/components/RobotPoster'
+import RobotHint, { markRobotHintSeen } from '@/components/RobotHint'
+import type { BrickBotApi } from '@/components/BrickBot'
 import { GitHubIcon, InstagramIcon, LinkedInIcon, XIcon } from '@/components/Icons'
 
 const BrickBot = dynamic(() => import('@/components/BrickBot'), { ssr: false })
@@ -29,6 +31,26 @@ export default function HomePage() {
     return () => window.clearTimeout(id)
   }, [])
 
+  // The robot says hello when it appears, hops for "See my work", waves for "Get in touch",
+  // and looks at whichever hero link has keyboard focus
+  const bot = useRef<BrickBotApi | null>(null)
+  const [botReady, setBotReady] = useState(false)
+  const [hintDismissed, setHintDismissed] = useState(false)
+  const onBotReady = useCallback((api: BrickBotApi | null) => {
+    bot.current = api
+    setBotReady(api !== null)
+    if (api) window.setTimeout(() => api.wave(), 700)
+  }, [])
+  const onBotInteract = useCallback(() => {
+    setHintDismissed(true)
+    markRobotHintSeen()
+  }, [])
+  const lookHere = (e: FocusEvent<HTMLElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    bot.current?.lookAt({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 })
+  }
+  const lookAway = () => bot.current?.lookAt(null)
+
   const socialLinks = [
     { href: 'https://github.com/AbhimanyuVashisht', Icon: GitHubIcon, label: 'GitHub' },
     { href: 'https://www.linkedin.com/in/iamabhimanyuvashisht/', Icon: LinkedInIcon, label: 'LinkedIn' },
@@ -43,7 +65,7 @@ export default function HomePage() {
     <>
       <BodyClass className="page-hero" />
       <section className="relative isolate flex overflow-hidden pt-[calc(4rem+clamp(220px,40svh,340px))] lg:h-screen lg:min-h-svh lg:items-end lg:pt-16 fade-in" aria-labelledby="hero-heading" style={{ animationDelay: '0.2s' }}>
-        {robot === '3d' && <BrickBot onUnavailable={() => setRobot('still')} />}
+        {robot === '3d' && <BrickBot onUnavailable={() => setRobot('still')} onReady={onBotReady} onInteract={onBotInteract} />}
         {robot === 'still' && <RobotPoster />}
         {/* On phones the robot gets the band above the copy (the section's top padding); on desktop it stands beside it.
             The copy lets clicks through to the robot everywhere except its own links */}
@@ -84,14 +106,15 @@ export default function HomePage() {
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <Link href="/work" className="btn-brick">
+              <Link href="/work" className="btn-brick" onMouseEnter={() => bot.current?.hop()} onFocus={lookHere} onBlur={lookAway}>
                 See my work
               </Link>
-              <Link href="/contact" className="btn-outline">
+              <Link href="/contact" className="btn-outline" onMouseEnter={() => bot.current?.wave()} onFocus={lookHere} onBlur={lookAway}>
                 Get in touch
               </Link>
             </div>
-            <LoadTime className="mt-6 lg:hidden" />
+            <RobotHint ready={botReady} dismissed={hintDismissed} className="mt-5" />
+            <LoadTime className="mt-2 lg:hidden" />
           </div>
         </div>
         <div className="pointer-events-none absolute bottom-[7vh] right-[5vw] hidden flex-col items-end gap-1 lg:flex">

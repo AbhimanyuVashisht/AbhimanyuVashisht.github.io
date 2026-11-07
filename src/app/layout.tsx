@@ -4,6 +4,7 @@ import '@/styles/globals.css'
 import { ReduxProvider } from '@/store/ReduxProvider'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import CommandPalette from '@/components/CommandPalette'
 import ThemeInitializer from '@/components/ThemeInitializer'
 import { SITE_URL, pageMetadata, personSchema } from '@/lib/seo'
 
@@ -40,6 +41,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <CommandPalette />
         </ReduxProvider>
       </body>
     </html>
