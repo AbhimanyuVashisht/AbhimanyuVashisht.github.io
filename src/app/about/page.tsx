@@ -18,7 +18,7 @@ export default function AboutPage() {
       <section className="fade-in" id="about" aria-labelledby="about-heading">
         <div className="container mx-auto">
           <div className="max-w-[640px] mx-auto">
-              <h1 className="brick-title text-[2.4rem] mb-4" id="about-heading">
+              <h1 className="brick-title text-[2.25rem] mb-6" id="about-heading">
                 Hey, I&apos;m Abhimanyu
               </h1>
               <p className="mb-4 text-[1.05rem] text-text-secondary">

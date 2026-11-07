@@ -50,7 +50,7 @@ export default function ContactPage() {
       <BodyClass className="page-fill" />
       <section className="fade-in" id="contact" aria-labelledby="contact-heading">
         <div className="container mx-auto">
-          <h1 className="brick-title text-[2.2rem] text-center mb-3" id="contact-heading">
+          <h1 className="brick-title text-[2.25rem] text-center mb-3" id="contact-heading">
             Get in touch
           </h1>
           <p className="text-[1.1rem] text-text-secondary max-w-[520px] mx-auto mb-8 text-center">
@@ -62,14 +62,14 @@ export default function ContactPage() {
               <div key={card.href}>
                 <a
                   href={card.href}
-                  className="group brick-card bg-card-bg border border-border-color rounded-2xl p-6 text-center transition-colors duration-200 no-underline text-text-main flex flex-col items-center gap-2 h-full hover:border-accent focus:outline-hidden focus-visible:[outline:var(--focus-outline)] focus-visible:outline-offset-[3px]"
+                  className="group bg-card-bg border border-border-color rounded-xl p-6 text-center transition-colors duration-150 no-underline text-text-main flex flex-col items-center gap-2 h-full hover:bg-bg-accent focus:outline-hidden focus-visible:[outline:var(--focus-outline)] focus-visible:outline-offset-[3px]"
                   aria-label={card.ariaLabel}
                   {...(card.external && { target: '_blank', rel: 'noopener noreferrer' })}
                 >
-                  <span className="mb-2 block leading-none text-text-main transition-colors group-hover:text-accent">
-                    <card.Icon className="w-8 h-8" />
+                  <span className="mb-2 block leading-none text-text-secondary transition-colors group-hover:text-text-main">
+                    <card.Icon className="w-6 h-6" />
                   </span>
-                  <span className="font-montserrat font-semibold text-base text-text-main">{card.label}</span>
+                  <span className="font-montserrat font-medium text-base text-text-main">{card.label}</span>
                   <span className="text-sm text-text-secondary [overflow-wrap:anywhere]">{card.value}</span>
                 </a>
               </div>

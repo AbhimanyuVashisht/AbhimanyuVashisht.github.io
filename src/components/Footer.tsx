@@ -26,7 +26,7 @@ export default function Footer() {
             <a
               key={link.href}
               href={link.href}
-              className="text-text-secondary hover:text-accent transition-colors inline-block"
+              className="text-text-secondary hover:text-text-main transition-colors inline-block"
               aria-label={`${link.label} profile`}
               target="_blank"
               rel="noopener noreferrer"

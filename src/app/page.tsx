@@ -35,14 +35,15 @@ export default function HomePage() {
   return (
     <>
       <BodyClass className="page-hero" />
-      <section className="relative isolate flex min-h-svh items-end overflow-hidden pt-16 lg:h-screen fade-in" aria-labelledby="hero-heading" style={{ animationDelay: '0.2s' }}>
+      <section className="relative isolate flex overflow-hidden pt-[calc(4rem+clamp(220px,40svh,340px))] lg:h-screen lg:min-h-svh lg:items-end lg:pt-16 fade-in" aria-labelledby="hero-heading" style={{ animationDelay: '0.2s' }}>
         {showBot && <BrickBot />}
-        {/* The copy lets clicks through to the robot everywhere except its own links */}
-        <div className="container pointer-events-none mx-auto pb-[7vh]">
+        {/* On phones the robot gets the band above the copy (the section's top padding); on desktop it stands beside it.
+            The copy lets clicks through to the robot everywhere except its own links */}
+        <div className="container pointer-events-none mx-auto pb-10 lg:pb-[7vh]">
           <div className="max-w-[640px] [&_a]:pointer-events-auto">
-            <p className="mb-2 flex items-center gap-3 font-montserrat text-lg font-semibold text-text-main">
+            <p className="mb-2 flex items-center gap-3 font-montserrat text-lg font-medium text-text-secondary">
               <Image
-                className="h-12 w-12 rounded-full border-2 border-accent object-cover object-[center_15%]"
+                className="h-12 w-12 rounded-full border border-border-color object-cover object-[center_15%]"
                 src="/plugins/localCss/prof-img2.jpg"
                 alt="Abhimanyu Vashisht"
                 width={48}
@@ -51,10 +52,10 @@ export default function HomePage() {
               />
               Hello, I&apos;m
             </p>
-            <h1 className="brick-title mb-4 text-[clamp(2.4rem,7.4vw,6rem)]" id="hero-heading">
+            <h1 className="name-title mb-4 text-[clamp(2.4rem,7vw,5.5rem)]" id="hero-heading">
               Abhimanyu<br />Vashisht
             </h1>
-            <p className="mb-4 font-montserrat text-[clamp(1rem,1.7vw,1.3rem)] font-semibold leading-snug text-text-main">
+            <p className="mb-4 font-montserrat text-[clamp(1rem,1.7vw,1.3rem)] font-medium leading-snug text-text-main">
               AI Product Engineer<br />Lead Software Engineer at BrowserStack
             </p>
             <p className={`${tagline} mb-4 lg:hidden`}>Building fast, scalable web products since 2015</p>

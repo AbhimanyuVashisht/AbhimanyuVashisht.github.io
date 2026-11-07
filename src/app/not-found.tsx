@@ -16,8 +16,8 @@ export default function NotFound() {
         <div className="container mx-auto">
           <div className="max-w-2xl mx-auto text-center">
               <p className="font-montserrat text-sm font-medium tabular-nums text-text-secondary mb-2">404</p>
-              <h1 className="brick-title text-[2.4rem] mb-4" id="not-found-heading">
-                Page Not Found
+              <h1 className="brick-title text-[2.25rem] mb-4" id="not-found-heading">
+                Page not found
               </h1>
               <p className="text-text-secondary text-[1.05rem] mb-4">
                 The page you&apos;re looking for doesn&apos;t exist or may have been moved

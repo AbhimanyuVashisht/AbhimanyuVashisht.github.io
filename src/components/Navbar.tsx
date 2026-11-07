@@ -119,6 +119,9 @@ export default function Navbar() {
 
   const themeToggleLabel = `Theme mode: ${themeMode}. Click to toggle dark/light. Long press to use system theme.`
 
+  // The static export serves pages with a trailing slash, so /work/ should still match /work
+  const isCurrent = (href: string) => pathname.replace(/\/$/, '') === href
+
   const navLinks = [
     { href: '/about', label: 'About' },
     { href: '/work', label: 'Work' },
@@ -132,7 +135,7 @@ export default function Navbar() {
       <div className="container mx-auto">
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
-          <Link className="font-montserrat font-bold text-text-main hover:text-accent transition-colors flex-shrink-0" href="/">
+          <Link className="font-montserrat font-semibold text-text-main hover:text-text-secondary transition-colors flex-shrink-0" href="/">
             <span aria-hidden="true">A V</span>
             <span className="sr-only">Abhimanyu Vashisht - Home</span>
           </Link>
@@ -140,7 +143,7 @@ export default function Navbar() {
           {/* Mobile Hamburger Button */}
           <button
             type="button"
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-border-color text-text-main hover:text-accent hover:border-accent transition-colors flex-shrink-0"
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-border-color text-text-main hover:bg-bg-accent transition-colors flex-shrink-0"
             aria-controls="navbar-menu"
             aria-expanded={isMenuOpen}
             aria-label="Toggle navigation"
@@ -161,9 +164,10 @@ export default function Navbar() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className={`${pathname === link.href ? 'text-accent font-semibold' : 'text-text-main hover:text-accent'} transition-colors block py-1`}
-                    aria-current={pathname === link.href ? 'page' : undefined}
+                    className={`${isCurrent(link.href) ? 'text-text-main' : 'text-text-secondary hover:text-text-main'} transition-colors flex items-center gap-2 py-1 font-medium`}
+                    aria-current={isCurrent(link.href) ? 'page' : undefined}
                   >
+                    {isCurrent(link.href) && <span className="stud" aria-hidden="true" />}
                     {link.label}
                   </Link>
                 </li>
@@ -172,7 +176,7 @@ export default function Navbar() {
                 <div className="relative group">
                   <button
                     id="theme-toggle"
-                    className="rounded-full w-9 h-9 flex items-center justify-center text-text-secondary hover:text-accent transition-colors border border-border-color bg-transparent"
+                    className="rounded-lg w-9 h-9 flex items-center justify-center text-text-secondary hover:text-text-main hover:bg-bg-accent transition-colors border border-border-color bg-transparent"
                     onClick={handleThemeClick}
                     onMouseDown={handleThemePressStart}
                     onMouseUp={handleThemePressEnd}

@@ -7,6 +7,7 @@
   --color-text-main: var(--text-main);
   --color-text-secondary: var(--text-secondary);
   --color-accent: var(--accent);
+  --color-accent-fill: var(--accent-fill);
   --color-accent-strong: var(--accent-strong);
   --color-accent-bg: var(--accent-bg);
   --color-card-bg: var(--card-bg);
@@ -83,7 +84,7 @@
 
 @utility skip-nav {
   /* Skip Navigation */
-  @apply absolute -top-full left-0 bg-accent px-6 py-3 font-bold font-montserrat z-10000;
+  @apply absolute -top-full left-0 bg-accent-fill px-6 py-3 font-semibold font-montserrat z-10000;
   border-radius: 0 0 6px 0;
   color: var(--on-accent);
   text-decoration: none;
@@ -92,84 +93,57 @@
 
   &:focus {
     @apply top-0;
-    outline: 3px solid #fff;
+    outline: var(--focus-outline);
     outline-offset: 2px;
   }
 }
 
 @utility brick-title {
-  /* Chunky display headings */
-  @apply font-display font-normal text-accent;
+  /* Page headings: plain and calm, so the robot stays the one loud thing */
+  @apply font-montserrat font-semibold text-text-main;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+@utility name-title {
+  /* The name on the home page is the one place the toy-brick face appears */
+  @apply font-display font-normal text-text-main;
   letter-spacing: 0;
   line-height: 0.95;
-  text-shadow: 0.06em 0.06em 0 var(--title-shadow);
 }
 
 @utility btn-brick {
-  @apply inline-block rounded-full border-2 px-7 py-2.5 font-montserrat font-semibold no-underline transition-[color,background-color,border-color,transform] duration-200 active:scale-[0.98];
-  @apply border-accent bg-accent;
+  @apply inline-block rounded-lg border border-accent-fill bg-accent-fill px-5 py-2.5 font-medium no-underline transition-[background-color,border-color,transform] duration-150 ease-out active:scale-[0.98];
   color: var(--on-accent);
 
   &:hover {
-    @apply bg-transparent text-accent;
+    background-color: var(--accent-fill-hover);
+    border-color: var(--accent-fill-hover);
+  }
+
+  &:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: 2px;
   }
 }
 
 @utility btn-outline {
-  @apply inline-block rounded-full border-2 px-7 py-2.5 font-montserrat font-semibold no-underline transition-[color,background-color,border-color,transform] duration-200 active:scale-[0.98];
-  @apply border-text-main bg-transparent text-text-main;
+  @apply inline-block rounded-lg border border-border-color bg-transparent px-5 py-2.5 font-medium text-text-main no-underline transition-[background-color,border-color,transform] duration-150 ease-out active:scale-[0.98];
 
   &:hover {
-    @apply bg-text-main;
-    color: var(--bg-main);
+    @apply bg-bg-accent;
+  }
+
+  &:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: 2px;
   }
 }
 
-@utility brick-card {
-  /* A row of studs along the top edge turns a card into a brick */
-  @apply relative;
-
-  &::before {
-    content: '';
-    @apply absolute left-6 right-6 -top-2 h-2;
-    background: repeating-linear-gradient(
-      90deg,
-      var(--border-color) 0 26px,
-      transparent 26px 44px
-    );
-    border-radius: 4px 4px 0 0;
-  }
-}
-
-@utility profile-ring-outer {
-  &.is-hovered .profile-img-primary {
-    opacity: 0;
-    transform: scale(1.04);
-  }
-
-  &:hover .profile-img-primary {
-    opacity: 0;
-    transform: scale(1.04);
-  }
-}
-
-@utility is-hovered {
-  &.profile-ring-outer .profile-img-primary {
-    opacity: 0;
-    transform: scale(1.04);
-  }
-}
-
-@utility profile-img-primary {
-  .profile-ring-outer.is-hovered & {
-    opacity: 0;
-    transform: scale(1.04);
-  }
-
-  .profile-ring-outer:hover & {
-    opacity: 0;
-    transform: scale(1.04);
-  }
+@utility stud {
+  /* The one recurring detail: a yellow stud marks what is current */
+  @apply inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-accent-fill;
 }
 
 /* === Utilities === */
@@ -241,63 +215,57 @@
 
 /* === Theme Variables === */
 @layer base {
-  /* Night is the default; day is the bright brick-blue look */
+  /* Night is the default: plain graphite. Day is light grey. Yellow is kept for fills and the stud */
   :root {
-    --bg-main: #0b1030;
-    --bg-secondary: #0f1640;
-    --bg-accent: #1a2466;
-    --text-main: #ffffff;
-    --text-secondary: #b9c2f0;
+    --bg-main: #111215;
+    --bg-secondary: #16171b;
+    --bg-accent: #1f2025;
+    --text-main: #ececef;
+    --text-secondary: #a0a2ac;
     --accent: #ffd60a;
     --accent-strong: #ffd60a;
-    --accent-bg: #1a2466;
-    --card-bg: #141c52;
-    --border-color: #2c3a8f;
-    --shadow: 0 2px 12px rgba(0,0,0,0.45);
-    --focus-outline: 3px solid #ffd60a;
-    --about-accent-bg: #1a2466;
+    --accent-fill: #ffd60a;
+    --accent-fill-hover: #f2c800;
+    --accent-bg: #1f2025;
+    --card-bg: #17181c;
+    --border-color: #2a2b31;
+    --focus-outline: 2px solid #ffd60a;
     --on-accent: #1a1400;
-    --dot: #10174a;
-    --title-shadow: #05081f;
   }
 
   [data-theme="light"] {
-    --bg-main: #2340ff;
-    --bg-secondary: #1730d6;
-    --bg-accent: #1730d6;
-    --text-main: #ffffff;
-    --text-secondary: #d6dcff;
-    --accent: #ffd60a;
-    --accent-strong: #ffd60a;
-    --accent-bg: #1730d6;
-    --card-bg: #1a34e0;
-    --border-color: #4a63ff;
-    --shadow: 0 2px 8px rgba(0,0,0,0.18);
-    --focus-outline: 3px solid #ffd60a;
-    --about-accent-bg: #1730d6;
+    --bg-main: #f4f4f5;
+    --bg-secondary: #ffffff;
+    --bg-accent: #eaeaec;
+    --text-main: #18181b;
+    --text-secondary: #5b5d66;
+    --accent: #7a5d00;
+    --accent-strong: #7a5d00;
+    --accent-fill: #ffd60a;
+    --accent-fill-hover: #f2c800;
+    --accent-bg: #eaeaec;
+    --card-bg: #ffffff;
+    --border-color: #e1e1e5;
+    --focus-outline: 2px solid #18181b;
     --on-accent: #1a1400;
-    --dot: #1c36ea;
-    --title-shadow: #1730d6;
   }
 
   @media (prefers-color-scheme: light) {
     :root:not([data-theme]) {
-      --bg-main: #2340ff;
-      --bg-secondary: #1730d6;
-      --bg-accent: #1730d6;
-      --text-main: #ffffff;
-      --text-secondary: #d6dcff;
-      --accent: #ffd60a;
-      --accent-strong: #ffd60a;
-      --accent-bg: #1730d6;
-      --card-bg: #1a34e0;
-      --border-color: #4a63ff;
-      --shadow: 0 2px 8px rgba(0,0,0,0.18);
-      --focus-outline: 3px solid #ffd60a;
-      --about-accent-bg: #1730d6;
+      --bg-main: #f4f4f5;
+      --bg-secondary: #ffffff;
+      --bg-accent: #eaeaec;
+      --text-main: #18181b;
+      --text-secondary: #5b5d66;
+      --accent: #7a5d00;
+      --accent-strong: #7a5d00;
+      --accent-fill: #ffd60a;
+      --accent-fill-hover: #f2c800;
+      --accent-bg: #eaeaec;
+      --card-bg: #ffffff;
+      --border-color: #e1e1e5;
+      --focus-outline: 2px solid #18181b;
       --on-accent: #1a1400;
-      --dot: #1c36ea;
-      --title-shadow: #1730d6;
     }
   }
 
@@ -307,8 +275,6 @@
 
   body, html {
     @apply font-inter bg-bg-main text-text-main h-full m-0;
-    background-image: radial-gradient(var(--dot) 22%, transparent 23%);
-    background-size: 34px 34px;
     font-size: 16px;
     line-height: 1.7;
     transition: background 0.3s, color 0.3s;
@@ -325,15 +291,6 @@
   section[id],
   footer[id] {
     scroll-margin-top: 100px;
-  }
-}
-
-/* === Custom Components === */
-@layer components {
-  /* Accent Stripe */
-  body::before {
-    content: "";
-    @apply block h-1 fixed top-0 left-0 right-0 z-9999 bg-accent;
   }
 }
 

@@ -19,8 +19,8 @@ export default function WorkPage() {
       <BodyClass className="page-fill" />
       <section className="fade-in" id="projects" aria-labelledby="projects-heading">
         <div className="container mx-auto">
-          <h1 className="brick-title text-[2.2rem] text-center mb-3" id="projects-heading">
-            Things I Didn&apos;t Break <span className="text-text-main">(Mostly)</span>
+          <h1 className="brick-title text-[2.25rem] text-center mb-3" id="projects-heading">
+            Things I didn&apos;t break <span className="text-text-secondary">(mostly)</span>
           </h1>
           <p className="text-text-secondary text-[1.05rem] text-center mb-8">
             A selection of things I&apos;ve built and shipped
@@ -31,16 +31,20 @@ export default function WorkPage() {
               return (
                 <div key={project.title}>
                   <article
-                    className="brick-card bg-card-bg border border-border-color rounded-2xl p-6 flex flex-col gap-3 h-full animate-brick-drop"
+                    className="bg-card-bg border border-border-color rounded-xl p-6 flex flex-col gap-3 h-full animate-brick-drop"
                     style={{ animationDelay: `${index * 120}ms` }}
                     aria-labelledby={titleId}
                   >
                     <div className="flex justify-between items-center flex-wrap gap-1">
-                      <span className="font-montserrat text-sm font-semibold text-text-main">{project.company}</span>
+                      <span className="inline-flex items-center gap-2 font-montserrat text-sm font-medium text-text-main">
+                        {/* The stud marks the role held now */}
+                        {project.year.endsWith('present') && project.company !== 'Personal' && <span className="stud" aria-hidden="true" />}
+                        {project.company}
+                      </span>
                       <span className="text-sm tabular-nums text-text-secondary">{project.year}</span>
                     </div>
-                    <p className="font-display text-[1.35rem] leading-tight text-accent m-0">{project.highlight}</p>
-                    <h2 className="font-montserrat text-[1.05rem] font-semibold text-text-main m-0 leading-snug" id={titleId}>
+                    <p className="font-montserrat text-[1.25rem] font-semibold leading-snug text-text-main m-0 [text-wrap:balance]">{project.highlight}</p>
+                    <h2 className="text-sm font-medium text-text-secondary m-0 leading-snug" id={titleId}>
                       {project.title}
                     </h2>
                     <p className="text-[0.9rem] text-text-secondary leading-relaxed grow m-0">{project.description}</p>
