@@ -125,7 +125,7 @@ export default function Navbar() {
     { href: '/contact', label: 'Contact' },
   ]
 
-  const navbarClass = `fade-in fixed top-0 left-0 right-0 z-1030 transition-all duration-300 ease-in-out ${pathname === '/' && !isScrolled ? 'bg-transparent shadow-none' : 'bg-bg-secondary shadow-navbar border-b border-border-color'}`
+  const navbarClass = `fade-in fixed top-0 left-0 right-0 z-1030 transition-[background-color,border-color,box-shadow] duration-300 ease-out ${pathname === '/' && !isScrolled ? 'bg-transparent shadow-none' : 'bg-bg-secondary shadow-navbar border-b border-border-color'}`
 
   return (
     <nav className={navbarClass} aria-label="Primary navigation" style={{ animationDelay: '0.1s' }}>

@@ -17,10 +17,8 @@
   --font-display: var(--font-face-bungee), Arial Black, var(--font-face-montserrat), sans-serif;
 
   --animate-fade-in-up: fadeInUp 1s ease-out forwards;
-  --animate-stripe-shift: stripeShift 6s linear infinite;
   --animate-draw-logo: drawLogo 2s ease forwards;
-  --animate-brick-drop: brickDrop 0.6s cubic-bezier(0.34, 1.4, 0.64, 1)
-    backwards;
+  --animate-brick-drop: brickDrop 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
 
   --radius-32: 32%;
   --radius-34: 34%;
@@ -37,18 +35,10 @@
       transform: translateY(0);
     }
   }
-  @keyframes stripeShift {
-    0% {
-      background-position: 0% 0%;
-    }
-    100% {
-      background-position: 200% 0%;
-    }
-  }
   @keyframes brickDrop {
     0% {
       opacity: 0;
-      transform: translateY(-36px);
+      transform: translateY(-16px);
     }
     100% {
       opacity: 1;
@@ -116,7 +106,7 @@
 }
 
 @utility btn-brick {
-  @apply inline-block rounded-full border-2 px-7 py-2.5 font-montserrat font-bold tracking-wide no-underline transition-all duration-200 hover:-translate-y-0.5;
+  @apply inline-block rounded-full border-2 px-7 py-2.5 font-montserrat font-semibold no-underline transition-[color,background-color,border-color,transform] duration-200 active:scale-[0.98];
   @apply border-accent bg-accent;
   color: var(--on-accent);
 
@@ -126,7 +116,7 @@
 }
 
 @utility btn-outline {
-  @apply inline-block rounded-full border-2 px-7 py-2.5 font-montserrat font-bold tracking-wide no-underline transition-all duration-200 hover:-translate-y-0.5;
+  @apply inline-block rounded-full border-2 px-7 py-2.5 font-montserrat font-semibold no-underline transition-[color,background-color,border-color,transform] duration-200 active:scale-[0.98];
   @apply border-text-main bg-transparent text-text-main;
 
   &:hover {
@@ -215,8 +205,8 @@
     @apply pt-0;
   }
 
-  /* Container Padding */
-  @apply pt-8;
+  /* Container Padding: a side gutter until the container is narrower than the screen */
+  @apply pt-8 px-4 md:px-6 2xl:px-0;
 
   @media (max-width: 767.98px) {
     @apply pt-5;
@@ -227,7 +217,7 @@
   @apply flex flex-col min-h-screen;
 
   & main {
-    @apply flex-1 pt-[63px];
+    @apply flex-1 pt-16;
   }
 
   & footer {
@@ -329,8 +319,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-montserrat font-bold;
-    letter-spacing: 0.5px;
+    @apply font-montserrat font-semibold;
   }
 
   section[id],
@@ -344,10 +333,7 @@
   /* Accent Stripe */
   body::before {
     content: "";
-    @apply block h-[3px] fixed top-0 left-0 right-0 z-9999;
-    background: linear-gradient(90deg, #ffd60a, #ff4338, #7de3ff, #ffd60a);
-    background-size: 200% 100%;
-    animation: stripeShift 6s linear infinite;
+    @apply block h-1 fixed top-0 left-0 right-0 z-9999 bg-accent;
   }
 }
 
