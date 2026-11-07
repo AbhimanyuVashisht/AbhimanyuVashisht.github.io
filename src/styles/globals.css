@@ -158,27 +158,7 @@
   transform: translateY(1.5rem);
 }
 
-@utility page-hero {
-  /* Page Layouts */
-  & .container {
-    @apply pt-0;
-  }
-
-  @media (min-width: 1024px) and (min-height: 700px) {
-    @apply h-screen overflow-hidden;
-  }
-}
-
 @utility container {
-  /* Page Layouts */
-  .page-hero & {
-    @apply pt-0;
-  }
-
-  .page-fill & {
-    @apply pt-0;
-  }
-
   /* Container Padding: a side gutter until the container is narrower than the screen */
   @apply pt-8 px-4 md:px-6 2xl:px-0;
 
@@ -187,29 +167,47 @@
   }
 }
 
-@utility page-fill {
-  @apply flex flex-col min-h-screen;
+/* === Page layouts ===
+   <BodyClass> puts a marker in the server-rendered HTML, so these apply from the first paint.
+   They used to hang off a class added to <body> after hydration, which made the desktop layout
+   jump into place. Unlayered on purpose, so they win over the container's own padding. */
+body:has([data-page-layout]) .container {
+  padding-top: 0;
+}
 
-  & main {
-    @apply flex-1 pt-16;
+@media (min-width: 1024px) and (min-height: 700px) {
+  body:has([data-page-layout='page-hero']) {
+    height: 100vh;
+    overflow: hidden;
   }
+}
 
-  & footer {
-    @apply flex-shrink-0 mt-0;
-  }
+body:has([data-page-layout='page-fill']) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  & .container {
-    @apply pt-0;
-  }
+body:has([data-page-layout='page-fill']) main {
+  flex: 1 1 0%;
+  padding-top: 4rem;
+}
 
-  & section {
-    @apply w-full py-6;
-  }
+body:has([data-page-layout='page-fill']) footer {
+  flex-shrink: 0;
+  margin-top: 0;
+}
 
-  @media (min-width: 992px) and (min-height: 700px) {
-    & main {
-      @apply flex flex-col justify-center;
-    }
+body:has([data-page-layout='page-fill']) section {
+  width: 100%;
+  padding-block: 1.5rem;
+}
+
+@media (min-width: 992px) and (min-height: 700px) {
+  body:has([data-page-layout='page-fill']) main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 

@@ -20,7 +20,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const forceOpaque = document.body.classList.contains('page-fill')
+      const forceOpaque = document.querySelector('[data-page-layout="page-fill"]') !== null
       setIsScrolled(forceOpaque || window.scrollY > 50)
     }
     window.addEventListener('scroll', handleScroll)

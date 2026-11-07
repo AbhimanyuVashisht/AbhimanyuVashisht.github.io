@@ -6,7 +6,12 @@ import { useRouter } from 'next/navigation'
 import { useCallback, useRef, useState } from 'react'
 import type { BrokenBotApi } from '@/components/BrokenBot'
 
-const BrokenBot = dynamic(() => import('@/components/BrokenBot'), { ssr: false })
+// Same height as the scene, so the text doesn't jump down when the 3D code arrives
+const SCENE_HEIGHT = 'h-[clamp(220px,34vh,320px)]'
+const BrokenBot = dynamic(() => import('@/components/BrokenBot'), {
+  ssr: false,
+  loading: () => <div className={`${SCENE_HEIGHT} w-full`} aria-hidden="true" />,
+})
 
 export default function NotFoundContent() {
   const router = useRouter()
