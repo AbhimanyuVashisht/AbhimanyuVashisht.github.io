@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { GitHubIcon, InstagramIcon, LinkedInIcon, TwitterIcon } from '@/components/Icons'
+import { GitHubIcon, InstagramIcon, LinkedInIcon, XIcon } from '@/components/Icons'
 
 export default function Footer() {
   const pathname = usePathname()
@@ -15,7 +15,7 @@ export default function Footer() {
     { href: 'https://github.com/AbhimanyuVashisht', Icon: GitHubIcon, label: 'GitHub' },
     { href: 'https://www.linkedin.com/in/iamabhimanyuvashisht/', Icon: LinkedInIcon, label: 'LinkedIn' },
     { href: 'https://www.instagram.com/iamabhimanyuvashisht/', Icon: InstagramIcon, label: 'Instagram' },
-    { href: 'https://twitter.com/abhimanyu_av', Icon: TwitterIcon, label: 'Twitter' },
+    { href: 'https://x.com/abhimanyu_av', Icon: XIcon, label: 'X' },
   ]
 
   return (
