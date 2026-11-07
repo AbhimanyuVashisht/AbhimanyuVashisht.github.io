@@ -14,6 +14,25 @@ const LOOSE: [number, number, number, number, number, Tone][] = [
   [3.2, 6.8, -1.5, 1, 1, 'packet'],
 ]
 
+// Narrow-screen framing. The camera sees VIEW_H world units top to bottom at the robot's depth,
+// centred on CENTER_Y. The robot spans BOT_SPAN units at scale 1, with the plate's underside BOT_BASE below its origin.
+const NAV_H = 64
+const VIEW_H = 2 * 22 * Math.tan((16 * Math.PI) / 180)
+const CENTER_Y = 1.4
+const BOT_SPAN = 8.1
+const BOT_BASE = 2.5
+
+// Stand the robot just above the hero copy: the band is the hero's top padding minus the navbar
+function frameNarrow(wrap: HTMLElement, height: number) {
+  const section = wrap.parentElement
+  const band = section ? parseFloat(getComputedStyle(section).paddingTop) - NAV_H : 0
+  if (band < 160 || height <= 0) return { y: 4.3, scale: 0.5 }
+  const pxPerUnit = height / VIEW_H
+  const scale = Math.min(0.55, (band * 0.85) / (BOT_SPAN * pxPerUnit))
+  const floorPx = NAV_H + band - 16
+  return { y: CENTER_Y + (height / 2 - floorPx) / pxPerUnit + BOT_BASE * scale, scale }
+}
+
 export default function BrickBot() {
   const wrapRef = useRef<HTMLDivElement | null>(null)
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
@@ -113,6 +132,7 @@ export default function BrickBot() {
     const pointer = { x: 0, y: 0 }
     const drag = { active: false, lastX: 0, moved: 0, yaw: 0 }
     let wide = true
+    let narrow = { y: 4.3, scale: 0.5 }
     let clock = 0
     let wavedAt = -Infinity
 
@@ -144,8 +164,8 @@ export default function BrickBot() {
     stage.start({
       frame: (time) => {
         clock = time
-        world.position.set(wide ? 4 : 0, wide ? 0.9 : 4.3, 0)
-        world.scale.setScalar(wide ? 1 : 0.5)
+        world.position.set(wide ? 4 : 0, wide ? 0.9 : narrow.y, 0)
+        world.scale.setScalar(wide ? 1 : narrow.scale)
         world.rotation.y += (-0.35 + drag.yaw + pointer.x * 0.12 - world.rotation.y) * 0.1
 
         const lookX = pointer.x - (wide ? 0.4 : 0)
@@ -169,13 +189,14 @@ export default function BrickBot() {
           group.rotation.set(Math.sin(seed) * 0.4, reduceMotion ? seed : time * 0.3 + seed, 0)
         })
       },
-      resize: () => {
+      resize: (_width, height) => {
         wide = camera.aspect > 1.15
         // On narrow screens the floor shadow would fall behind the copy
         stage.ground.visible = wide
         camera.fov = 32
         camera.position.set(0, 2.6, 22)
         camera.lookAt(0, 1.4, 0)
+        narrow = frameNarrow(wrap, height)
       },
     })
 

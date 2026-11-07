@@ -30,19 +30,20 @@ export default function HomePage() {
   ]
 
   // Sits in the bottom-right corner on wide screens and under the role line on narrow ones
-  const tagline = 'font-montserrat text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-text-main'
+  const tagline = 'font-montserrat text-sm font-medium text-text-secondary'
 
   return (
     <>
       <BodyClass className="page-hero" />
-      <section className="relative isolate flex min-h-svh items-end overflow-hidden pt-[63px] lg:h-screen fade-in" aria-labelledby="hero-heading" style={{ animationDelay: '0.2s' }}>
+      <section className="relative isolate flex overflow-hidden pt-[calc(4rem+clamp(220px,40svh,340px))] lg:h-screen lg:min-h-svh lg:items-end lg:pt-16 fade-in" aria-labelledby="hero-heading" style={{ animationDelay: '0.2s' }}>
         {showBot && <BrickBot />}
-        {/* The copy lets clicks through to the robot everywhere except its own links */}
-        <div className="container pointer-events-none mx-auto px-5 pb-[7vh] lg:px-0">
+        {/* On phones the robot gets the band above the copy (the section's top padding); on desktop it stands beside it.
+            The copy lets clicks through to the robot everywhere except its own links */}
+        <div className="container pointer-events-none mx-auto pb-10 lg:pb-[7vh]">
           <div className="max-w-[640px] [&_a]:pointer-events-auto">
-            <p className="mb-2 flex items-center gap-3 font-montserrat text-[1.15rem] font-bold italic text-text-main">
+            <p className="mb-2 flex items-center gap-3 font-montserrat text-lg font-medium text-text-secondary">
               <Image
-                className="h-12 w-12 rounded-full border-2 border-accent object-cover object-[center_15%]"
+                className="h-12 w-12 rounded-full border border-border-color object-cover object-[center_15%]"
                 src="/plugins/localCss/prof-img2.jpg"
                 alt="Abhimanyu Vashisht"
                 width={48}
@@ -51,13 +52,13 @@ export default function HomePage() {
               />
               Hello, I&apos;m
             </p>
-            <h1 className="brick-title mb-4 text-[clamp(2.4rem,7.4vw,6rem)]" id="hero-heading">
+            <h1 className="name-title mb-4 text-[clamp(2.4rem,7vw,5.5rem)]" id="hero-heading">
               Abhimanyu<br />Vashisht
             </h1>
-            <p className="mb-4 font-montserrat text-[clamp(1rem,1.7vw,1.3rem)] font-bold leading-snug text-text-main">
-              AI Product Engineer.<br />Lead Software Engineer at BrowserStack.
+            <p className="mb-4 font-montserrat text-[clamp(1rem,1.7vw,1.3rem)] font-medium leading-snug text-text-main">
+              AI Product Engineer<br />Lead Software Engineer at BrowserStack
             </p>
-            <p className={`${tagline} mb-4 lg:hidden`}>Engineering Intelligent, Scalable Solutions for Tomorrow</p>
+            <p className={`${tagline} mb-4 lg:hidden`}>Building fast, scalable web products since 2015</p>
 
             <div className="mb-5 flex gap-4">
               {socialLinks.map((link) => (
@@ -65,27 +66,27 @@ export default function HomePage() {
                   key={link.href}
                   href={link.href}
                   aria-label={`${link.label} profile`}
-                  className="text-text-main no-underline transition-all duration-200 hover:-translate-y-0.5 hover:text-accent"
+                  className="text-text-main no-underline transition-colors duration-200 hover:text-accent"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <link.Icon className="h-[1.3rem] w-[1.3rem]" />
+                  <link.Icon className="h-5 w-5" />
                 </a>
               ))}
             </div>
 
             <div className="flex flex-wrap gap-3">
               <Link href="/work" className="btn-brick">
-                See My Work
+                See my work
               </Link>
               <Link href="/contact" className="btn-outline">
-                Get In Touch
+                Get in touch
               </Link>
             </div>
           </div>
         </div>
         <p className={`${tagline} pointer-events-none absolute bottom-[7vh] right-[5vw] m-0 hidden lg:block`}>
-          Engineering Intelligent, Scalable Solutions for Tomorrow
+          Building fast, scalable web products since 2015
         </p>
       </section>
     </>

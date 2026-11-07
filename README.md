@@ -72,7 +72,7 @@ src/
 ├── components/       # Reusable React components
 │   ├── Navbar.tsx
 │   ├── Footer.tsx
-│   └── ProfileVisual.tsx
+│   └── BrickBot.tsx
 ├── store/            # Redux Toolkit store
 │   ├── store.ts
 │   ├── themeSlice.ts

@@ -19,11 +19,11 @@ export default function WorkPage() {
       <BodyClass className="page-fill" />
       <section className="fade-in" id="projects" aria-labelledby="projects-heading">
         <div className="container mx-auto">
-          <h1 className="brick-title text-[2.2rem] text-center mb-3" id="projects-heading">
-            Things I Didn&apos;t Break <span className="text-text-main">(Mostly)</span>
+          <h1 className="brick-title text-[2.25rem] text-center mb-3" id="projects-heading">
+            Things I didn&apos;t break <span className="text-text-secondary">(mostly)</span>
           </h1>
           <p className="text-text-secondary text-[1.05rem] text-center mb-8">
-            A selection of things I&apos;ve built and shipped.
+            A selection of things I&apos;ve built and shipped
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {projects.map((project, index) => {
@@ -31,22 +31,26 @@ export default function WorkPage() {
               return (
                 <div key={project.title}>
                   <article
-                    className="brick-card bg-card-bg border border-border-color rounded-2xl p-6 flex flex-col gap-3 transition-all duration-200 hover:-translate-y-1.5 hover:shadow-card hover:border-accent h-full animate-brick-drop"
+                    className="bg-card-bg border border-border-color rounded-xl p-6 flex flex-col gap-3 h-full animate-brick-drop"
                     style={{ animationDelay: `${index * 120}ms` }}
                     aria-labelledby={titleId}
                   >
                     <div className="flex justify-between items-center flex-wrap gap-1">
-                      <span className="font-montserrat text-[0.78rem] font-bold uppercase tracking-wider text-accent">{project.company}</span>
-                      <span className="text-[0.78rem] text-text-secondary">{project.year}</span>
+                      <span className="inline-flex items-center gap-2 font-montserrat text-sm font-medium text-text-main">
+                        {/* The stud marks the role held now */}
+                        {project.year.endsWith('present') && project.company !== 'Personal' && <span className="stud" aria-hidden="true" />}
+                        {project.company}
+                      </span>
+                      <span className="text-sm tabular-nums text-text-secondary">{project.year}</span>
                     </div>
-                    <p className="font-display text-[1.35rem] leading-tight text-accent m-0">{project.highlight}</p>
-                    <h2 className="font-montserrat text-[1.05rem] font-bold text-text-main m-0 leading-snug" id={titleId}>
+                    <p className="font-montserrat text-[1.25rem] font-semibold leading-snug text-text-main m-0 [text-wrap:balance]">{project.highlight}</p>
+                    <h2 className="text-sm font-medium text-text-secondary m-0 leading-snug" id={titleId}>
                       {project.title}
                     </h2>
                     <p className="text-[0.9rem] text-text-secondary leading-relaxed grow m-0">{project.description}</p>
                     <div className="flex flex-wrap gap-1.5 mt-auto">
                       {project.tags.map((tag) => (
-                        <span key={tag} className="text-[0.72rem] font-semibold tracking-wide px-2.5 py-1 rounded-full bg-accent-bg text-accent border border-border-color">
+                        <span key={tag} className="text-xs font-medium px-2 py-1 rounded-md text-text-secondary border border-border-color">
                           {tag}
                         </span>
                       ))}
@@ -54,12 +58,12 @@ export default function WorkPage() {
                     {project.link && (
                       <a
                         href={project.link}
-                        className="text-[0.85rem] font-semibold text-accent no-underline mt-2 inline-block hover:text-text-main hover:underline"
+                        className="text-sm font-medium text-text-main no-underline mt-2 inline-flex items-center gap-1 transition-colors hover:text-accent hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="View GitHub profile (opens in new tab)"
                       >
-                        <GitHubIcon className="w-4 h-4 mr-1 inline-block" />GitHub
+                        <GitHubIcon className="w-4 h-4" />GitHub
                       </a>
                     )}
                   </article>
