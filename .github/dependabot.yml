@@ -1,0 +1,31 @@
+# Weekly dependency update PRs. Each one runs the required "Lint, build and type check"
+# before it can merge. Security fixes come separately, as soon as an advisory is published.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore(deps)
+    groups:
+      # Minor and patch bumps arrive as one PR instead of one per package
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # Major versions need a deliberate upgrade (React 19, Tailwind 5, ...), not a weekly bump
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    commit-message:
+      prefix: ci
+    groups:
+      actions:
+        patterns: ["*"]
